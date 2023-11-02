@@ -1,8 +1,5 @@
 const router = require("express").Router();
-const Airport = require("../model/booking.js/airport");
-const CityRide = require("../model/booking.js/airport");
-const outstation = require("../model/booking.js/airport");
-const rental = require("../model/booking.js/airport");
+const Booking = require("../model/booking");
 const accountMiddleware = require("../middleware/account");
 const CityData = require("../model/data");
 
@@ -23,8 +20,13 @@ router.post("/search-data", async (req, resp) => {
 });
 
 // booking data
-router.post("/booking", async (req, resp) => {
+router.post("/booking", accountMiddleware, async (req, resp) => {
   try {
+    const data = await Booking.create({
+      ...req.body,
+      accountId: req.accountId,
+    });
+    resp.json({ success: true, msg: "Booking confirmed", data });
   } catch (err) {
     resp.send(err.message);
   }

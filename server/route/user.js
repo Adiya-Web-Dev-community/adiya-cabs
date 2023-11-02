@@ -78,7 +78,15 @@ router.post("/verify-otp", async (req, resp) => {
     const findUser = await User.findOne({ email: req.body.email });
     if (findUser) {
       if (req.body.otp === findUser.otp) {
-        resp.json({ status: true, msg: "OTP verification successful" });
+        const userId = findUser._id.toString;
+        const token = jwt.sign({ _id: userId }, process.env.JWT_SECRET_KEY, {
+          expiresIn: "1d",
+        });
+        resp.json({
+          status: true,
+          msg: "OTP verification successful",
+          token: token,
+        });
       } else {
         resp.json({ status: false, msg: "Invalid OTP. Please enter again" });
       }
