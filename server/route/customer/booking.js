@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const Booking = require("../model/booking");
-const accountMiddleware = require("../middleware/account");
-const CityData = require("../model/data");
+const CityData = require("../../model/data");
+const Booking = require("../../model/customer/booking");
+const accountMiddleware = require("../../middleware/account");
 
 // get data
-router.get("/data", async (req, resp) => {
+router.get("/city-data", async (req, resp) => {
   resp.send(CityData);
 });
 

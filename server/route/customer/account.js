@@ -4,8 +4,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
-const User = require("../model/user");
-const accountMiddleware = require("../middleware/account");
+const User = require("../../model/customer/account");
 
 //send email with OTP
 function sendOtpMail(email, OTP) {
