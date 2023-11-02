@@ -1,0 +1,27 @@
+import { Provider } from "react-redux";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import routes from "./routes/routes";
+import { store } from "./store";
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+
+const App = () => {
+
+  
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            {routes.map((el)=>
+            <Route path={el.path} element={<el.element/>} />
+            )}
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
+  );
+};
+
+export default App;

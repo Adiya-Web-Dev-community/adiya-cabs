@@ -1,0 +1,16 @@
+
+.animate-text{
+width: fit-content;
+height:fit-content;
+animation: animatedcomments infinite   linear;
+position: relative;
+}
+
+@keyframes animatedcomments {
+    0% {
+      top: 30rem;
+    }
+    100% {
+      top: -100%;
+    }
+  }
