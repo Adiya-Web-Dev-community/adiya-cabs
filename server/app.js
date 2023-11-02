@@ -10,9 +10,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-// routes
-app.use(require("./route/user"));
-app.use(require("./route/booking"));
+// customer routes
+app.use(require("./route/customer/account"));
+app.use(require("./route/customer/booking"));
+
+// driver routes
 
 app.get("/", async (req, resp) => {
   resp.send("Welcome to Stake");
