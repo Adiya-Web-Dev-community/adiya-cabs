@@ -22,7 +22,7 @@ router.post("/rider-singup", async (req, resp) => {
         const findRider = await Rider.findOne({ email, contact });
         if (findRider) {
             resp.json({
-                status: false,
+                success: false,
                 msg: "Rider already exists",
             });
         }
@@ -40,14 +40,14 @@ router.post("/rider-singup", async (req, resp) => {
                 profileImgUrl,
             });
             resp.json({
-                status: true,
+                success: true,
                 msg: "Rider Created",
                 data: createRider,
             });
         }
     } catch (err) {
         resp.json({
-            status: false,
+            success: false,
             msg: err.message,
         });
     }
@@ -60,14 +60,14 @@ router.post("/rider-login", async (req, resp) => {
         const rider = await Rider.findOne({ email });
         if (!rider) {
             return resp.json({
-                status: false,
+                success: false,
                 msg: "Rider not found",
             });
         }
         const validPassword = await bcrypt.compare(password, rider.password);
         if (!validPassword) {
             return resp.json({
-                status: false,
+                success: false,
                 msg: "Incorrect Credentials",
             });
         }
@@ -79,13 +79,13 @@ router.post("/rider-login", async (req, resp) => {
             }
         );
         resp.json({
-            status: true,
+            success: true,
             msg: "Login successful",
             token: token,
         });
     } catch (err) {
         resp.json({
-            status: false,
+            success: false,
             msg: err.message,
         });
     }
