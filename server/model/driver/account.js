@@ -2,12 +2,14 @@ const mongoose = require("mongoose");
 const riderSchema = new mongoose.Schema({
   name: { type: String, default: "" },
   email: { type: String },
-  contact: { type: Number },
+  contact: { type: String },
   password: { type: String },
   locality: { type: String, default: "" },
   city: { type: String, default: "" },
   state: { type: String, default: "" },
   pincode: { type: Number, default: "" },
+  adminVerifitcation : {type :Boolean, default: false},
+  driverId: { type: String, default: "" },
   profileImgUrl: {
     type: String,
     default:

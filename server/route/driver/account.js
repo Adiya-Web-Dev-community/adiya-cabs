@@ -90,10 +90,10 @@ router.post("/rider-signup", async (req, resp) => {
   
   // Rider Login
   router.post("/rider-login", async (req, resp) => {
-    const { email, password } = req.body;
+    const { userId, password } = req.body;
     try {
-      const findRider = await Rider.findOne({ $or: [{ email }, { contact }] });
-      if (!findRider) {
+        const findRider = await Rider.findOne({ $or: [{ email: userId }, { contact: userId }] });
+        if (!findRider) {
         return resp.json({
           success: false,
           msg: "Rider not found",
@@ -174,7 +174,7 @@ router.put("/rider-update-profile", accountMiddleware, async (req, resp) => {
         resp.json({
             success: true,
             msg: "Rider Details updated successfully",
-            data: rider,
+            data: updatedRider,
         });
     } catch (err) {
         resp.json({
