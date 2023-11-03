@@ -139,7 +139,7 @@ router.get("/rider-profile", accountMiddleware, async (req, resp) => {
         }
         resp.json({
             success: true,
-            msg: "Rider Details",
+            msg: "Rider Details ",
             data: rider,
         });
     } catch (err) {
