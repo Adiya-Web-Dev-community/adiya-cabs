@@ -6,54 +6,6 @@ const Rider = require("../../model/driver/account");
 const jwt = require("jsonwebtoken");
 const accountMiddleware = require("../../middleware/account");
 
-// Rider Singup
-// router.post("/rider-signup", async (req, resp) => {
-//     const {
-//         name,
-//         email,
-//         contact,
-//         password,
-//         locality,
-//         city,
-//         state,
-//         pincode,
-//         profileImgUrl,
-//     } = req.body;
-//     try {
-//         const findRider = await Rider.findOne({ $or: [{ email }, { contact }] });
-//         if (findRider) {
-//             resp.json({
-//                 success: false,
-//                 msg: "Account already exists",
-//             });
-//         }
-//         if (!findRider) {
-//             const hashedPassword = await bcrypt.hash(password, 10);
-//             const createRider = await Rider.create({
-//                 name,
-//                 email,
-//                 contact,
-//                 password: hashedPassword,
-//                 locality,
-//                 city,
-//                 state,
-//                 pincode,
-//                 profileImgUrl,
-//             });
-//             console.log(createRider)
-//             resp.json({
-//                 success: true,
-//                 msg: "Rider Created",
-//                 data: createRider,
-//             });
-//         }
-//     } catch (err) {
-//         resp.json({
-//             success: false,
-//             msg: err.message,
-//         });
-//     }
-// });
 
 // Rider Singup
 

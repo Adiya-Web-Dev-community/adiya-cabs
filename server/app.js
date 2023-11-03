@@ -13,13 +13,12 @@ app.use(cors());
 // customer routes
 app.use(require("./route/customer/account"));
 app.use(require("./route/customer/booking"));
-app.use(require("./route/driver/account"));
-
 
 // driver routes
+app.use(require("./route/driver/account"));
 
 app.get("/", async (req, resp) => {
-  resp.send("Welcome to Stake");
+  resp.send("Welcome to MERU CABS");
 });
 
 module.exports = app;
