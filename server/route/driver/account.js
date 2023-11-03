@@ -6,7 +6,13 @@ const Rider = require("../../model/rider/account");
 const jwt = require("jsonwebtoken");
 const accountMiddleware = require("../../middleware/account");
 
+<<<<<<< HEAD
 // Rider Singup
+=======
+
+// Rider Singup
+
+>>>>>>> af9d28132d146bb8f3a05f5d8ab113e9f502fd51
 router.post("/rider-signup", async (req, resp) => {
     try {
         const { email, contact, password } = req.body;
