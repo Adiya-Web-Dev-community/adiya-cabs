@@ -87,7 +87,7 @@ const Navbar = ({ navArr }) => {
 
   return (
     <nav
-      className={`flex justify-end items-center font-montserrat z-[1000]  px-5 md:px-20 sticky sm:fixed top-0  h-[49.6px] w-full select-none text-black ${ navBG ? "bg-white/95 shadow" : "bg-transparent"
+      className={`flex justify-end items-center font-montserrat z-20  px-5 md:px-20 sticky sm:fixed top-0  h-[49.6px] w-full select-none text-black ${ navBG ? "bg-white/95 shadow" : "bg-transparent"
         }`}
     >
       <div className="flex">
@@ -103,7 +103,7 @@ const Navbar = ({ navArr }) => {
 
 
       <section
-        className={`fixed top-0 left-0 w-full h-full bg-black/50 ${ openSidebar ? "visible" : "invisible"
+        className={`fixed top-0  left-0 w-full h-full bg-black/50    ${ openSidebar ? "visible " : "invisible"
           }`}
       >
         <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />

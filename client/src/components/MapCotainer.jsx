@@ -42,7 +42,7 @@ const MapCotainer = () => {
   
     
     return (
-      <div id="map" className='absolute w-full h-full z-5'  ></div>
+      <div id="map" className='absolute w-full h-full z-0'  ></div>
       
     );
   };

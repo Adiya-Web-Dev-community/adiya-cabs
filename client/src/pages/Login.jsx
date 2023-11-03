@@ -1,21 +1,19 @@
-import React, { useState,useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState} from 'react'
 import {Input,Button} from '../components/form'
-import { BsArrowLeft  } from 'react-icons/bs'
-import axios from 'axios'
+import axiosInstance from '../api/axiosInstance'
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
-import L from 'leaflet';
 import MapCotainer from '../components/MapCotainer'
+import { saveTokenToLoacal } from '../store/appSlice';
+import {useDispatch} from 'react-redux'
 
 const Login = () => {
 
   const [loginInfo, steLoginInfo] = useState({
+    name:'',
     email: '',
     otp:'' 
   })
- 
+ const dispatch = useDispatch()
 
   const [activeVarification,setVriFiactionActive] = useState(false)
 
@@ -27,25 +25,29 @@ const Login = () => {
 
   const handleSubmitLoginInfo = async (e,name) => {
 
-    const path = activeVarification?'/verify-otp':'/user-signin'
+    const path = activeVarification?'/verify-otp':'/send-otp'
 
     const loadingToast = toast.info('Sending OTP...', { autoClose: false });
 
     e.preventDefault()
     try {
-      const response = await axios.post(`http://localhost:5000${path}`,{[name]:loginInfo[name]},{
+      const response = await axiosInstance.post(path,{...loginInfo,otp:+loginInfo.otp},{
         headers: {
           'Content-Type': 'application/json',
+
         },
       });
       toast.success('User data posted successfully');  
       toast.dismiss(loadingToast);
 
-
       if (!response.statusText==='OK') {
         throw new Error('Network request failed');
       }else{
-        setVriFiactionActive(true)
+        if(activeVarification){
+          dispatch(saveTokenToLoacal(response.data.token))
+        }else{
+          setVriFiactionActive(true)
+        }
       }
     } catch (error) {      
       toast.error(`Error: ${error.message}`);
@@ -65,7 +67,7 @@ const Login = () => {
      <MapCotainer/>
       {!activeVarification?<form onSubmit={(e)=>handleSubmitLoginInfo(e,'email')} className='w-[24rem] mr-16  z-[500] bg-white rounded-md p-4 '>
       <h2 className='m-5 mb-16 text-2xl'>Let’s Sign You In!</h2>
-        <Input name={'Name'} type={'text'} label={'Name*'} required className='m-5 mb-8' onChange={handleChange} value={loginInfo.Email} />
+        <Input name={'name'} type={'text'} label={'Name*'} required className='m-5 mb-8' onChange={handleChange} value={loginInfo.Email} />
         <Input name={'email'} type={'email'} label={'Email*'} required className='m-5 mb-24' onChange={handleChange} value={loginInfo.Email} />
 
         <div className='flex justify-center items-center mt-4 mb-2'>
