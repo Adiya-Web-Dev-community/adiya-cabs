@@ -13,6 +13,8 @@ app.use(cors());
 // customer routes
 app.use(require("./route/customer/account"));
 app.use(require("./route/customer/booking"));
+app.use(require("./route/driver/account"));
+
 
 // driver routes
 
