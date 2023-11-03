@@ -7,91 +7,125 @@ const jwt = require("jsonwebtoken");
 const accountMiddleware = require("../../middleware/account");
 
 // Rider Singup
-router.post("/rider-singup", async (req, resp) => {
-    const {
-        name,
-        email,
-        contact,
-        password,
-        locality,
-        city,
-        state,
-        pincode,
-        profileImgUrl,
-    } = req.body;
-    try {
-        const findRider = await Rider.findOne({ email, contact });
-        if (findRider) {
-            resp.json({
-                success: false,
-                msg: "Rider already exists",
-            });
-        }
-        if (!findRider) {
-            const hashedPassword = await bcrypt.hash(password, 10);
-            const createRider = Rider.create({
-                name,
-                email,
-                contact,
-                password: hashedPassword,
-                locality,
-                city,
-                state,
-                pincode,
-                profileImgUrl,
-            });
-            resp.json({
-                success: true,
-                msg: "Rider Created",
-                data: createRider,
-            });
-        }
-    } catch (err) {
-        resp.json({
-            success: false,
-            msg: err.message,
-        });
-    }
-});
+// router.post("/rider-signup", async (req, resp) => {
+//     const {
+//         name,
+//         email,
+//         contact,
+//         password,
+//         locality,
+//         city,
+//         state,
+//         pincode,
+//         profileImgUrl,
+//     } = req.body;
+//     try {
+//         const findRider = await Rider.findOne({ $or: [{ email }, { contact }] });
+//         if (findRider) {
+//             resp.json({
+//                 success: false,
+//                 msg: "Account already exists",
+//             });
+//         }
+//         if (!findRider) {
+//             const hashedPassword = await bcrypt.hash(password, 10);
+//             const createRider = await Rider.create({
+//                 name,
+//                 email,
+//                 contact,
+//                 password: hashedPassword,
+//                 locality,
+//                 city,
+//                 state,
+//                 pincode,
+//                 profileImgUrl,
+//             });
+//             console.log(createRider)
+//             resp.json({
+//                 success: true,
+//                 msg: "Rider Created",
+//                 data: createRider,
+//             });
+//         }
+//     } catch (err) {
+//         resp.json({
+//             success: false,
+//             msg: err.message,
+//         });
+//     }
+// });
 
-// Rider Login
-router.post("/rider-login", async (req, resp) => {
+// Rider Singup
+
+router.post("/rider-signup", async (req, resp) => {
+    const { email, contact, password } = req.body;
+    try {
+      const findRider = await Rider.findOne({ $or: [{ email }, { contact }] });
+      if (findRider) {
+        return resp.json({
+          success: false,
+          msg: "Account already exists",
+        });
+      }
+      if (!findRider) {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const createRider = Rider.create({
+          email,
+          contact,
+          password: hashedPassword,
+        });
+        resp.json({
+          success: true,
+          msg: "Rider Created",
+          data: createRider,
+        });
+      }
+    } catch (err) {
+      resp.json({
+        success: false,
+        msg: err.message,
+      });
+    }
+  });
+  
+  // Rider Login
+  router.post("/rider-login", async (req, resp) => {
     const { email, password } = req.body;
     try {
-        const getRider = await Rider.findOne({ email });
-        if (!getRider) {
-            return resp.json({
-                success: false,
-                msg: "Rider not found",
-            });
-        }
-        const validPassword = bcrypt.compare(password, getRider.password);
-        if (!validPassword) {
-            return resp.json({
-                success: false,
-                msg: "Incorrect Credentials",
-            });
-        }
-        console.log(getRider._id);
-        const token = jwt.sign(
-            { _id: getRider._id },
-            process.env.JWT_SECRET_KEY,
-            {
-                expiresIn: "1d",
-            }
-        );
-        resp.json({
-            success: true,
-            msg: "Login successful",
-            token: token,
+      const findRider = await Rider.findOne({ $or: [{ email }, { contact }] });
+      if (!findRider) {
+        return resp.json({
+          success: false,
+          msg: "Rider not found",
         });
+      }
+      const validPassword = await bcrypt.compare(password, findRider.password);
+      if (!validPassword) {
+        return resp.json({
+          success: false,
+          msg: "Incorrect Credentials",
+        });
+      }
+      const token = jwt.sign({ _id: findRider._id }, process.env.JWT_SECRET_KEY, {
+        expiresIn: "1d",
+      });
+      resp.json({
+        success: true,
+        msg: "Login successful",
+        token: token,
+      });
     } catch (err) {
-        resp.json({
-            success: false,
-            msg: err.message,
-        });
+      resp.json({
+        success: false,
+        msg: err.message,
+      });
     }
-});
+  });
+  
+
+// Rider Login
+// 
+
 
 //Get profile information
 router.get("/rider-profile", accountMiddleware, async (req, resp) => {
