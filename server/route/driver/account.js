@@ -4,6 +4,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const Rider = require("../../model/driver/account");
 const jwt = require("jsonwebtoken");
+const accountMiddleware = require("../../middleware/account");
 
 // Rider Singup
 router.post("/rider-singup", async (req, resp) => {
@@ -57,22 +58,23 @@ router.post("/rider-singup", async (req, resp) => {
 router.post("/rider-login", async (req, resp) => {
     const { email, password } = req.body;
     try {
-        const rider = await Rider.findOne({ email });
-        if (!rider) {
+        const getRider = await Rider.findOne({ email });
+        if (!getRider) {
             return resp.json({
                 success: false,
                 msg: "Rider not found",
             });
         }
-        const validPassword = await bcrypt.compare(password, rider.password);
+        const validPassword =  bcrypt.compare(password, getRider.password);
         if (!validPassword) {
             return resp.json({
                 success: false,
                 msg: "Incorrect Credentials",
             });
         }
+        console.log(getRider._id)
         const token = jwt.sign(
-            { riderId: rider._id },
+            { _id: getRider._id},
             process.env.JWT_SECRET_KEY,
             {
                 expiresIn: "1d",
@@ -91,4 +93,36 @@ router.post("/rider-login", async (req, resp) => {
     }
 });
 
+//Get profile information
+router.get("/rider-profile",accountMiddleware, async (req, resp) =>{
+    try{
+        const rider = await Rider.findOne({_id : req.accountId});
+        if(!rider){
+            return resp.json({
+                success: false,
+                msg: "Rider not found"
+            });
+        }
+        resp.json({
+            success: true,
+            msg: "Rider Details",
+            data : rider,
+        });
+    }catch(err){
+        resp.json({
+            success: false,
+            msg: err.message,
+        });
+    }
+})
+
+
+// rider-update-profile
+router.put("/rider-update-profile",accountMiddleware, async (req, resp) =>{
+    try{
+
+    }catch(err){
+
+    }
+})
 module.exports = router;
