@@ -25,7 +25,9 @@ function sendVerificationMail(email, riderId, name) {
     text: `     Hello ${name}
                 You are onborded to the MERU,
                 Thank you for choosing us!
-                Your riderId is ${riderId}
+                Your Meru rider login credentials
+                riderId : ${riderId}
+                password: Password will the password you setup while creating your account
                 `,
   };
 
@@ -82,24 +84,41 @@ router.post("/admin-login", async (req, resp) => {
 // Verify the rider
 router.put("/admin-rider-verification", async (req, resp) => {
   const { riderId } = req.body;
+  console.log(req.body);
   try {
-    const rider = await Rider.findOneAndUpdate(
-      { riderId: riderId },
-      { $set: { adminVerification: true } },
-      { new: true }
-    );
+    const rider = await Rider.findOneAndUpdate({ riderId: riderId });
     if (!rider) {
       return resp.json({
         success: false,
         msg: "Incorrect rider Details",
       });
     }
-    console.log(rider);
 
-    sendVerificationMail(rider.email, riderId, rider.name);
+    if (rider.adminVerification === false) {
+      const updateRider = await Rider.updateOne(
+        { riderId: riderId },
+        {
+          $set: { adminVerification: true },
+        },
+        { new: true }
+      );
+      sendVerificationMail(rider.email, riderId, rider.name);
+      return resp.json({
+        success: true,
+        msg: "Access Granted",
+      });
+    } else {
+      const updateRider = await Rider.updateOne(
+        { riderId: riderId },
+        {
+          $set: { adminVerification: false },
+        },
+        { new: true }
+      );
+    }
     return resp.json({
       success: true,
-      msg: "Verification done successfully",
+      msg: "Access Denied",
     });
   } catch (err) {
     resp.json({
