@@ -12,5 +12,5 @@ const userSchema = new mongoose.Schema({
   otp: { type: Number, default: 0 },
 });
 
-const userModel = mongoose.model("user", userSchema);
+const userModel = mongoose.model("passenger", userSchema);
 module.exports = userModel;

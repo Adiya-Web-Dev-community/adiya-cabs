@@ -25,8 +25,7 @@ router.post("/rider-signup", async (req, resp) => {
     const year = new Date().getFullYear().toString().slice(-2);
     const riderId = `MERU${year}${nextRiderId + 1000}`;
     const newRider = new Rider({
-      email,
-      contact,
+      ...req.body,
       password: hashedPassword,
       serialNo: nextRiderId,
       riderId,
