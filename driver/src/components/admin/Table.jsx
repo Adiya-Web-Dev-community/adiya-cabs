@@ -14,8 +14,7 @@ const Table = ({ data, getData }) => {
   }, []);
 
   // send access
-  const [index, setIndex] = useState(0);
-  const handleAdminAccess = async (Id, i) => {
+  const handleAdminAccess = async (Id) => {
     console.log(Id);
     try {
       toast.loading("Please wait...");
