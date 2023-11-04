@@ -34,7 +34,7 @@ router.post("/rider-signup", async (req, resp) => {
     resp.json({
       success: true,
       riderId: riderId,
-      msg: "Account Created wait for Account Verification",
+      msg: "Account Created. Will get back tou you within 72 hours",
       data: newRider,
     });
   } catch (err) {
@@ -63,6 +63,7 @@ router.post("/rider-login", async (req, resp) => {
     if (findRider.adminVerification == false) {
       return resp.json({
         success: false,
+        status: "adminVerification",
         msg: "Sorry for delay, Your account is under verification. We will get back to you",
       });
     }

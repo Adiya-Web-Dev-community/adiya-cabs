@@ -8,6 +8,8 @@ const riderSchema = new mongoose.Schema({
   city: { type: String },
   state: { type: String },
   pincode: { type: Number },
+  drivingLicenseNo: { type: String },
+  vehicleRegistrationNo: { type: String },
   adminVerification: { type: Boolean, default: false },
   riderId: { type: String, unique: true },
   serialNo: { type: Number, unique: true },

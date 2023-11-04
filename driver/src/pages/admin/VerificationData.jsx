@@ -9,26 +9,39 @@ const VerificationData = () => {
   const adminToken = localStorage.getItem("adminToken");
 
   // get riders data
-  const [ridersData, serRidersData] = useState([]);
+  const [ridersData, setRidersData] = useState([]);
   const getData = async () => {
     try {
       const resp = await axios.get("/admin-get-riders", {
         headers: { authorization: adminToken },
       });
       console.log(resp);
+      if (resp.data.success) {
+        setLoading(false);
+        setRidersData(resp.data.data);
+      }
     } catch (err) {
       console.log(err);
     }
   };
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full h-[100vh] bg-gradient-to-br from-yellow-100 via-yellow-200 to-yellow-300">
       {/* table */}
-      <div className="w-[99%] m-auto my-5">
-        {loading ? <LoadingTable /> : <Table getData={getData} />}
+
+      <div className="w-[99%] m-auto ">
+        {loading ? (
+          <LoadingTable />
+        ) : ridersData.length ? (
+          <Table data={ridersData} getData={getData} />
+        ) : (
+          <div className="text-5xl text-center opacity-25  ">
+            <h1 className="py-[10rem] ">NO DATA FOUND</h1>
+          </div>
+        )}
       </div>
     </div>
   );
