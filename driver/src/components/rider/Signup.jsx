@@ -11,6 +11,7 @@ import {
   BiLocationPlus,
 } from "react-icons/bi";
 import {
+  AiFillCar,
   AiFillFlag,
   AiFillEyeInvisible,
   AiFillEye,
@@ -32,7 +33,8 @@ const Signup = ({ setNewRider, setAdmin }) => {
     name: "",
     email: "",
     contact: "",
-    drvLicenseNo: "",
+    drivingLicenseNo: "",
+    vehicleRegistrationNo: "",
     city: "",
     locality: "",
     state: "",
@@ -136,31 +138,21 @@ const Signup = ({ setNewRider, setAdmin }) => {
               <input
                 type="text"
                 placeholder="Driving License Number"
-                name="drvLicenseNo"
-                value={signupForm.drvLicenseNo}
+                name="drivingLicenseNo"
+                value={signupForm.drivingLicenseNo}
                 onChange={handleInputs}
                 className="py-2 px-2 rounded-md bg-transparent  focus:border-red-500 w-full"
               />
             </section>
             <section className="flex gap-2 bg-gray-300/40 border-[1px] border-gray-400 rounded-md">
               <sapn className="flex justify-center items-center">
-                {passwordType === "password" ? (
-                  <AiFillEye
-                    className="ml-3 text-md"
-                    onClick={() => SetPasswordType("text")}
-                  />
-                ) : (
-                  <AiFillEyeInvisible
-                    className="ml-3 text-lg"
-                    onClick={() => SetPasswordType("password")}
-                  />
-                )}
+                <AiFillCar className="ml-3 text-md" />
               </sapn>
               <input
-                type={passwordType}
-                placeholder="Set Password"
-                name="password"
-                value={signupForm.password}
+                type="text"
+                placeholder="Vehicle Registration Number"
+                name="vehicleRegistrationNo"
+                value={signupForm.vehicleRegistrationNo}
                 onChange={handleInputs}
                 className="py-2 px-2 rounded-md bg-transparent  focus:border-red-500 w-full"
               />
@@ -220,6 +212,29 @@ const Signup = ({ setNewRider, setAdmin }) => {
                 className="py-2 px-2 rounded-md bg-transparent  focus:border-red-500 w-full"
               />
             </section>
+            <section className="flex gap-2 bg-gray-300/40 border-[1px] border-gray-400 rounded-md">
+              <sapn className="flex justify-center items-center">
+                {passwordType === "password" ? (
+                  <AiFillEye
+                    className="ml-3 text-md"
+                    onClick={() => SetPasswordType("text")}
+                  />
+                ) : (
+                  <AiFillEyeInvisible
+                    className="ml-3 text-lg"
+                    onClick={() => SetPasswordType("password")}
+                  />
+                )}
+              </sapn>
+              <input
+                type={passwordType}
+                placeholder="Set Password"
+                name="password"
+                value={signupForm.password}
+                onChange={handleInputs}
+                className="py-2 px-2 rounded-md bg-transparent  focus:border-red-500 w-full"
+              />
+            </section>
           </div>
         </div>
         <section className="pt-6">
@@ -228,7 +243,7 @@ const Signup = ({ setNewRider, setAdmin }) => {
               !signupForm.name ||
               !signupForm.email ||
               !signupForm.contact ||
-              !signupForm.drvLicenseNo ||
+              !signupForm.drivingLicenseNo ||
               !signupForm.password ||
               !signupForm.state ||
               !signupForm.city ||

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../helper/axios";
 
 // icons
-import { MdEmail } from "react-icons/md";
+import { BiSolidUser } from "react-icons/bi";
 import {
   AiFillEyeInvisible,
   AiFillEye,
@@ -20,7 +20,7 @@ const Signin = ({ setNewRider }) => {
 
   // handle inputs
   const [signinForm, setSigninForm] = useState({
-    userId: "",
+    riderId: "",
     password: "",
   });
   const handleInputs = (e) => {
@@ -66,13 +66,13 @@ const Signin = ({ setNewRider }) => {
       <form className="space-y-5 py-4 " onSubmit={handleSignin}>
         <section className="flex gap-2 bg-gray-300/40 border-[1px] border-gray-400 rounded-sm">
           <sapn className="flex justify-center items-center">
-            <MdEmail className="ml-3 text-lg" />
+            <BiSolidUser className="ml-3 text-lg" />
           </sapn>
           <input
             type="text"
-            placeholder="Email or Contact"
-            name="userId"
-            value={signinForm.userId}
+            placeholder="Meru Rider Id"
+            name="riderId"
+            value={signinForm.riderId}
             onChange={handleInputs}
             className="py-2 px-2 rounded-sm bg-transparent  focus:border-red-500 w-full"
           />
@@ -102,7 +102,7 @@ const Signin = ({ setNewRider }) => {
         </section>
         <section className="">
           <button
-            disabled={!signinForm.userId || !signinForm.password}
+            disabled={!signinForm.riderId || !signinForm.password}
             className=" w-full text-sm bg-gray-800/80 text-white py-2 mt-3 rounded-md hover:animate-pulse hover:bg-black  flex justify-center disabled:cursor-not-allowed"
           >
             {loading ? (
