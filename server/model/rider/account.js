@@ -1,16 +1,16 @@
 const mongoose = require("mongoose");
 const riderSchema = new mongoose.Schema({
-  name: { type: String, default: "" },
+  name: { type: String },
   email: { type: String },
   contact: { type: String },
   password: { type: String },
-  locality: { type: String, default: "" },
-  city: { type: String, default: "" },
-  state: { type: String, default: "" },
-  pincode: { type: Number, default: "" },
-  adminVerification : {type :Boolean, default: false},
+  locality: { type: String },
+  city: { type: String },
+  state: { type: String },
+  pincode: { type: Number },
+  adminVerification: { type: Boolean, default: false },
   riderId: { type: String, unique: true },
-  serialNo : { type: Number, unique: true},
+  serialNo: { type: Number, unique: true },
   profileImgUrl: {
     type: String,
     default:
