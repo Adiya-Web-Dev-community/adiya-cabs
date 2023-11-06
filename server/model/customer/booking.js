@@ -18,6 +18,12 @@ const bookingSchema = new mongoose.Schema({
   bookingDate: { type: String },
   bookingTime: { type: String },
 
+  // bookingStatus
+  bookingStatus: { type: String, default: "searching" },
+  //searching->req sent from passenger and looking for cab rider
+  //booked-> cab rider has accepted booking
+  //cancelled-> passenger or cab rider cancelled the booking
+
   //passsenger and rider ids
   passengerId: { type: mongoose.Schema.Types.ObjectId, ref: "passenger" },
   riderId: { type: mongoose.Schema.Types.ObjectId, ref: "rider" },

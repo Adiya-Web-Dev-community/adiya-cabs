@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     default:
       "https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg",
   },
-  conatct: { type: Number },
+  contact: { type: Number },
   state: { type: String },
   city: { type: String },
   otp: { type: Number, default: 0 },

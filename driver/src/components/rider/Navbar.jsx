@@ -23,6 +23,9 @@ const Navbar = ({ auth, setAuth }) => {
   const [activeTab, setActiveTab] = useState("profile");
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+    if (tab === "logout") {
+      return navigate("/");
+    }
     navigate(`/${tab}`);
   };
 
