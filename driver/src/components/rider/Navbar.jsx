@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 // icons
 import { FaHouseUser } from "react-icons/fa";
 import { ImSearch, ImSwitch } from "react-icons/im";
@@ -10,6 +10,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import ResponsiveNav from "./ResponsiveNav";
 
 const Navbar = ({ auth, setAuth }) => {
+  const navigate = useNavigate();
   const driverToken = localStorage.getItem("driverToken");
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const Navbar = ({ auth, setAuth }) => {
   const [activeTab, setActiveTab] = useState("profile");
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+    navigate(`/${tab}`);
   };
 
   // responsive menu
