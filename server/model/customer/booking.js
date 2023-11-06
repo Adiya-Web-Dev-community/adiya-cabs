@@ -22,8 +22,8 @@ const bookingSchema = new mongoose.Schema({
   bookingDate: { type: String },
   bookingTime: { type: String },
 
-  accountId: { type: mongoose.Schema.Types.ObjectId, ref: "passenger" },
-  riderId: { type: mongoose.Schema.Types.ObjectId, ref: "rider" },
+  accountId: { type: mongoose.Schema.Types.ObjectId, ref: "passengers" },
+  riderId: { type: mongoose.Schema.Types.ObjectId, ref: "riders" },
 });
 
 const bookingModel = mongoose.model("booking", bookingSchema);
