@@ -20,7 +20,7 @@ const ResponsiveNav = ({ open, setOpen, setAuth }) => {
     >
       <div className="w-[70%] shadow-xl shadow-gray-600">
         <div
-          className={`flex flex-col bg-gradient-to-r from-yellow-200 via-yellow-500 to-orange-200 h-[45rem] py-3 px-2  rounded-2xl `}
+          className={`flex flex-col bg-gradient-to-br from-yellow-200 via-yellow-500 to-orange-400 h-[45rem] py-3 px-2  rounded-2xl `}
         >
           <div className="flex flex-col space-y-1 py-1">
             <button

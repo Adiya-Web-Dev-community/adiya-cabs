@@ -6,16 +6,25 @@ const bookingSchema = new mongoose.Schema({
   email: { type: String },
   address: { type: String },
   //   booking details
-  pickupCity: { type: String },
-  pickupArea: { type: String },
-  destinationCity: { type: String },
-  destinationArea: { type: String },
+  pickupLocation: {
+    city: { type: String },
+    area: { type: String },
+    latitude: { type: String },
+    longitude: { type: String },
+  },
+  destinationLocation: {
+    city: { type: String },
+    area: { type: String },
+    latitude: { type: String },
+    longitude: { type: String },
+  },
   rideCategory: { type: String },
   bookingDate: { type: String },
   bookingTime: { type: String },
 
-  accountId: mongoose.Schema.Types.ObjectId,
+  accountId: { type: mongoose.Schema.Types.ObjectId, ref: "passenger" },
+  riderId: { type: mongoose.Schema.Types.ObjectId, ref: "rider" },
 });
 
 const bookingModel = mongoose.model("booking", bookingSchema);
-module.exports = bookingModel;
+module.exports = bookingModel;
