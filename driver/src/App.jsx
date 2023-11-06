@@ -9,6 +9,8 @@ import Account from "./pages/Account";
 import Navbar from "./components/rider/Navbar";
 import Rider from "./routes/Rider";
 import Profile from "./pages/rider/Profile";
+import SearchPassenger from "./pages/rider/SearchPassenger";
+
 // admin route
 import AdminNav from "./components/admin/AdminNav";
 import Admin from "./routes/Admin";
@@ -42,6 +44,10 @@ function App() {
             element={<Rider setAuth={setAuth} setAdminAuth={setAdminAuth} />}
           >
             <Route path="/profile" element={<Profile />}></Route>
+            <Route
+              path="/search_passenger"
+              element={<SearchPassenger />}
+            ></Route>
           </Route>
           <Route
             element={<Admin setAuth={setAuth} setAdminAuth={setAdminAuth} />}

@@ -36,8 +36,9 @@ router.post("/booking", accountMiddleware, async (req, resp) => {
 router.get("/get-bookings-data", async (req, resp) => {
   try {
     const results = await Booking.find({})
-      .populate("passengerId", "email")
+      .populate("passengerId")
       .populate("riderId");
+    console.log(results);
     resp.send(results);
   } catch (err) {
     resp.send(err.message);
