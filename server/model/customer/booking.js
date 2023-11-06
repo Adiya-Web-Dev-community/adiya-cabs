@@ -6,8 +6,10 @@ const bookingSchema = new mongoose.Schema({
   email: { type: String },
   address: { type: String },
   //   booking details
-  pickupLocation: { type: String },
-  destination: { type: String },
+  pickupCity: { type: String },
+  pickupArea: { type: String },
+  destinationCity: { type: String },
+  destinationArea: { type: String },
   rideCategory: { type: String },
   bookingDate: { type: String },
   bookingTime: { type: String },
@@ -16,4 +18,4 @@ const bookingSchema = new mongoose.Schema({
 });
 
 const bookingModel = mongoose.model("booking", bookingSchema);
-module.exports = bookingModel;
+module.exports = bookingModel;
