@@ -42,7 +42,7 @@ const Signup = ({ setNewRider, setAdmin }) => {
       .then((resp) => resp.json())
       .then((resp) => {
         setStates(resp);
-        // console.log("states", resp);
+        console.log("states", resp);
       })
       .catch((err) => console.log(err));
   };
@@ -209,27 +209,38 @@ const Signup = ({ setNewRider, setAdmin }) => {
               <sapn className="flex justify-center items-center">
                 <AiFillFlag className="ml-3 text-md" />
               </sapn>
-              <input
-                type="State"
-                placeholder="State"
-                name="state"
-                value={signupForm.state}
-                onChange={handleInputs}
-                className="py-2 px-2 rounded-md bg-transparent  focus:border-red-500 w-full"
-              />
+              <select
+                className="bg-transparent w-full py-2.5"
+                onChange={(e) => setSelectedState(e.target.value)}
+              >
+                <option>Select State</option>
+                {states.map((obj) => {
+                  return (
+                    <option key={obj.id} value={obj.iso2}>
+                      {obj.name}
+                    </option>
+                  );
+                })}
+              </select>
             </section>
             <section className="flex gap-2 bg-gray-300/40 border-[1px] border-gray-400 rounded-md">
               <sapn className="flex justify-center items-center">
                 <BiSolidCity className="ml-3 text-md" />
               </sapn>
-              <input
-                type="text"
-                placeholder="City"
-                name="city"
-                value={signupForm.city}
-                onChange={handleInputs}
-                className="py-2 px-2 rounded-md bg-transparent  focus:border-red-500 w-full"
-              />
+              <select
+                className="bg-transparent w-full disabled:cursor-not-allowed py-2.5"
+                disabled={!selectedState}
+                onChange={(e) => setSelectedCity(e.target.value)}
+              >
+                <option>Select city</option>
+                {cities.map((obj) => {
+                  return (
+                    <option key={obj.id} value={obj.name}>
+                      {obj.name}
+                    </option>
+                  );
+                })}
+              </select>
             </section>
             <section className="flex gap-2 bg-gray-300/40 border-[1px] border-gray-400 rounded-md">
               <sapn className="flex justify-center items-center">
