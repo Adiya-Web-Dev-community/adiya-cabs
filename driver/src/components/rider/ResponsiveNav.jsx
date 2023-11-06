@@ -1,14 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaHouseUser } from "react-icons/fa";
 import { ImSearch, ImSwitch } from "react-icons/im";
 import { GoBroadcast } from "react-icons/go";
 import { RxCross1 } from "react-icons/rx";
 
 const ResponsiveNav = ({ open, setOpen, setAuth }) => {
+  const navigate = useNavigate();
+
   // navigation tabs
   const [activeTab, setActiveTab] = useState("profile");
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+    navigate(`/${tab}`);
+    setOpen(false);
   };
   console.log(open);
 
