@@ -24,7 +24,7 @@ router.post("/booking", accountMiddleware, async (req, resp) => {
   try {
     const data = await Booking.create({
       ...req.body,
-      accountId: req.accountId,
+      passengerId: req.accountId,
     });
     resp.json({ success: true, msg: "Booking confirmed", data });
   } catch (err) {
@@ -35,7 +35,9 @@ router.post("/booking", accountMiddleware, async (req, resp) => {
 // get all bookings
 router.get("/get-bookings-data", async (req, resp) => {
   try {
-    const results = await Booking.find({});
+    const results = await Booking.find({})
+      .populate("passengerId", "email")
+      .populate("riderId");
     resp.send(results);
   } catch (err) {
     resp.send(err.message);
