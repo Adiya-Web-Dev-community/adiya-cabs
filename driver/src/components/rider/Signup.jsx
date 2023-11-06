@@ -80,8 +80,8 @@ const Signup = ({ setNewRider, setAdmin }) => {
     contact: "",
     drivingLicenseNo: "",
     vehicleRegistrationNo: "",
-    state: "",
-    city: "",
+    state: selectedState,
+    city: selectedCity,
     locality: "",
     pincode: "",
     password: "",
@@ -300,9 +300,10 @@ const Signup = ({ setNewRider, setAdmin }) => {
               !signupForm.email ||
               !signupForm.contact ||
               !signupForm.drivingLicenseNo ||
+              !signupForm.vehicleRegistrationNo ||
               !signupForm.password ||
-              !signupForm.state ||
-              !signupForm.city ||
+              !selectedState ||
+              !selectedCity ||
               !signupForm.locality ||
               !signupForm.pincode
             }
