@@ -19,6 +19,10 @@ app.use(require("./route/admin/account"));
 // driver routes
 app.use(require("./route/driver/account"));
 
+// get country state city data
+const data = require("country-state-city").Country;
+console.log(data.getAllCountries());
+
 app.get("/", async (req, resp) => {
   resp.send("Welcome to MERU CABS");
 });

@@ -48,6 +48,7 @@ router.post("/rider-signup", async (req, resp) => {
 // Rider Login
 router.post("/rider-login", async (req, resp) => {
   const { riderId, password } = req.body;
+  console.log(req.body);
   try {
     // const findRider = await Rider.findOne({
     //     $or: [{ email: userId }, { contact: userId },{riderId : userId}],

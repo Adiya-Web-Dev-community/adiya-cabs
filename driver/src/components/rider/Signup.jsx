@@ -28,6 +28,51 @@ const Signup = ({ setNewRider, setAdmin }) => {
   // show hide password
   const [passwordType, SetPasswordType] = useState("password");
 
+  // state city api
+  const [states, setStates] = useState([]);
+  const [selectedState, setSelectedState] = useState("");
+  var stateConfig = {
+    url: "https://api.countrystatecity.in/v1/countries/In/states",
+    key: "N00wMDJleEpjQ09wTjBhN0VSdUZxUGxWMlJKTGY1a0tRN0lpakh5Vw==",
+  };
+  const getStates = async () => {
+    await fetch(stateConfig.url, {
+      headers: { "X-CSCAPI-KEY": stateConfig.key },
+    })
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setStates(resp);
+        // console.log("states", resp);
+      })
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    getStates();
+  }, []);
+  // get cities after selecting state
+  const [cities, setCities] = useState([]);
+  const [selectedCity, setSelectedCity] = useState("");
+  var cityConfig = {
+    url: `https://api.countrystatecity.in/v1/countries/IN/states/${selectedState}/cities`,
+    key: "N00wMDJleEpjQ09wTjBhN0VSdUZxUGxWMlJKTGY1a0tRN0lpakh5Vw==",
+  };
+  const getCities = async () => {
+    await fetch(cityConfig.url, {
+      headers: { "X-CSCAPI-KEY": cityConfig.key },
+    })
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setCities(resp);
+        // console.log("cities", resp);
+      })
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    if (selectedState) {
+      getCities();
+    }
+  }, [selectedState]);
+
   // handle inputs
   const [signupForm, setSignupForm] = useState({
     name: "",
@@ -35,9 +80,9 @@ const Signup = ({ setNewRider, setAdmin }) => {
     contact: "",
     drivingLicenseNo: "",
     vehicleRegistrationNo: "",
+    state: "",
     city: "",
     locality: "",
-    state: "",
     pincode: "",
     password: "",
   });
