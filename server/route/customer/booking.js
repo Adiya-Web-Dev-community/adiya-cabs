@@ -32,4 +32,14 @@ router.post("/booking", accountMiddleware, async (req, resp) => {
   }
 });
 
+// get all bookings
+router.get("/get-bookings-data", async (req, resp) => {
+  try {
+    const results = await Booking.find({});
+    resp.send(results);
+  } catch (err) {
+    resp.send(err.message);
+  }
+});
+
 module.exports = router;
