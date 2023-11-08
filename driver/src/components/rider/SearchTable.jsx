@@ -41,7 +41,7 @@ const SearchTable = ({
                     <p className="absolute top-3 left-2 w-[1px] h-[1rem] bg-gray-300 border-l-[1px] border-black"></p>
                     <p className="absolute top-7 left-2 w-[1px] h-[1rem] bg-gray-300 border-l-[1px] border-black "></p>
                   </div>
-                  <div className="space-y-3 mt-2 pt-2 pb-3 italic border-t-[1px] border-gray-400">
+                  {/* <div className="space-y-3 mt-2 pt-2 pb-3 italic border-t-[1px] border-gray-400">
                     <p>
                       <span>Distance: </span>
                       <span className="text-blue-700 pl-3">{obj.distance}</span>
@@ -50,7 +50,7 @@ const SearchTable = ({
                       <span>Duration: </span>
                       <span className="text-blue-700 pl-3">{obj.duration}</span>
                     </p>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="w-[20%]">
