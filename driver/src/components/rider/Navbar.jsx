@@ -45,7 +45,7 @@ const Navbar = ({ auth, setAuth }) => {
       </div>
       <div className="z-50 hidden lg:flex flex-col bg-gradient-to-b from-yellow-500 via-orange-300 to-orange-500   py-3 px-2 w-[15%] ">
         <div className="py-3 flex gap-3 border-b-[1px]">
-          <span className="text-xl font-sans mt-1">MERU RIDERS</span>
+          <span className="text-xl font-sans mt-1">ADIYA RIDERS</span>
         </div>
         <div className="flex flex-col space-y-1 py-1">
           <button
