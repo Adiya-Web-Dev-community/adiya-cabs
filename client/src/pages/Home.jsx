@@ -1,6 +1,6 @@
-import Banner from "../components/Banner";
-import Info from "../components/Info";
-import AnimatedTestimonial from "../components/AnimatedTestimonial";
+import Banner from "../components/Ui/Banner";
+import Info from "../components/Ui/Info";
+import AnimatedTestimonial from "../components/utils/AnimatedTestimonial";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 const Home = () => {

@@ -1,11 +1,12 @@
 import { BsPersonFill, BsArrowBarRight } from "react-icons/bs";
-import { sidebarNavData } from "../navigation/nav"; 
+import { sidebarNavData } from "../../navigation/nav"; 
 import { Link } from "react-router-dom";
 import SideBarNav from "./SideBarNav";
+import { useSelector } from "react-redux";
 
 const Sidebar = ({ openSidebar, setOpenSidebar }) => {
 
-
+const {userName,userEmail} = useSelector((el)=>el.app)
 
   return (
     <main
@@ -20,7 +21,7 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
           </div>
           <div>
             <h3>
-               <span>Guest</span><br/>
+               <span>{userName?userName:'Guest'}</span><br/>
                <Link to='/sign-in' className="text-red-500 cursor-pointer hover:text-red-700">Sign In</Link>
             </h3>
           </div>
