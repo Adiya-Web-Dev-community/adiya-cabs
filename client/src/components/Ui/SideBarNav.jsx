@@ -64,7 +64,7 @@ const SideBarNav = ({ navArr }) => {
                 {vlidation ? <BsChevronDown /> : <BsChevronUp />}
             </div>
 
-            <div className={vlidation ? 'block' : 'hidden'}>
+            <div className={vlidation ? 'block' : 'hidden'} key={index}>
                 {el.items.map((el, i) => el.items ? sidebarGroup(el, [...pathArr, el.path], selectedNav, i) : sidebarItem(el, [...pathArr, el.path], selectedNav, i))}
             </div>
         </div>
