@@ -8,12 +8,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeCategory } from "../../../store/bookingSlice";
 import { Link,useNavigate } from "react-router-dom";
 import { ToastContainer } from 'react-toastify'
-import CityAreaGroupInput from "../CityAreaGroupInput";
+// import CityAreaGroupInput from "../CityAreaGroupInput";
 import { handleBookingNavi } from '../../../store/bookingSlice'
 import axiosInstance from '../../../api/axiosInstance'
 import { toast } from "react-toastify";
-
+import {
+  useJsApiLoader,
+  GoogleMap,
+  Marker,
+  Autocomplete,
+  DirectionsRenderer
+} from "@react-google-maps/api";
+import { useRef } from 'react'
+import { Input } from '../../form/form'
 function BookingProcess({booking,children}){
+
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyCzSOQHv63VsWrPjwRI58388Dtui5T7MdI",
+    libraries: ["places"]
+  });
 
     const dispath = useDispatch()
     const categoryName = useSelector(el => el.bookingSlice.categoryName)
@@ -23,7 +36,7 @@ function BookingProcess({booking,children}){
     const token = useSelector(el => el.app.userloginToken)
 
     const navigate = useNavigate()
-
+    const originRef = useRef();
   
     const handleSubmit = async (e) => {
       const loadingToast = toast.info('Sending OTP...', { autoClose: false });
@@ -60,6 +73,18 @@ function BookingProcess({booking,children}){
       { name: "Bike Ride", value: categoryName.bike, icon: RiMotorbikeFill },
     ]
   
+
+    const CityAreaGroupInput = ()=>  <div className="flex gap-2">
+    <Autocomplete>
+      <input
+        type="text"
+        placeholder="Pickup"
+        ref={originRef}
+        className="border-2 py-2 px-2  italic rounded-xl w-full"
+      />
+    </Autocomplete>
+  </div>
+
     const navContainerArr = [
       { tabName: 'Pickup Location', element: CityAreaGroupInput, elementProp: { cityKey: 'pickupCity', areaKey: 'pickupArea',children } },
       { tabName: "Distination", element: CityAreaGroupInput, elementProp: { cityKey: 'destinationCity', areaKey: 'destinationArea' } }
@@ -70,7 +95,10 @@ function BookingProcess({booking,children}){
   
   return <>
   
+  <GoogleMap></GoogleMap>
+
   <ToastContainer />
+
   
         <div className="space-x-2.5 flex text-white p-4  rounded-md  ">
   
@@ -95,11 +123,24 @@ function BookingProcess({booking,children}){
           <h4 className="text-sm mt-3 ">Select Pickup Location and Destination</h4>
   
   
-          <div className="flex-col   h-[15rem] ">
+          <div className="flex-col   h-[15rem]">
   
-            <CustomNavTabs
-              navContainerArr={navContainerArr}
-            />
+          <Autocomplete>
+      <input
+        type="text"
+        placeholder="Pickup Location"
+        ref={originRef}
+        className="border-2 py-2 px-2  italic rounded-md w-full outline-none my-2"
+      />
+    </Autocomplete>
+    <Autocomplete>
+      <input
+        type="text"
+        placeholder="Destination"
+        ref={originRef}
+        className="border-2 py-2 px-2  italic rounded-md w-full outline-none mb-2"
+      />
+    </Autocomplete>
           </div>
   
           <div className="p-4 w-full grid grid-cols-1 gap-2">

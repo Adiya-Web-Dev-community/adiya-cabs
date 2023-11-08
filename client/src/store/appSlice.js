@@ -2,16 +2,17 @@ import { createSlice} from "@reduxjs/toolkit";
 
 const userInfo = JSON.parse(localStorage.getItem('userInfo'))
 
+console.log(userInfo?.userName)
+
 const initialState = {
   userloginToken:userInfo?.token||'',
-  userName:(userInfo?.userName||''),
+  username:(userInfo?.userName||''),
   userEmail:(userInfo?.email||''),
   aboutQuery: "",
   profileUrl:"",
   userName:'',
   userGmail:""
 };
-
 
 
 const appSlice = createSlice({

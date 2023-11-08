@@ -2,14 +2,13 @@ import React, { useState,useRef } from 'react';
 import { AiFillEye, AiFillEyeInvisible, AiOutlineCheck } from 'react-icons/ai';
 
 
-const Input = ({ className, onChange, value, name, type, required, label,animationStop }) => {
+const Input = ({ className, onChange, value, name, type, required, label,animationStop },ref) => {
   const [inputState, setInputState] = useState({
     activeInput: false,
     showPassWord: false,
     inputValue: value
   });
 
-  const inputRef = useRef(null)
 
 
   const handleChange = (e) => {
@@ -29,7 +28,7 @@ const Input = ({ className, onChange, value, name, type, required, label,animati
         <span className='bg-white px-2'>{label}</span>
       </label>}
       <input
-        ref={inputRef}
+        ref={ref}
         required={required}
         onChange={handleChange}
         value={inputState.inputValue}

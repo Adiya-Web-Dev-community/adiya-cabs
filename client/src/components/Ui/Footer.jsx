@@ -21,7 +21,7 @@ const Footer = () => {
       >
         <section className="flex justify-between">
           <div className="space-y-px">
-            <h1 className="font-cookie text-3xl text-slate-200">Meru</h1>
+            <h1 className="font-cookie text-3xl text-slate-200">Adiya Cab</h1>
             <address className="text-sm text-slate-500">
               Mahindra Towers, P. K. Kurne Chowk, Worli, Mumbai - 400018
             </address>
@@ -145,8 +145,8 @@ const Footer = () => {
         </section>
         <div className="h-px bg-slate-700"></div>
         <p className="text-slate-500 text-xs">
-          The Meru platform consists of the website, web platform and mobile
-          app. By using Meru, you agree to be bound by the Terms & Conditions,
+          The Adiya Cab platform consists of the website, web platform and mobile
+          app. By using Adiya Cab, you agree to be bound by the Terms & Conditions,
           Cookie Notice and Privacy Policy.
         </p>
       </footer>

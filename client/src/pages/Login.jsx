@@ -21,6 +21,9 @@ const Login = () => {
  const dispatch = useDispatch()
  const navigate =  useNavigate()
 
+
+ console.log(loginInfo)
+
   const [activeVarification,setVriFiactionActive] = useState(false)
 
   const handleChange = (e) => {
