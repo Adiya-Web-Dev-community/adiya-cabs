@@ -11,7 +11,7 @@ const routes = [
 {path:'about/:query',name:'About Page',element:About},
 {path:'/meru-biz',name:'Meru Page',element:MeruBizz},
 {path:'/sign-in',name:'Sign in',element:Login},
-{path:'/book-ride',name:'Sign in',element:Booking},
+{path:'/book-ride/:bookingStatus',name:'Sign in',element:Booking},
 
 ]
 

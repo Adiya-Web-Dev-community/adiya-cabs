@@ -3,7 +3,7 @@ import collaborateImg from '../assets/Collaborate-with-us/collaborate-hand.jpg'
 import {collaboratewithus,collaborateData} from '../configs/collaboratewithus'
 import {BsQuote} from 'react-icons/bs'
 import {BiSolidStar} from 'react-icons/bi'
-import Testimonial from '../components/Testimonial'
+import Testimonial from '../components/utils/Testimonial'
 function CollaboratewithUs() {
 
 

@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { AiOutlineMenuFold } from "react-icons/ai";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Sidebar from "./Sidebar";
@@ -13,6 +13,11 @@ const Navbar = ({ navArr }) => {
   window.addEventListener("scroll", () => {
     window.scrollY >= 35 ? setNavBG(true) : setNavBG(false);
   });
+
+  const {bookingStatus} =  useParams()
+
+  console.log(bookingStatus,'in-process')
+
 
   const navItems = (el, type) => {
 
@@ -87,7 +92,7 @@ const Navbar = ({ navArr }) => {
 
   return (
     <nav
-      className={`flex justify-end items-center font-montserrat z-20  px-5 md:px-20 sticky sm:fixed top-0  h-[49.6px] w-full select-none text-black ${ navBG ? "bg-white/95 shadow" : "bg-transparent"
+      className={`flex justify-end items-center font-montserrat z-20  px-5 md:px-20 sticky sm:fixed top-0  h-[49.6px] w-full select-none text-black ${ (navBG||bookingStatus==='in-process') ? "bg-white/95 shadow" : "bg-transparent"
         }`}
     >
       <div className="flex">

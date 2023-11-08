@@ -1,9 +1,18 @@
 import { createSlice} from "@reduxjs/toolkit";
 
+const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+
 const initialState = {
-  userloginToken:localStorage.getItem('login-token')||'',
+  userloginToken:userInfo?.token||'',
+  userName:userInfo.userName,
+  userEmail:userInfo.email,
   aboutQuery: "",
+  profileUrl:"",
+  userName:'',
+  userGmail:""
 };
+
+
 
 const appSlice = createSlice({
   name: "app",
@@ -14,7 +23,7 @@ const appSlice = createSlice({
     },
     saveTokenToLoacal:({userloginToken},{payload})=>{
           userloginToken = payload
-          localStorage.setItem('login-token', payload)
+          localStorage.setItem('userInfo',JSON.stringify(payload))
     }
   },
 });

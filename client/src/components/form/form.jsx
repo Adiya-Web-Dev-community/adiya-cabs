@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import { AiFillEye, AiFillEyeInvisible, AiOutlineCheck } from 'react-icons/ai';
 
 
-const Input = ({ className, onChange, value, name, type, required, label }) => {
+const Input = ({ className, onChange, value, name, type, required, label,animationStop }) => {
   const [inputState, setInputState] = useState({
     activeInput: false,
     showPassWord: false,
     inputValue: value
   });
+
+  const inputRef = useRef(null)
 
 
   const handleChange = (e) => {
@@ -20,16 +22,17 @@ const Input = ({ className, onChange, value, name, type, required, label }) => {
   return (
     <div className={`group flex border-gray-300 border-2 hover:border-gray-700 rounded overflow-hiden relative h-[2.6rem]  transition ${ inputState.activeInput ? 'border-2 border-gray-700' : ''
       } transition-all duration-300 ease-in-out ${ className || '' }`}>
-      <label
+      {!animationStop&&<label
         onClick={() => setInputState((prev) => ({ ...prev, activeInput: true }))}
         className={`cursor-auto transition-all duration-300 ease-in-out delay-150 absolute top-1/2 transform -translate-y-1/2 p-2 text-gray-500 ${ (inputState.activeInput || inputState?.inputValue?.trim()) ? 'top-[-0.4rem] text-sm ml-3 m-0' : ''
           }`}>
         <span className='bg-white px-2'>{label}</span>
-      </label>
+      </label>}
       <input
+        ref={inputRef}
         required={required}
         onChange={handleChange}
-        value={value || inputState.inputValue}
+        value={inputState.inputValue}
         onFocus={() => setInputState((prev) => ({ ...prev, activeInput: true }))}
         onBlur={() => setInputState((prev) => ({ ...prev, activeInput: false }))}
         type={inputState.showPassWord ? 'text' : type}
@@ -49,8 +52,8 @@ const Input = ({ className, onChange, value, name, type, required, label }) => {
 
 
 
-const Button = ({ onClick, children }) => {
-  return <button onClick={onClick} className="transition w-64 p-2 rounded ease-in-out text-white delay-150 bg-red-400 active:-translate-y-1 active:shadow-xl hover:scale-110 hover:bg-red-500 duration-300 ">
+const Button = ({ onClick, children,classname,disabeld }) => {
+  return <button onClick={onClick } disabled={disabeld} className={`transition w-64 p-2 rounded ease-in-out text-white delay-150 bg-red-400 active:-translate-y-1 active:shadow-xl   duration-300 ${disabeld?'cursor-no-drop bg-red-200':' hover:scale-110 hover:bg-red-500'} ${classname}`}>
     {children}
   </button>
 }
@@ -101,8 +104,9 @@ function CustomNavTabs({ navContainerArr }) {
       <div className="border-b border-gray-200">
         <nav className="-mb-px flex">
           {
-            navContainerArr.map((el) =>
+            navContainerArr.map((el,i) =>
               <button
+                key={i}
                 onClick={() => changeTab(el.tabName)}
                 className={`w-1/2 px-4 py-2 border-b-2 text-md ${ activeTab === el.tabName ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'
                   } focus:outline-none`}
@@ -115,9 +119,9 @@ function CustomNavTabs({ navContainerArr }) {
       </div>
 
 
-      {navContainerArr.map((el) =>
-        <div className={activeTab === el.tabName ? " flex flex-col" : 'hidden'}>
-          <el.element props={el.elementProp} />
+      {navContainerArr.map((el,i) =>
+        <div key={i} className={activeTab === el.tabName ? " flex flex-col" : 'hidden'}>
+          <el.element props={el.elementProp} children={el.children}/>
         </div>
       )}
     </div>
