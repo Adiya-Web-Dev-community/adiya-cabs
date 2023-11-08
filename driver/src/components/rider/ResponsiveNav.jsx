@@ -26,7 +26,7 @@ const ResponsiveNav = ({ open, setOpen, setAuth }) => {
         open ? "visible" : "invisible"
       } `}
     >
-      <div className="w-[70%] shadow-xl shadow-gray-600">
+      <div className="w-[70%] ">
         <div
           className={`flex flex-col bg-gradient-to-br from-yellow-200 via-yellow-500 to-orange-400 h-[45rem] py-3 px-2  rounded-2xl `}
         >

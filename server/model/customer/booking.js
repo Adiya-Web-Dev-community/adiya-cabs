@@ -3,18 +3,8 @@ const mongoose = require("mongoose");
 const bookingSchema = new mongoose.Schema({
   rideCategory: { type: String },
   //   booking details
-  pickupLocation: {
-    city: { type: String },
-    area: { type: String },
-    latitude: { type: String },
-    longitude: { type: String },
-  },
-  destinationLocation: {
-    city: { type: String },
-    area: { type: String },
-    latitude: { type: String },
-    longitude: { type: String },
-  },
+  pickupLocation: { type: String },
+  destinationLocation: { type: String },
   bookingDate: { type: String },
   bookingTime: { type: String },
 
