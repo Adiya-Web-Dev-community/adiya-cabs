@@ -13,7 +13,7 @@ const SearchTable = ({
 }) => {
   return (
     <div
-      className={`md:w-[30%] md:h-full  md:absolute  top-0 z-20 space-y-6 py-5 px-5 overflow-y-auto col-span-3  bg-white ${
+      className={`md:w-[30%] md:h-full  md:absolute  top-0 z-20 space-y-6 py-5 px-0.5 overflow-y-auto col-span-3  bg-white ${
         start ? "hidden" : "block"
       }`}
     >
