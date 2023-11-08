@@ -12,8 +12,8 @@ const Login = () => {
   const userInfo = JSON.parse(localStorage.getItem('userInfo'))
 
   const loginObj ={
-     name:(''||userInfo.userName),
-     email:(''||userInfo.email),
+     name:(''||userInfo?.userName),
+     email:(''||userInfo?.email),
      otp:''
     }
 

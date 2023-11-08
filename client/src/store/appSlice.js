@@ -4,8 +4,8 @@ const userInfo = JSON.parse(localStorage.getItem('userInfo'))
 
 const initialState = {
   userloginToken:userInfo?.token||'',
-  userName:userInfo.userName,
-  userEmail:userInfo.email,
+  userName:userInfo?.userName,
+  userEmail:userInfo?.email,
   aboutQuery: "",
   profileUrl:"",
   userName:'',
