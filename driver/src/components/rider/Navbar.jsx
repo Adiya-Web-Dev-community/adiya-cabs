@@ -20,7 +20,7 @@ const Navbar = ({ auth, setAuth }) => {
   }, [driverToken]);
 
   // navigation tabs
-  const [activeTab, setActiveTab] = useState("profile");
+  const [activeTab, setActiveTab] = useState("search_passenger");
   const handleTabClick = (tab) => {
     setActiveTab(tab);
     if (tab === "logout") {

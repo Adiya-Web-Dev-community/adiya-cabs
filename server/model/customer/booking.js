@@ -5,6 +5,8 @@ const bookingSchema = new mongoose.Schema({
   //   booking details
   pickupLocation: { type: String },
   destinationLocation: { type: String },
+  distance: { type: String },
+  duration: { type: String },
   bookingDate: { type: String },
   bookingTime: { type: String },
 

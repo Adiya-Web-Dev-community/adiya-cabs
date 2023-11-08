@@ -46,7 +46,7 @@ const Signin = ({ setNewRider }) => {
         });
         localStorage.setItem("driverToken", resp.data.token);
         localStorage.setItem("riderName", "Harshada");
-        navigate("/profile");
+        navigate("/search_passenger");
       } else {
         toast.error(resp.data.msg, {
           style: { background: "#AB0505", color: "white" },
