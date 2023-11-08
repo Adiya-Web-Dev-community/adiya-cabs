@@ -19,14 +19,18 @@ import {
   Autocomplete,
   DirectionsRenderer
 } from "@react-google-maps/api";
-import { useRef } from 'react'
+import { useRef,useState } from 'react'
 import { Input } from '../../form/form'
+
+import { IoNavigate } from "react-icons/io5";
+import { FaSpinner } from "react-icons/fa";
+import { MdTripOrigin } from "react-icons/md";
+import { FaLocationDot } from "react-icons/fa6";
 function BookingProcess({booking,children}){
 
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyCzSOQHv63VsWrPjwRI58388Dtui5T7MdI",
-    libraries: ["places"]
-  });
+
+  const [directionResponse, setDirectionResponse] = useState(null);
+
 
     const dispath = useDispatch()
     const categoryName = useSelector(el => el.bookingSlice.categoryName)
@@ -34,9 +38,21 @@ function BookingProcess({booking,children}){
     const bookingObj = useSelector(el => el.bookingSlice.bookingRideData)
     
     const token = useSelector(el => el.app.userloginToken)
+    const [map, setMap] = useState(/**@type google.maps.Map */ (null));
 
     const navigate = useNavigate()
     const originRef = useRef();
+
+
+    const { isLoaded } = useJsApiLoader({
+      googleMapsApiKey: "AIzaSyCzSOQHv63VsWrPjwRI58388Dtui5T7MdI",
+      libraries: ["places"]
+    });
+  
+    if (!isLoaded) {
+      return <FaSpinner className="text-2xl" />;
+    }
+  
   
     const handleSubmit = async (e) => {
       const loadingToast = toast.info('Sending OTP...', { autoClose: false });
@@ -90,12 +106,35 @@ function BookingProcess({booking,children}){
       { tabName: "Distination", element: CityAreaGroupInput, elementProp: { cityKey: 'destinationCity', areaKey: 'destinationArea' } }
     ]
   
+    const center = { lat: 19.601194, lng: 75.552979 };
 
 
   
   return <>
   
-  <GoogleMap></GoogleMap>
+  <GoogleMap
+          center={center}
+          zoom={10}
+          // without this map would be invisible
+          mapContainerStyle={{ width: "100%", height: "100%",display:'none' }}
+          options={{
+            zoonControl: false,
+            streetViewControl: false,
+            mapTypeControl: false,
+            fullscreenControl: false
+          }}
+          // when clicked on navigate icon
+          onLoad={(map) => setMap(map)}
+        >
+          {/* marker not visible */}
+          <Marker
+            // set marker at default position
+            position={center}
+          />
+          {directionResponse && (
+            <DirectionsRenderer directions={directionResponse} />
+          )}
+        </GoogleMap>
 
   <ToastContainer />
 
