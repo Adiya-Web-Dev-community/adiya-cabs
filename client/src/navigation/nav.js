@@ -84,8 +84,8 @@ const navigationData = [
             {path:'/outstation/chandigarh-to-dehradun',name:'Chandigarh To Dehradun',icon:LiaCitySolid},
         ]}, 
     ]},
-    {path:'/meru-biz',name:'Meru Biz',icon:MdEmojiTransportation,type:'both'},
-    {path:'/about-us',name:'About Meru',icon:MdOutlineLocalOffer,type:'both',items:[
+    {path:'/meru-biz',name:'Adiya cab',icon:MdEmojiTransportation,type:'both'},
+    {path:'/about-us',name:'About Adiya cab',icon:MdOutlineLocalOffer,type:'both',items:[
         {path:'/about-us/our-journey',name:'About our Journey',icon:GiCastle},
         {path:'/about-us/mahindra-logistics',name:'Mahindra Logistics',icon:GiModernCity},
         {path:'/about-us/our-services',name:'Our Services',icon:LiaCitySolid},

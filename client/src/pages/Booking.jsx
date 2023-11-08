@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import MapCotainer from "../components/utils/MapCotainer";
 import BokkingCart from "../components/Booking/BokkingCart";
 import LocationCart from "../components/Booking/LocationCart/LocationCart";
+
 const Booking = () => {
   const [option, setOption] = useState("outstation");
   const bookingRideData = useSelector((el)=>el.bookingSlice.bookingRideData)

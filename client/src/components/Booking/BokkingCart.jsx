@@ -2,6 +2,14 @@ import { useParams } from "react-router-dom"
 import BookingProcess from "./process/BookingProcees"
 import PickUp from "./process/PickUp"
 
+import {
+  useJsApiLoader,
+  GoogleMap,
+  Marker,
+  Autocomplete,
+  DirectionsRenderer
+} from "@react-google-maps/api";
+
 const BokkingCart = ({ booking }) => {
 
   const {bookingStatus} = useParams()

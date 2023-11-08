@@ -56,14 +56,14 @@ reducers:{
     state.bookingRideData.category = payload
   },
   handleBookingNavi:(state,{payload})=>{
-    const {bookingRideData } = state
-    if(!(bookingRideData.destinationCity?.trim() && bookingRideData.destinationArea?.trim())){
-      toast.warn('Please Fill all feild of Destination')
-    }else if(!(bookingRideData.pickupCity?.trim() &&bookingRideData.pickupArea?.trim())){
-      toast.warn('Please Fill all feild of Pickup Location')
-    }else {
+    // const {bookingRideData } = state
+    // if(!(bookingRideData.destinationCity?.trim() && bookingRideData.destinationArea?.trim())){
+    //   toast.warn('Please Fill all feild of Destination')
+    // }else if(!(bookingRideData.pickupCity?.trim() &&bookingRideData.pickupArea?.trim())){
+    //   toast.warn('Please Fill all feild of Pickup Location')
+    // }else {
       payload('/book-ride/in-process')
-    } 
+    // } 
   },
   handleBookingDate:(state,{payload})=>{
     state.bookingRideData.bookingDate = payload
