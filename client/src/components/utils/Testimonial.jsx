@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {collaboratewithus,collaborateData} from '../configs/collaboratewithus'
+import {collaboratewithus,collaborateData} from '../../configs/collaboratewithus'
 import {BsQuote} from 'react-icons/bs'
 
 const Testimonial = () => {
