@@ -9,7 +9,7 @@ const bookingSchema = new mongoose.Schema({
   duration: { type: String },
   bookingDate: { type: String },
   bookingTime: { type: String },
-
+  placeId: { type: String, default: "0000" },
   // bookingStatus
   bookingStatus: { type: String, default: "waiting for pickup" },
   //waiting for pickup->req sent from passenger and looking for cab rider
