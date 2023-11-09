@@ -59,7 +59,7 @@ const PassengerCard = ({ obj, riderLocationRef, setActiveTab }) => {
           <p className="flex gap-2 text-sm">
             <span>Pickup</span>
             <FaArrowRightLong className="mt-1.5" />
-            <span className="text-blue-500">{riderToPickUpDistance}</span>
+            {/* <span className="text-blue-500">{riderToPickUpDistance}</span> */}
             <span>away</span>
           </p>
           <button onClick={() => setActiveTab("inTransit")}>Accept</button>
