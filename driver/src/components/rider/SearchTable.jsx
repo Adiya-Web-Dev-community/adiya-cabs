@@ -4,19 +4,9 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaSpinner } from "react-icons/fa";
 import { BiSad } from "react-icons/bi";
 
-const SearchTable = ({
-  loading,
-  data,
-  setPassengerRoute,
-  setPassengerDetails,
-  start,
-}) => {
+const SearchTable = ({ loading, data }) => {
   return (
-    <div
-      className={`md:w-[30%] md:h-full  md:absolute  top-0 md:z-20 space-y-6 py-5 px-0.5 overflow-y-auto col-span-3  bg-white ${
-        start ? "hidden" : "block"
-      }`}
-    >
+    <div>
       {loading ? (
         <FaSpinner className="animate-spin text-5xl m-auto mt-6 text-gray-400" />
       ) : null}
@@ -41,7 +31,7 @@ const SearchTable = ({
                     <p className="absolute top-3 left-2 w-[1px] h-[1rem] bg-gray-300 border-l-[1px] border-black"></p>
                     <p className="absolute top-7 left-2 w-[1px] h-[1rem] bg-gray-300 border-l-[1px] border-black "></p>
                   </div>
-                  {/* <div className="space-y-3 mt-2 pt-2 pb-3 italic border-t-[1px] border-gray-400">
+                  <div className="space-y-3 mt-2 pt-2 pb-3 italic border-t-[1px] border-gray-400">
                     <p>
                       <span>Distance: </span>
                       <span className="text-blue-700 pl-3">{obj.distance}</span>
@@ -50,21 +40,12 @@ const SearchTable = ({
                       <span>Duration: </span>
                       <span className="text-blue-700 pl-3">{obj.duration}</span>
                     </p>
-                  </div> */}
+                  </div>
                 </div>
 
                 <div className="w-[20%]">
                   <a href="#map">
-                    <button
-                      className=" text-xs cursor-pointer border-[1px] border-gray-300 rounded-sm px-1 hover:bg-gray-500/30"
-                      onClick={() => {
-                        setPassengerRoute({
-                          pickup: obj.pickupLocation,
-                          destination: obj.destinationLocation,
-                        });
-                        setPassengerDetails(obj);
-                      }}
-                    >
+                    <button className=" text-xs cursor-pointer border-[1px] border-gray-300 rounded-sm px-1 hover:bg-gray-500/30">
                       Show route
                     </button>
                   </a>

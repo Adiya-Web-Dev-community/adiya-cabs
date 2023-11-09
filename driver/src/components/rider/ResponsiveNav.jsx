@@ -18,7 +18,6 @@ const ResponsiveNav = ({ open, setOpen, setAuth }) => {
     navigate(`/${tab}`);
     setOpen(false);
   };
-  console.log(open);
 
   return (
     <main
