@@ -3,20 +3,18 @@ const mongoose = require("mongoose");
 const bookingSchema = new mongoose.Schema({
   rideCategory: { type: String },
   //   booking details
-  pickupLocation: {
-    city: { type: String },
-    area: { type: String },
-    latitude: { type: String },
-    longitude: { type: String },
-  },
-  destinationLocation: {
-    city: { type: String },
-    area: { type: String },
-    latitude: { type: String },
-    longitude: { type: String },
-  },
+  pickupLocation: { type: String },
+  destinationLocation: { type: String },
+  distance: { type: String },
+  duration: { type: String },
   bookingDate: { type: String },
   bookingTime: { type: String },
+
+  // bookingStatus
+  bookingStatus: { type: String, default: "waiting for pickup" },
+  //waiting for pickup->req sent from passenger and looking for cab rider
+  //in transit-> cab rider has accepted booking
+  //cancel-> passenger or cab rider cancelled the booking
 
   //passsenger and rider ids
   passengerId: { type: mongoose.Schema.Types.ObjectId, ref: "passenger" },
@@ -24,4 +22,4 @@ const bookingSchema = new mongoose.Schema({
 });
 
 const bookingModel = mongoose.model("booking", bookingSchema);
-module.exports = bookingModel;
+module.exports = bookingModel;
