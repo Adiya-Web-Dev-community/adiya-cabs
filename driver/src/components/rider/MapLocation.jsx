@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
 //icons
-import { MdTripOrigin } from "react-icons/md";
-import { FaLocationDot } from "react-icons/fa6";
 import { FaSpinner } from "react-icons/fa";
 import { GrCircleInformation } from "react-icons/gr";
 import { toast } from "react-hot-toast";
-
+//images
 // GOOGLE MAP COMPONENETS
 import {
   useJsApiLoader,
@@ -15,6 +13,7 @@ import {
   Autocomplete,
   DirectionsRenderer,
 } from "@react-google-maps/api";
+
 // set default center for map  ex-mumbai
 const center = { lat: 18.5204, lng: 73.8567 };
 
@@ -72,7 +71,6 @@ const MapLocation = ({
       setLoading(false);
     }
   }
-  console.log(calculated);
   function clearDirectionRoute() {
     setDirectionResponse(null);
     setDistance("");
@@ -131,7 +129,17 @@ const MapLocation = ({
           onLoad={(map) => setMap(map)}
         >
           {/* marker not visible */}
-          {start ? null : <Marker position={center} />}
+          {start ? null : (
+            <Marker
+              position={center}
+              options={{
+                icon: {
+                  url: "https://freesvg.org/img/car_topview.png",
+                  scaledSize: new window.google.maps.Size(50, 50),
+                },
+              }}
+            />
+          )}
           {directionResponse && (
             <DirectionsRenderer directions={directionResponse} />
           )}
@@ -149,7 +157,6 @@ const MapLocation = ({
         </section>
         <section className="space-y-3  flex flex-col ">
           <div className="flex gap-1 ">
-            <MdTripOrigin className="text-orange-400 mt-3" />
             <Autocomplete>
               <input
                 type="text"
@@ -161,7 +168,6 @@ const MapLocation = ({
           </div>
 
           <div className="flex gap-2">
-            <FaLocationDot className="text-red-700 mt-3" />
             <Autocomplete>
               <input
                 type="text"
@@ -218,24 +224,23 @@ const MapLocation = ({
           )}
         </section>
         <section className="py-2">
-          {/* {!calculated ? ( */}
-          <button
-            className="w-full bg-gray-200 py-1.5  px-2  text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl  rounded-lg flex justify-center "
-            onClick={calculateDirectionRoute}
-          >
-            {loading ? (
-              <FaSpinner className="animate-spin m-auto" />
-            ) : (
-              "Calculate Route"
-            )}
-          </button>
-          {/* ) : null} */}
-          {/* {calculated && !start ? (
+          {!calculated ? (
+            <button
+              className="w-full bg-gray-200 py-1.5  px-2  text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl  rounded-lg flex justify-center "
+              onClick={calculateDirectionRoute}
+            >
+              {loading ? (
+                <FaSpinner className="animate-spin m-auto" />
+              ) : (
+                "Calculate Route"
+              )}
+            </button>
+          ) : null}
+          {calculated && !start ? (
             <button
               className="w-full bg-gray-200 py-1.5  px-2  text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl  rounded-lg flex justify-center "
               onClick={startRoute}
             >
-              {console.log("cal true can start")}
               {loading ? (
                 <FaSpinner className="animate-spin m-auto" />
               ) : (
@@ -243,19 +248,20 @@ const MapLocation = ({
               )}
             </button>
           ) : null}
-
           {start ? (
-            <button
-              className="w-full bg-gray-200 py-1.5  px-2  text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl  rounded-lg flex justify-center "
-              onClick={clearDirectionRoute}
-            >
-              {loading ? (
-                <FaSpinner className="animate-spin m-auto" />
-              ) : (
-                "Cancel"
-              )}
-            </button>
-          ) : null} */}
+            <a href="#">
+              <button
+                className="w-full bg-gray-200 py-1.5  px-2  text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl  rounded-lg flex justify-center "
+                onClick={clearDirectionRoute}
+              >
+                {loading ? (
+                  <FaSpinner className="animate-spin m-auto" />
+                ) : (
+                  "Cancel"
+                )}
+              </button>
+            </a>
+          ) : null}
         </section>
       </div>
     </div>
