@@ -19,7 +19,7 @@ router.post("/search-data", async (req, resp) => {
   }
 });
 
-// booking data
+// Customer booking data
 router.post("/booking", accountMiddleware, async (req, resp) => {
   try {
     const data = await Booking.create({
@@ -36,8 +36,8 @@ router.post("/booking", accountMiddleware, async (req, resp) => {
 router.get("/get-bookings-data", async (req, resp) => {
   try {
     const results = await Booking.find({})
-      .populate("passengerId")
-      .populate("riderId");
+      .populate("passengerId", "name email contact")
+      .populate("riderId", "name contact vehicleRegistrationNo");
     console.log(results);
     resp.send(results);
   } catch (err) {
