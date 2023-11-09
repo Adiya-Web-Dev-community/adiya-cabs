@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { clientTestmonial } from '../configs/clientTestimonial'
+import { clientTestmonial } from '../../configs/clientTestimonial'
 import { FaTwitter } from 'react-icons/fa'
 import { BiSolidStar } from 'react-icons/bi'
 

@@ -3,7 +3,7 @@ import collaborateImg from '../assets/Collaborate-with-us/collaborate-hand.jpg'
 import {collaboratewithus,collaborateData} from '../configs/collaboratewithus'
 import {BsQuote} from 'react-icons/bs'
 import {BiSolidStar} from 'react-icons/bi'
-import Testimonial from '../components/Testimonial'
+import Testimonial from '../components/utils/Testimonial'
 function CollaboratewithUs() {
 
 
@@ -48,7 +48,7 @@ function CollaboratewithUs() {
     <section >
         <h2 className='text-gray-700 text-3xl lg:text-4xl text-center my-8 sm:w-4/5 m-auto '>
             Join 
-            <span className='text-red-500'> Meru </span> by
+            <span className='text-red-500'> Adiya cab </span> by
             enlisting  your 
             <span className='text-red-500'> vehicle </span>
              as a partner.
@@ -56,18 +56,18 @@ function CollaboratewithUs() {
         <div className=' text-md   sm:w-4/5 m-auto border rounded text-center  '>
 
             <div className=' p-2   cursor-pointer    ' >
-               We cordially invite you to explore the outstanding opportunity of becoming a valued partner with Meru.
+               We cordially invite you to explore the outstanding opportunity of becoming a valued partner with Adiya cab.
                By attaching your vehicle to our network,
                you not only enter the realm of entrepreneurship but also open doors to a myriad of benefits and possibilities
             </div >
             <div className=' p-2   cursor-pointer  '>
             Our partnership offers you the chance to leverage your vehicle's potential and transform it into a sustainable source of income. 
-            As a part of the Meru family, you gain access to a well-established and trusted platform that connects you with a vast clientele.
+            As a part of the Adiya cab family, you gain access to a well-established and trusted platform that connects you with a vast clientele.
             </div>
             <div className=' p-2     cursor-pointer ' >
  We offer comprehensive assistance,
              including driver onboarding, safety training, and 24/7 customer support. 
-             Your journey with Meru is backed by our expertise and dedication to making your business thrive.
+             Your journey with Adiya cab is backed by our expertise and dedication to making your business thrive.
             </div>
         </div>
     </section>
@@ -98,7 +98,7 @@ function CollaboratewithUs() {
            <h2 className='text-gray-700 text-3xl lg:text-4xl text-center my-8 sm:w-4/5 m-auto'>
                 Documents
                  required to become 
-                <span className='text-red-500'> Meru  partner </span>
+                <span className='text-red-500'> Adiya cab  partner </span>
             </h2>
 
             <div className='  grid grid-cols-3 gap-4 '>

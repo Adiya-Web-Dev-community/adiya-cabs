@@ -20,9 +20,12 @@ const Navbar = ({ auth, setAuth }) => {
   }, [driverToken]);
 
   // navigation tabs
-  const [activeTab, setActiveTab] = useState("profile");
+  const [activeTab, setActiveTab] = useState("search_passenger");
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+    if (tab === "logout") {
+      return navigate("/");
+    }
     navigate(`/${tab}`);
   };
 
@@ -31,7 +34,7 @@ const Navbar = ({ auth, setAuth }) => {
 
   return (
     <>
-      <div className="lg:hidden flex justify-between gap-3 py-3 px-6 bg-gradient-to-r from-yellow-200 via-yellow-500 to-orange-200 shadow-xl shadow-gray-700  ">
+      <div className="lg:hidden flex justify-between gap-3 py-3 px-6 bg-gradient-to-r from-yellow-200 via-yellow-500 to-orange-200  ">
         <span className="text-xl font-sans">MERU RIDERS</span>
         <GiHamburgerMenu
           className={`mt-1 text-2xl hover:scale-125 transition ease-in duration-300 ${
@@ -40,9 +43,9 @@ const Navbar = ({ auth, setAuth }) => {
           onClick={() => setOpen(!open)}
         />
       </div>
-      <div className="z-20 hidden lg:flex flex-col bg-gradient-to-b from-yellow-500 via-orange-300 to-orange-500   py-3 px-2 w-[20%] ">
+      <div className="z-50 hidden lg:flex flex-col bg-gradient-to-b from-yellow-500 via-orange-300 to-orange-500   py-3 px-2 w-[15%] ">
         <div className="py-3 flex gap-3 border-b-[1px]">
-          <span className="text-xl font-sans mt-1">MERU RIDERS</span>
+          <span className="text-xl font-sans mt-1">ADIYA RIDERS</span>
         </div>
         <div className="flex flex-col space-y-1 py-1">
           <button

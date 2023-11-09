@@ -16,6 +16,7 @@ const bookingSchema = new mongoose.Schema({
   //in transit-> cab rider has accepted booking
   //cancel-> passenger or cab rider cancelled the booking
 
+
   //passsenger and rider ids
   passengerId: { type: mongoose.Schema.Types.ObjectId, ref: "passenger" },
   riderId: { type: mongoose.Schema.Types.ObjectId, ref: "rider" },
