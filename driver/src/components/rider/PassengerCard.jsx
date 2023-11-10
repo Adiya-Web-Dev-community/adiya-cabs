@@ -58,7 +58,12 @@ const PassengerCard = ({ obj, riderLocationRef, setActiveTab }) => {
             <span className="text-blue-500">{riderToPickUpDistance}</span>
             <span>away</span>
           </p>
-          <button onClick={() => setActiveTab("inTransit")}>Accept</button>
+          <button
+            onClick={() => setActiveTab("inTransit")}
+            className="border-[1px] rounded-md bg-gray-200 px-1 py-1 hover:bg-black hover:text-white"
+          >
+            Accept
+          </button>
         </div>
       </div>
     </div>
