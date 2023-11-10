@@ -7,7 +7,7 @@ const Rider = require("../../model/rider/account");
 // we can make a algorithm for nearest rides, currenltly i am using city range here
 router.get("/current-bookings", accountMiddleware, async (req, resp) => {
     try {
-        const city = req.body.city;
+        const city = req.query.city;
         const bookingData = await Booking.find({
             bookingStatus: "waiting for pickup",
             'pickupLocation.city': city ,
