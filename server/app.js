@@ -20,7 +20,6 @@ app.use(require("./route/rider/booking"));
 // Admin routes
 app.use(require("./route/admin/account"));
 
-
 app.get("/", async (req, resp) => {
   resp.send("Welcome to MERU CABS");
 });
