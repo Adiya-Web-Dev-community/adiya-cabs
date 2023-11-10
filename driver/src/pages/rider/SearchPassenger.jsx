@@ -6,12 +6,12 @@ import InTransitPassenger from "./InTransitPassenger";
 // GOOGLE MAP COMPONENTS
 import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 // icons
-import { FaLinesLeaning, FaSpinner } from "react-icons/fa6";
+import { FaSpinner } from "react-icons/fa6";
 import { toast } from "react-hot-toast";
-import { MdOutlineReduceCapacity } from "react-icons/md";
 
 const SearchPassenger = () => {
   const riderToken = localStorage.getItem("driverToken");
+  const location = localStorage.getItem("location");
 
   // handle navigation button waiting for pickup $ in transit
   const [activeTab, setActiveTab] = useState("waitingForPickup");
@@ -19,16 +19,10 @@ const SearchPassenger = () => {
   const handleSelectButton = (tab) => {
     setActiveTab(tab);
   };
-  // set default value of current location ref
-  const [LocValue, setLocValue] = useState("");
-  useEffect(() => {
-    setLocValue("Mumbai, MH, India");
-  }, []);
-
   //! GET RIDERS CITY AND GET BOOKING DATA ACC TO IT
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState(location);
   // AUTOCOMPLETE ON PLACE CHANGE
   const [locationObj, setLocationObj] = useState({});
   const [locationChange, setLocationChage] = useState(false);
@@ -68,16 +62,19 @@ const SearchPassenger = () => {
     }
   };
   useEffect(() => {
-    if (city) {
-      getData();
-    }
+    getData();
   }, [city]);
 
   // riders current location on click=>update button
   const riderLocationRef = useRef();
   const [riderCurrentLocation, setRiderCurrentLocation] = useState("");
-  const handleRiderCurrentLocation = () => {
+  const handleRiderCurrentLocation = async () => {
     setRiderCurrentLocation(riderLocationRef.current.value);
+    const resp = await axios.put(
+      "/current-location-update",
+      { city: city },
+      { headers: { authorization: riderToken } }
+    );
     setLocationChage(false);
     toast.success("Location updated");
   };
@@ -125,7 +122,7 @@ const SearchPassenger = () => {
                 type="text"
                 placeholder="Current Location"
                 ref={riderLocationRef}
-                defaultValue={LocValue}
+                defaultValue={city}
                 className={`border-[1px] border-gray-300 py-0.5 px-2
                 italic w-[100%] rounded-md   ${
                   locationChange ? "border-red-500" : "border-gray-300"
