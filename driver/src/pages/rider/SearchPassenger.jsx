@@ -6,8 +6,9 @@ import InTransitPassenger from "./InTransitPassenger";
 // GOOGLE MAP COMPONENTS
 import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 // icons
-import { FaSpinner } from "react-icons/fa6";
+import { FaLinesLeaning, FaSpinner } from "react-icons/fa6";
 import { toast } from "react-hot-toast";
+import { MdOutlineReduceCapacity } from "react-icons/md";
 
 const SearchPassenger = () => {
   const riderToken = localStorage.getItem("driverToken");
@@ -18,55 +19,68 @@ const SearchPassenger = () => {
   const handleSelectButton = (tab) => {
     setActiveTab(tab);
   };
+  // set default value of current location ref
+  const [LocValue, setLocValue] = useState("");
+  useEffect(() => {
+    setLocValue("Mumbai, MH, India");
+  }, []);
 
-  // riders current location
-  const [riderCurrentLocation, setRiderCurrentLocation] = useState("");
-  const riderLocationRef = useRef();
-  const handleRiderCurrentLocation = () => {
-    setRiderCurrentLocation(riderLocationRef.current.value);
-    toast.success("Location updated");
-  };
-
-  //! GET RIDERS CITY
+  //! GET RIDERS CITY AND GET BOOKING DATA ACC TO IT
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [city, setCity] = useState("");
   // AUTOCOMPLETE ON PLACE CHANGE
   const [locationObj, setLocationObj] = useState({});
-  const [city, setCity] = useState("");
+  const [locationChange, setLocationChage] = useState(false);
   function onLoad(selectPlace) {
     setLocationObj(selectPlace);
   }
   async function onPlaceChanged() {
+    setLocationChage(true);
     const place = locationObj.getPlace();
     const { lat, lng } = place.geometry.location;
-    // lat and long are function , call them
+    //!lat and long are function , call them
+    // console.log(lat(), lng());
     let latitude = lat();
     let longitude = lng();
 
+    setLoading(true);
+
+    // fectch city using lat and lng
     const response = await axios.get(
       `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=166e9c08befd40909204b8042a4b028a`
     );
-    console.log(response?.data?.results[0].components?.city);
-    setCity(response?.data?.results[0].components?.city);
+    const searchCity = response?.data?.results[0].components?.city;
+    // console.log(searchCity);
+    setCity(searchCity);
+    setLoading(false);
   }
 
-  // get passengers' bookings-> waiting for pickups after we get current location of rider
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
   const getData = async () => {
     try {
-      setLoading(true);
+      // get data when fetched city by lat & lng
       const resp = await axios.get(`/current-bookings?city=${city}`, {
         headers: { authorization: riderToken },
       });
-      console.log(resp.data.bookingData);
       setData(resp.data.bookingData);
-      setLoading(false);
     } catch (err) {
       console.log(err);
     }
   };
   useEffect(() => {
-    getData();
-  }, []);
+    if (city) {
+      getData();
+    }
+  }, [city]);
+
+  // riders current location on click=>update button
+  const riderLocationRef = useRef();
+  const [riderCurrentLocation, setRiderCurrentLocation] = useState("");
+  const handleRiderCurrentLocation = () => {
+    setRiderCurrentLocation(riderLocationRef.current.value);
+    setLocationChage(false);
+    toast.success("Location updated");
+  };
 
   //! Load google map api
   const { isLoaded } = useJsApiLoader({
@@ -111,32 +125,32 @@ const SearchPassenger = () => {
                 type="text"
                 placeholder="Current Location"
                 ref={riderLocationRef}
+                defaultValue={LocValue}
                 className={`border-[1px] border-gray-300 py-0.5 px-2
                 italic w-[100%] rounded-md   ${
-                  !riderCurrentLocation ? "border-red-500" : "border-gray-300"
-                }`}
+                  locationChange ? "border-red-500" : "border-gray-300"
+                } `}
               />
             </Autocomplete>
             <button
-              className={`bg-yellow-200 rounded-md px-5 disabled:cursor-not-allowed cursor-pointer `}
+              className={` bg-yellow-200 rounded-md px-5 disabled:cursor-not-allowed cursor-pointer `}
               disabled={!riderLocationRef}
               onClick={() => handleRiderCurrentLocation()}
             >
               Update
             </button>
           </div>
-          {riderCurrentLocation ? null : (
+          {!locationChange ? null : (
             <p className="text-xs text-red-600 px-2">
-              Please update current location !
+              Please update new current location !
             </p>
           )}
         </div>
-
         {activeTab === "waitingForPickup" ? (
           <div className="space-y-5 overflow-y-auto py-6 h-[40rem] md:px-12  ">
             {loading ? (
               <FaSpinner className="animate-spin text-gray-300 text-2xl text-center" />
-            ) : data.length && city ? (
+            ) : data.length ? (
               data.map((obj, i) => {
                 return (
                   <PassengerCard
