@@ -41,7 +41,7 @@ function sendSingUpMail(email) {
 // Rider Singup
 router.post("/rider-signup", async (req, resp) => {
     try {
-        const { email, contact, password } = req.body;
+        const { email, contact, password} = req.body;
 
         const findRiderEmail = await Rider.findOne({ email });
         const findRiderContact = await Rider.findOne({ contact });
@@ -86,7 +86,7 @@ router.post("/rider-signup", async (req, resp) => {
 
 // Rider Login
 router.post("/rider-login", async (req, resp) => {
-    const { riderId, password } = req.body;
+    const { riderId, password , city } = req.body;
 
     try {
         // const findRider = await Rider.findOne({
@@ -124,6 +124,8 @@ router.post("/rider-login", async (req, resp) => {
                 expiresIn: "1d",
             }
         );
+        findRider.currentLocation = city;
+        await findRider.save();
         resp.json({
             success: true,
             msg: "Login successful",

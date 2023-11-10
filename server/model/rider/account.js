@@ -11,6 +11,7 @@ const riderSchema = new mongoose.Schema({
   drivingLicenseNo: { type: String },
   vehicleRegistrationNo: { type: String },
   adminVerification: { type: Boolean, default: false },
+  currentLocation : { type: String },
   riderId: { type: String },
   serialNo: { type: Number },
   profileImgUrl: {
