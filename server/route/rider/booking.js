@@ -10,7 +10,7 @@ router.get("/current-bookings", accountMiddleware, async (req, resp) => {
         const city = req.body.city;
         const bookingData = await Booking.find({
             bookingStatus: "waiting for pickup",
-            city: city,
+            'pickupLocation.city': city ,
         });
         resp.json({
             success: true,
