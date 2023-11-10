@@ -7,15 +7,15 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { IoNavigateSharp } from "react-icons/io5";
 
 const PassengerCard = ({ obj, riderLocationRef, setActiveTab }) => {
-  console.log(riderLocationRef.current.value);
+  // console.log(riderLocationRef.current.value);
   //! Calculate rider current location to passenger pickup location distance
   const [riderToPickUpDistance, setRiderToPickUpDistance] = useState(null);
   const calRiderToPickupDistance = async () => {
-    console.log(obj);
+    // console.log(obj);
     const directionService = new google.maps.DirectionsService();
     const directionResult = await directionService.route({
       origin: riderLocationRef.current.value,
-      destination: obj.pickupLocation,
+      destination: obj.pickupLocation.address,
       travelMode: google.maps.TravelMode.DRIVING,
     });
 
@@ -34,16 +34,12 @@ const PassengerCard = ({ obj, riderLocationRef, setActiveTab }) => {
         <div className="relative w-[90%] ">
           <p className="flex gap-1 italic">
             <MdTripOrigin className="text-orange-400 opacity-70" />
-            <span className="text-sm">{obj.pickupLocation}</span>
+            <span className="text-sm">{obj.pickupLocation?.address}</span>
           </p>
           <p className="flex gap-1 mt-5 italic">
             <FaLocationDot className="text-red-600 opacity-70 " />
             <span className="text-sm">{obj.destinationLocation}</span>
           </p>
-          <div className="">
-            <p className="absolute top-3 left-1.5 w-[1px] h-[1rem] bg-gray-300 border-l-[1px] border-black"></p>
-            <p className="absolute top-7 left-1.5 w-[1px] h-[1rem] bg-gray-300 border-l-[1px] border-black "></p>
-          </div>
           <div className="space-y-2 mt-2 pt-3 pb-3 italic border-t-[1px] border-gray-400 text-sm">
             <p>
               <span>Distance: </span>
@@ -58,8 +54,8 @@ const PassengerCard = ({ obj, riderLocationRef, setActiveTab }) => {
         <div className="flex justify-between">
           <p className="flex gap-2 text-sm">
             <span>Pickup</span>
-            <FaArrowRightLong className="mt-1.5" />
-            {/* <span className="text-blue-500">{riderToPickUpDistance}</span> */}
+            <FaArrowRightLong className="mt-1" />
+            <span className="text-blue-500">{riderToPickUpDistance}</span>
             <span>away</span>
           </p>
           <button onClick={() => setActiveTab("inTransit")}>Accept</button>
