@@ -23,6 +23,23 @@ router.get("/current-bookings", accountMiddleware, async (req, resp) => {
       msg: err.message,
     });
   }
+  try {
+    const city = req.body.city;
+    const bookingData = await Booking.find({
+      bookingStatus: "waiting for pickup",
+      "pickupLocation.city": city,
+    });
+    resp.json({
+      success: true,
+      msg: "Current open Bookings",
+      bookingData,
+    });
+  } catch (err) {
+    resp.json({
+      success: false,
+      msg: err.message,
+    });
+  }
 });
 
 // accept current booking
