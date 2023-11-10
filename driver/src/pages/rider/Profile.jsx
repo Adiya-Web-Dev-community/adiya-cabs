@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 const Profile = () => {
   // const [userData, setUserData] = useState([]);
 
