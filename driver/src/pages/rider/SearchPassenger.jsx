@@ -50,6 +50,25 @@ const SearchPassenger = () => {
     toast.success("Location updated");
   };
 
+  //! GET RIDERS CITY
+  // AUTOCOMPLETE ON PLACE CHANGE
+  const [locationObj, setLocationObj] = useState({});
+  function onLoad(selectPlace) {
+    setLocationObj(selectPlace);
+  }
+  async function onPlaceChanged() {
+    const place = locationObj.getPlace();
+    const { lat, lng } = place.geometry.location;
+    // lat and long are function , call them
+    let latitude = lat();
+    let longitude = lng();
+
+    const response = await axios.get(
+      `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=166e9c08befd40909204b8042a4b028a`
+    );
+    console.log(response?.data?.results[0].components?.city);
+  }
+
   //! Load google map api
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyCzSOQHv63VsWrPjwRI58388Dtui5T7MdI",
@@ -88,30 +107,37 @@ const SearchPassenger = () => {
         <div className="flex flex-col gap-1 py-2 px-2  justify-between bg-blue-50 shadow-md shadow-blue-300">
           <p className="text-blue-300">Your current location</p>
           <div className="flex gap-5 ">
-            <Autocomplete>
+            <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
               <input
                 type="text"
                 placeholder="Current Location"
                 ref={riderLocationRef}
-                className=" border-[1px] border-gray-300 py-0.5 px-2
-                italic w-[100%] rounded-md "
+                className={`border-[1px] border-gray-300 py-0.5 px-2
+                italic w-[100%] rounded-md   ${
+                  !riderCurrentLocation ? "border-red-500" : "border-gray-300"
+                }`}
               />
             </Autocomplete>
             <button
-              className="bg-yellow-200 rounded-md px-5 disabled:cursor-not-allowed cursor-pointer"
+              className={`bg-yellow-200 rounded-md px-5 disabled:cursor-not-allowed cursor-pointer `}
               disabled={!riderLocationRef}
               onClick={() => handleRiderCurrentLocation()}
             >
               Update
             </button>
           </div>
+          {riderCurrentLocation ? null : (
+            <p className="text-xs text-red-600 px-2">
+              Please update current location !
+            </p>
+          )}
         </div>
 
         {activeTab === "waitingForPickup" ? (
           <div className="space-y-5 overflow-y-auto py-6 h-[40rem] md:px-12  ">
             {loading ? (
               <FaSpinner />
-            ) : (
+            ) : data.length && riderCurrentLocation ? (
               data.map((obj, i) => {
                 return (
                   <PassengerCard
@@ -122,6 +148,8 @@ const SearchPassenger = () => {
                   />
                 );
               })
+            ) : (
+              <p className="text-center">No active passenegers</p>
             )}
           </div>
         ) : null}
