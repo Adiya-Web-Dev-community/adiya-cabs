@@ -18,6 +18,7 @@ const riderSchema = new mongoose.Schema({
   
   riderId: { type: String },
   serialNo: { type: Number },
+  serviceType : { type: String },
   profileImgUrl: {
     type: String,
     default:
