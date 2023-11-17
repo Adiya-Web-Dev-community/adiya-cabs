@@ -31,6 +31,7 @@ router.get("/profile", accountMiddleware, async (req, resp) => {
 
 // Update Profile
 router.put("/profile", accountMiddleware, async (req, resp) => {
+
     try {
         const profile = await User.findOne({
             _id: req.accountId,
