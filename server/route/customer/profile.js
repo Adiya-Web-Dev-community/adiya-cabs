@@ -31,12 +31,11 @@ router.get("/profile", accountMiddleware, async (req, resp) => {
 
 // Update Profile
 router.put("/profile", accountMiddleware, async (req, resp) => {
-    const passengerId = req.accountId;
+
     try {
         const profile = await User.findOne({
             _id: req.accountId,
         });
-        console.log(profile);
         profile.email = req.body.email;
         profile.name = req.body.name;
         profile.emergencyContactNumber = req.body.emergencyContactNumber;
