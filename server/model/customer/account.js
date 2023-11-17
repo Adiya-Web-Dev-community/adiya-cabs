@@ -11,6 +11,14 @@ const userSchema = new mongoose.Schema({
   contact: { type: Number },
   state: { type: String },
   city: { type: String },
+  emergencyContactNumber : { type: Number},
+  trackingNumber : { type: Number },
+  favoriteAddress : [
+  {
+    title : { type: String},
+    address : { type: String}
+  }
+  ],
   otp: { type: Number, default: 0 },
 });
 
