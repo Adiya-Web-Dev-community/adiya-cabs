@@ -46,6 +46,7 @@ const Signin = ({ setNewRider }) => {
         });
         localStorage.setItem("driverToken", resp.data.token);
         localStorage.setItem("riderName", "Harshada");
+        localStorage.setItem("location", resp.data.currentLocation);
         navigate("/search_passenger");
       } else {
         toast.error(resp.data.msg, {

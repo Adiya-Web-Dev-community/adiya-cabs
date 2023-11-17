@@ -4,18 +4,14 @@ import axios from "../../helper/axios";
 import PassengerCard from "../../components/rider/PassengerCard";
 import InTransitPassenger from "./InTransitPassenger";
 // GOOGLE MAP COMPONENTS
-import {
-  Autocomplete,
-  GoogleMap,
-  useJsApiLoader,
-} from "@react-google-maps/api";
+import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 // icons
 import { FaSpinner } from "react-icons/fa6";
 import { toast } from "react-hot-toast";
-import RiderLocation from "../../components/rider/RiderLocation";
 
 const SearchPassenger = () => {
   const riderToken = localStorage.getItem("driverToken");
+  const location = localStorage.getItem("location");
 
   // handle navigation button waiting for pickup $ in transit
   const [activeTab, setActiveTab] = useState("waitingForPickup");
@@ -23,51 +19,65 @@ const SearchPassenger = () => {
   const handleSelectButton = (tab) => {
     setActiveTab(tab);
   };
-
-  // get passengers' bookings-> waiting for pickups
+  //! GET RIDERS CITY AND GET BOOKING DATA ACC TO IT
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [city, setCity] = useState(location);
+  // AUTOCOMPLETE ON PLACE CHANGE
+  const [locationObj, setLocationObj] = useState({});
+  const [locationChange, setLocationChage] = useState(false);
+  function onLoad(selectPlace) {
+    setLocationObj(selectPlace);
+  }
+  async function onPlaceChanged() {
+    setLocationChage(true);
+    const place = locationObj.getPlace();
+    const { lat, lng } = place.geometry.location;
+    //!lat and long are function , call them
+    // console.log(lat(), lng());
+    let latitude = lat();
+    let longitude = lng();
+
+    setLoading(true);
+
+    // fectch city using lat and lng
+    const response = await axios.get(
+      `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=166e9c08befd40909204b8042a4b028a`
+    );
+    const searchCity = response?.data?.results[0].components?.city;
+    // console.log(searchCity);
+    setCity(searchCity);
+    setLoading(false);
+  }
+
   const getData = async () => {
     try {
-      setLoading(true);
-      const resp = await axios.get("/get-bookings-data");
-      console.log(resp.data);
-      setData(resp.data);
-      setLoading(false);
+      // get data when fetched city by lat & lng
+      const resp = await axios.get(`/current-bookings?city=${city}`, {
+        headers: { authorization: riderToken },
+      });
+      setData(resp.data.bookingData);
     } catch (err) {
       console.log(err);
     }
   };
   useEffect(() => {
     getData();
-  }, []);
+  }, [city]);
 
-  // riders current location
-  const [riderCurrentLocation, setRiderCurrentLocation] = useState("");
+  // riders current location on click=>update button
   const riderLocationRef = useRef();
-  const handleRiderCurrentLocation = () => {
+  const [riderCurrentLocation, setRiderCurrentLocation] = useState("");
+  const handleRiderCurrentLocation = async () => {
     setRiderCurrentLocation(riderLocationRef.current.value);
+    const resp = await axios.put(
+      "/current-location-update",
+      { city: city },
+      { headers: { authorization: riderToken } }
+    );
+    setLocationChage(false);
     toast.success("Location updated");
   };
-
-  //! GET RIDERS CITY
-  // AUTOCOMPLETE ON PLACE CHANGE
-  const [locationObj, setLocationObj] = useState({});
-  function onLoad(selectPlace) {
-    setLocationObj(selectPlace);
-  }
-  async function onPlaceChanged() {
-    const place = locationObj.getPlace();
-    const { lat, lng } = place.geometry.location;
-    // lat and long are function , call them
-    let latitude = lat();
-    let longitude = lng();
-
-    const response = await axios.get(
-      `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=166e9c08befd40909204b8042a4b028a`
-    );
-    console.log(response?.data?.results[0].components?.city);
-  }
 
   //! Load google map api
   const { isLoaded } = useJsApiLoader({
@@ -112,32 +122,32 @@ const SearchPassenger = () => {
                 type="text"
                 placeholder="Current Location"
                 ref={riderLocationRef}
+                defaultValue={city}
                 className={`border-[1px] border-gray-300 py-0.5 px-2
                 italic w-[100%] rounded-md   ${
-                  !riderCurrentLocation ? "border-red-500" : "border-gray-300"
-                }`}
+                  locationChange ? "border-red-500" : "border-gray-300"
+                } `}
               />
             </Autocomplete>
             <button
-              className={`bg-yellow-200 rounded-md px-5 disabled:cursor-not-allowed cursor-pointer `}
+              className={` bg-yellow-200 rounded-md px-5 disabled:cursor-not-allowed cursor-pointer `}
               disabled={!riderLocationRef}
               onClick={() => handleRiderCurrentLocation()}
             >
               Update
             </button>
           </div>
-          {riderCurrentLocation ? null : (
+          {!locationChange ? null : (
             <p className="text-xs text-red-600 px-2">
-              Please update current location !
+              Please update new current location !
             </p>
           )}
         </div>
-
         {activeTab === "waitingForPickup" ? (
           <div className="space-y-5 overflow-y-auto py-6 h-[40rem] md:px-12  ">
             {loading ? (
-              <FaSpinner />
-            ) : data.length && riderCurrentLocation ? (
+              <FaSpinner className="animate-spin text-gray-300 text-2xl text-center" />
+            ) : data.length ? (
               data.map((obj, i) => {
                 return (
                   <PassengerCard
