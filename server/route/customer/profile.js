@@ -54,4 +54,30 @@ router.put("/profile", accountMiddleware, async (req, resp) => {
         });
     }
 });
+
+// Update address 
+router.put("/profile/address", accountMiddleware, async (req, resp) => {
+    try {
+        const profile = await User.findOneAndUpdate({
+            _id: req.accountId,
+        },
+        {
+            favoriteAddress : [{
+                title : req.body.title,
+                address : req.body.address
+            }]
+        });
+        resp.json({
+            success: true,
+            msg: "Profile Address updated successfully",
+            data: profile,
+        });
+    } catch (err) {
+        resp.json({
+            success: false,
+            msg: err.message,
+        });
+    }
+});
+
 module.exports = router;
