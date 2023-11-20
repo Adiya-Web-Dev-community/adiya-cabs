@@ -80,20 +80,13 @@ router.post("/admin-login", async (req, resp) => {
 
 // Verify the rider
 router.put("/admin-rider-verification", async (req, resp) => {
-    const { riderId , serviceCategory} = req.body;
-    console.log(req.body);
-    try {
-        const rider = await Rider.findOneAndUpdate({ riderId: riderId , serviceCategory: serviceCategory});
-        if (!rider) {
-            return resp.json({
-                success: false,
-                msg: "Incorrect rider Details",
-            });
-        }
-  const { riderId, id } = req.body;
+  const { riderId, serviceCategory } = req.body;
   console.log(req.body);
   try {
-    const rider = await Rider.findOne({ riderId: riderId });
+    const rider = await Rider.findOneAndUpdate({
+      riderId: riderId,
+      serviceCategory: serviceCategory,
+    });
     if (!rider) {
       return resp.json({
         success: false,
@@ -135,20 +128,21 @@ router.put("/admin-rider-verification", async (req, resp) => {
   }
 });
 
-// Get All riders with filtering by serviceCategory field 
+// Get All riders with filtering by serviceCategory field
 router.get("/admin-get-riders", async (req, resp) => {
-    try {
-        const riders = await Rider.find({});
-        return resp.json({
-            success: true,
-            data: riders,
-        });
-    } catch (err) {
-        resp.json({
-            success: false,
-            msg: err.message,
-        });
-    }
+  const { serviceCategory } = req.body.serviceCategory;
+  try {
+    const riders = await Rider.find();
+    return resp.json({
+      success: true,
+      data: riders,
+    });
+  } catch (err) {
+    resp.json({
+      success: false,
+      msg: err.message,
+    });
+  }
 });
 
 // Get all riders without filtering
@@ -165,21 +159,5 @@ router.get("/admin-get-riders-data", async (req, resp) => {
       msg: err.message,
     });
   }
-});
-
-// Get all riders without filtering 
-router.get("/admin-get-riders-data", async (req, resp) => {
-    try {
-        const riders = await Rider.find();
-        return resp.json({
-            success: true,
-            data: riders,
-        });
-    } catch (err) {
-        resp.json({
-            success: false,
-            msg: err.message,
-        });
-    }
 });
 module.exports = router;
