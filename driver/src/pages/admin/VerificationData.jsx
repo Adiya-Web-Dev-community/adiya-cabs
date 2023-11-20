@@ -12,9 +12,7 @@ const VerificationData = () => {
   const [ridersData, setRidersData] = useState([]);
   const getData = async () => {
     try {
-      const resp = await axios.get("/admin-get-riders", {
-        headers: { authorization: adminToken },
-      });
+      const resp = await axios.get("/admin-get-riders-data");
       console.log(resp);
       if (resp.data.success) {
         setLoading(false);
