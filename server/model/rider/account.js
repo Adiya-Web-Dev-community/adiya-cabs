@@ -11,7 +11,7 @@ const riderSchema = new mongoose.Schema({
   drivingLicenseNo: { type: String },
   vehicleRegistrationNo: { type: String },
   adminVerification: { type: Boolean, default: false },
-  currentLocation : { type: String },
+  currentLocation: { type: String },
   riderId: { type: String },
   serialNo: { type: Number },
   profileImgUrl: {
@@ -19,6 +19,7 @@ const riderSchema = new mongoose.Schema({
     default:
       "https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg",
   },
+  serviceCategory: { type: String },
 });
 const riderModel = mongoose.model("rider", riderSchema);
 module.exports = riderModel;
