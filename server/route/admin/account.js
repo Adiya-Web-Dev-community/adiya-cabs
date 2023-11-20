@@ -83,10 +83,10 @@ router.post("/admin-login", async (req, resp) => {
 
 // Verify the rider
 router.put("/admin-rider-verification", async (req, resp) => {
-    const { riderId , serviceType} = req.body;
+    const { riderId , serviceCategory} = req.body;
     console.log(req.body);
     try {
-        const rider = await Rider.findOneAndUpdate({ riderId: riderId , serviceType: serviceType});
+        const rider = await Rider.findOneAndUpdate({ riderId: riderId , serviceCategory: serviceCategory});
         if (!rider) {
             return resp.json({
                 success: false,
@@ -128,11 +128,11 @@ router.put("/admin-rider-verification", async (req, resp) => {
     }
 });
 
-// Get All riders with filtering by serviceType field 
+// Get All riders with filtering by serviceCategory field 
 router.get("/admin-get-riders", async (req, resp) => {
-    const {serviceType} = req.body.serviceType;
+    const {serviceCategory} = req.body.serviceCategory;
     try {
-        const riders = await Rider.find({serviceType : serviceType});
+        const riders = await Rider.find({serviceCategory : serviceCategory});
         return resp.json({
             success: true,
             data: riders,
