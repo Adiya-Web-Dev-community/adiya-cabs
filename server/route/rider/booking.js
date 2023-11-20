@@ -19,7 +19,7 @@ router.get("/current-bookings", accountMiddleware, async (req, resp) => {
       msg: "Current open Bookings",
       bookingData,
     });
-    console.log(bookingData);
+    // console.log(bookingData);
   } catch (err) {
     resp.json({
       success: false,
