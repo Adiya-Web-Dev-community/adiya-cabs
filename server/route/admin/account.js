@@ -83,10 +83,10 @@ router.post("/admin-login", async (req, resp) => {
 
 // Verify the rider
 router.put("/admin-rider-verification", async (req, resp) => {
-    const { riderId , serviceCategory} = req.body;
+    const { riderId } = req.body;
     console.log(req.body);
     try {
-        const rider = await Rider.findOneAndUpdate({ riderId: riderId , serviceCategory: serviceCategory});
+        const rider = await Rider.findOne({ riderId: riderId });
         if (!rider) {
             return resp.json({
                 success: false,
