@@ -132,7 +132,7 @@ router.put("/admin-rider-verification", async (req, resp) => {
 router.get("/admin-get-riders", async (req, resp) => {
     const {serviceCategory} = req.body.serviceCategory;
     try {
-        const riders = await Rider.find({serviceCategory : serviceCategory});
+        const riders = await Rider.find();
         return resp.json({
             success: true,
             data: riders,
