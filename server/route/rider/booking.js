@@ -3,6 +3,7 @@ const CityData = require("../../model/data");
 const Booking = require("../../model/customer/booking");
 const accountMiddleware = require("../../middleware/account");
 const Rider = require("../../model/rider/account");
+const socketIo = require("socket.io");
 // Get current active booking request
 // we can make a algorithm for nearest rides, currenltly i am using city range here
 router.get("/current-bookings", accountMiddleware, async (req, resp) => {
@@ -18,7 +19,7 @@ router.get("/current-bookings", accountMiddleware, async (req, resp) => {
       msg: "Current open Bookings",
       bookingData,
     });
-    console.log(bookingData);
+    // console.log(bookingData);
   } catch (err) {
     resp.json({
       success: false,
@@ -98,5 +99,30 @@ router.put("/cancel-booking", accountMiddleware, async (req, resp) => {
     });
   }
 });
+
+// Live tracking for rider 
+router.post("/rider/location-tracking/:id", async (req, resp)=>{
+  try{
+    const {id} = req.params;
+    const {lat , long } = req.body;
+    const rider = await Rider.findByIdAndUpdate(id, { 
+  
+        lat : parseFloat(lat),
+        long : parseFloat(long)
+      
+    }, {new: true})
+    io.emit('rider-tracking', {
+      riderId : rider._id , coordinates : rider.coordinates
+    })
+
+  }catch (err){
+    resp.json({
+      success: false,
+      msg: err.message,
+    });
+  }
+})
+
+
 
 module.exports = router;

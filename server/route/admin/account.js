@@ -80,6 +80,16 @@ router.post("/admin-login", async (req, resp) => {
 
 // Verify the rider
 router.put("/admin-rider-verification", async (req, resp) => {
+    const { riderId , serviceCategory} = req.body;
+    console.log(req.body);
+    try {
+        const rider = await Rider.findOneAndUpdate({ riderId: riderId , serviceCategory: serviceCategory});
+        if (!rider) {
+            return resp.json({
+                success: false,
+                msg: "Incorrect rider Details",
+            });
+        }
   const { riderId, id } = req.body;
   console.log(req.body);
   try {
@@ -125,20 +135,20 @@ router.put("/admin-rider-verification", async (req, resp) => {
   }
 });
 
-// Get All riders
+// Get All riders with filtering by serviceCategory field 
 router.get("/admin-get-riders", async (req, resp) => {
-  try {
-    const riders = await Rider.find({});
-    return resp.json({
-      success: true,
-      data: riders,
-    });
-  } catch (err) {
-    resp.json({
-      success: false,
-      msg: err.message,
-    });
-  }
+    try {
+        const riders = await Rider.find({});
+        return resp.json({
+            success: true,
+            data: riders,
+        });
+    } catch (err) {
+        resp.json({
+            success: false,
+            msg: err.message,
+        });
+    }
 });
 
 // Get all riders without filtering
@@ -157,4 +167,19 @@ router.get("/admin-get-riders-data", async (req, resp) => {
   }
 });
 
+// Get all riders without filtering 
+router.get("/admin-get-riders-data", async (req, resp) => {
+    try {
+        const riders = await Rider.find();
+        return resp.json({
+            success: true,
+            data: riders,
+        });
+    } catch (err) {
+        resp.json({
+            success: false,
+            msg: err.message,
+        });
+    }
+});
 module.exports = router;
