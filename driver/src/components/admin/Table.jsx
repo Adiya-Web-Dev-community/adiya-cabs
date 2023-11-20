@@ -13,7 +13,6 @@ const Table = ({ data, setRidersData, getData }) => {
     setCount(data.length);
   }, []);
 
-  const [index, setIndex] = useState(null);
   // send access
   const handleAdminAccess = async (rider) => {
     console.log(rider);

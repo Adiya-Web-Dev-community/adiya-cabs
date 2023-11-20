@@ -93,13 +93,23 @@ const Signup = ({ setNewRider, setAdmin }) => {
     }));
   };
 
+  // handle checkbox
+  const [selectCategory, setSelectCategory] = useState("cab-service");
+  const handleCheckbox = (e) => {
+    console.log(e.target.value);
+    setSelectCategory(e.target.value);
+  };
   // handle signin
   const handleSignup = async (e) => {
     e.preventDefault();
     console.log(signupForm);
+    const data = {
+      ...signupForm,
+      serviceCategory: selectCategory,
+    };
     try {
       setLoading(true);
-      const resp = await axios.post("/rider-signup", signupForm);
+      const resp = await axios.post("/rider-signup", data);
       console.log(resp);
       if (resp.data.success) {
         toast.success(resp.data.msg, {
@@ -290,6 +300,28 @@ const Signup = ({ setNewRider, setAdmin }) => {
                 onChange={handleInputs}
                 className="py-2 px-2 rounded-md bg-transparent  focus:border-red-500 w-full"
               />
+            </section>
+            <section>
+              <div className="flex gap-2">
+                <input
+                  type="checkbox"
+                  name="selectCategory"
+                  value="cab-service"
+                  onChange={handleCheckbox}
+                  checked={selectCategory === "cab-service"}
+                />
+                <label>Cab Service</label>
+              </div>
+              <div className="flex gap-2">
+                <input
+                  type="checkbox"
+                  name="selectCategory"
+                  value="car-rental"
+                  onChange={handleCheckbox}
+                  checked={selectCategory === "car-rental"}
+                />
+                <label>Car Rental</label>
+              </div>
             </section>
           </div>
         </div>
