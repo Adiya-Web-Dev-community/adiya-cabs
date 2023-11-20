@@ -18,7 +18,7 @@ const riderSchema = new mongoose.Schema({
 
     riderId: { type: String },
     serialNo: { type: Number },
-    serviceType: { type: String },
+    serviceCategory: { type: String },
     carDetails: {
         companyName: { type: String },
         model: { type: String },
