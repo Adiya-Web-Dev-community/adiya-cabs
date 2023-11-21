@@ -1,44 +1,26 @@
 import React, { useEffect,useState } from 'react'
 import { handleMapLangLogArr } from '../../../store/bookingSlice'
 import { useDispatch } from 'react-redux'
-const LocationCart = ({name,latitude,longitude,cityName}) => {
+import Spinner from '../../Ui/Spinner'
+const LocationCart = ({latitude,longitude,name,current}) => {
     const [currentAddress,setCurrentAddress] = useState({
      addressObj:{},
      fullAddress:''
     })
     const [viewDetail,setViewDetail] = useState(true)
+    const [loading,setLoading] = useState(true)
     const dispatch = useDispatch()
 
-    const getLocation = async (value) => {
-  try {
-    const response = await fetch(
-      `https://nominatim.openstreetmap.org/search?format=json&q=${value}`
-    );
-    const data = await response.json();
-
-  
-    console.log(data)
-    if (data.length > 0) {
-      const { lat, lon } = data[0];
-    return  {lat,lon}
-    }
-  } catch (error) {
-    console.error("Error fetching location data:", error);
-  }
-};
-
-
-
     const handleMapAddress = (lat,long)=>{
-           
-        
         // Create the Nominatim API URL
+        setLoading(true)
         const apiUrl = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${long}&format=json`;
         
         // Make an HTTP GET request
         fetch(apiUrl)
           .then(response => response.json())
           .then(data => {
+            setLoading(false)
             if (data.display_name) {
               setCurrentAddress(
                 {
@@ -52,47 +34,57 @@ const LocationCart = ({name,latitude,longitude,cityName}) => {
           })
           .catch(error => {
             console.error(`Error: Unable to retrieve address information - ${error}`);
+            setLoading(false)
           });
            }
 
            useEffect(()=>{
 
-            if(!(cityName)){
+            if(current){
               if ('geolocation' in navigator) {
                 navigator.geolocation.getCurrentPosition(
                   (position) => {
-          
                     const { latitude, longitude } = position.coords;
                     dispatch(handleMapLangLogArr({latitude,longitude,name}))
                     handleMapAddress(latitude,longitude)
+                    setLoading(false)
                   },
                   (error) => {
                     // setLocationError(error.message);
                   }
-                  
                 );
-        
-        
-              } else {
-                // setLocationError('Geolocation is not available in this browser.');
-              }
-            }else {
-              getLocation(cityName).then(({lat,lon})=>{
-                dispatch(handleMapLangLogArr({latitude:lat,longitude:lon,name}))
-              handleMapAddress(lat,lon)}
-              )
+              } 
+            }else if(latitude&&longitude) {
+              dispatch(handleMapLangLogArr({latitude,longitude,name}))
+              handleMapAddress(latitude,longitude)
             }
+            
+            // else {
+            //   getLocation(cityName).then(({lat,lon})=>{
+            //     // dispatch(handleMapLangLogArr({latitude:lat,longitude:lon,name}))
+            //   // handleMapAddress(lat,lon)
+            // }
+            //   )
+            // }
        
-           },[])
+           },[latitude,longitude])
   return (
-    <div className='shadow-xl min-h-full w-full bg-white border rounded relative flex flex-col justify-between '>
+    <div className={`shadow-xl min-h-full w-full bg-white border rounded relative flex ${loading?'justify-center items-center':'flex-col justify-between '}  `  }>
       {/* {currentAddress} */}
 
-     
-      <h2 className='text-md text-black p-2'>{name} <br/> <span className='text-gray-600'>{currentAddress?.fullAddress}</span></h2>
+       
+     {loading?<Spinner/>:<>
+      <h2 className='text-md text-black p-2'>{name} <br/> <span className='text-gray-600'>
+        {currentAddress?.fullAddress
+      }</span></h2>
+
+
     <button onClick={()=>setViewDetail(prev=>!prev)} className={`p-2 m-2 w-32 rounded text-sm text-white ${viewDetail?'bg-blue-600':'bg-red-400'}`}>
       {viewDetail?'VIEW DETAIL':'CLOSE'}
       </button>
+     </>}
+
+
      <ul className={viewDetail?'hidden':'absolute top-[100%] z-20 bg-white border w-full grid grid-cols-3 p-2 tex-gray-400 text-gray-600 gap-2'}>
         <li><span className='text-md text-blue-900'>COUNTRY</span> <br/>{currentAddress?.addressObj?.country}</li>
         <li><span className='text-md text-blue-900'>STATE</span> <br/>{currentAddress?.addressObj?.state}</li>

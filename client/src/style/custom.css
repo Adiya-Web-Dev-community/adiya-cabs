@@ -6,6 +6,8 @@ animation: animatedcomments infinite   linear;
 position: relative;
 }
 
+
+
 @keyframes animatedcomments {
     0% {
       top: 30rem;
@@ -14,3 +16,7 @@ position: relative;
       top: -100%;
     }
   }
+
+
+
+  

@@ -2,7 +2,7 @@ import {BsBuildings} from 'react-icons/bs'
 import {TbBeach} from 'react-icons/tb'
 import {LiaMapMarkedAltSolid,LiaHomeSolid,LiaCitySolid} from 'react-icons/lia'
 import {FaRoute} from 'react-icons/fa'
-import {MdEmojiTransportation,MdOutlineLocalOffer} from 'react-icons/md'
+import {MdEmojiTransportation,MdOutlineLocalOffer,MdCarRental} from 'react-icons/md'
 import {GiCastle,GiModernCity,GiPathDistance,GiIndianPalace}from 'react-icons/gi'
 import {PiHandshakeDuotone} from 'react-icons/pi'
 import {FcSupport} from 'react-icons/fc'
@@ -85,6 +85,7 @@ const navigationData = [
         ]}, 
     ]},
     {path:'/meru-biz',name:'Adiya cab',icon:MdEmojiTransportation,type:'both'},
+    {path:'/rentals',name:'Rentals',icon:MdCarRental,type:'both'},
     {path:'/about-us',name:'About Adiya cab',icon:MdOutlineLocalOffer,type:'both',items:[
         {path:'/about-us/our-journey',name:'About our Journey',icon:GiCastle},
         {path:'/about-us/mahindra-logistics',name:'Mahindra Logistics',icon:GiModernCity},
