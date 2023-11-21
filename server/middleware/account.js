@@ -6,7 +6,7 @@ const accountMiddleware = (req, resp, next) => {
   try {
     if (token) {
       const { _id } = jwt.verify(token, process.env.JWT_SECRET_KEY);
-      console.log("id from middware", _id);
+      // console.log("id from middware", _id);
       if (_id) {
         req.accountId = _id;
         next();
