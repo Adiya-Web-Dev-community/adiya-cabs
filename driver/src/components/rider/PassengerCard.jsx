@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-
+import { useDispatch } from "react-redux";
 // icons
 import { MdTripOrigin } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { IoNavigateSharp } from "react-icons/io5";
+import { setRiderData } from "../../store/riderSlice";
+import axios from "../../helper/axios";
 
-const PassengerCard = ({ obj, riderLocationRef, setActiveTab }) => {
+const PassengerCard = ({ obj, riderLocationRef, setActiveTab, setOpenMap }) => {
   // console.log(riderLocationRef.current.value);
   //! Calculate rider current location to passenger pickup location distance
   const [riderToPickUpDistance, setRiderToPickUpDistance] = useState(null);
@@ -27,6 +28,21 @@ const PassengerCard = ({ obj, riderLocationRef, setActiveTab }) => {
   useEffect(() => {
     calRiderToPickupDistance();
   });
+
+  // store dispatch
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("driverToken");
+  const handleBookingData = async (obj) => {
+    dispatch(setRiderData(obj));
+    const resp = await axios.put(
+      "/accept-booking",
+      { bookingId: obj._id },
+      {
+        headers: { authorization: token },
+      }
+    );
+    console.log(resp);
+  };
 
   return (
     <div className="shadow-md shadow-gray-300 border-[1px] border-gray-200 py-3 px-2 rounded-md mx-1 md:mx-3">
@@ -59,7 +75,11 @@ const PassengerCard = ({ obj, riderLocationRef, setActiveTab }) => {
             <span>away</span>
           </p>
           <button
-            onClick={() => setActiveTab("inTransit")}
+            onClick={() => {
+              setActiveTab("inTransit");
+              setOpenMap(true);
+              handleBookingData(obj);
+            }}
             className="border-[1px] rounded-md bg-gray-200 px-1 py-1 hover:bg-black hover:text-white"
           >
             Accept
