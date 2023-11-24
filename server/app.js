@@ -25,6 +25,9 @@ app.use(require("./route/rider/booking"));
 
 // Admin routes
 app.use(require("./route/admin/account"));
+app.use(require("./route/admin/dailyOffers"))
+app.use(require("./route/admin/bankOffers"))
+app.use(require("./route/admin/monthlyOffers"))
 
 
 // io.on('connection', function(socket){
