@@ -17,15 +17,45 @@ const initialState = {
   bookingRideData:{
       name: userInfo?.userName||'',
       email:userInfo?.email||'',
-      pickupCity:'',
-      pickupArea:'',
-      destinationCity:'',
-      destinationArea:'',
       category:"Outstation Ride",
       bookingDate:date,
       bookingTime:formattedTime,
-      mapLanLogArr:[]
+      pickupPlaceId:'',
+      destinationPlaceId:'',
+      distance: '',
+      duration: '',
+      rideCategory: '',
+      //   booking details
+      pickupLocation: {
+        address : '',
+        city : '',
+        country:'',
+        state:'',
+        postcode:'',
+        lat:'',
+        lng:''
+      },
+      destinationLocation: {
+        address : '',
+        city : '',
+        country:'',
+        state:'',
+        postcode:'',
+        lat:'',
+        lng:''
+      },
+      // distance: { type: String },
+      // duration: { type: String },
+      // bookingDate: { type: String },
+      // bookingTime: { type: String },
+      // placeId: { type: String, default: "0000" },
+      // bookingStatus
+      bookingStatus: { type: String, default: "waiting for pickup" },
+      mapLanLogArr:[],
+      mapUpdateCount:0
     },
+    pickupLocationInputVal:'',
+    destinationLocationInputVal:'',
     categoryName:{
         outstation:"Outstation Ride",
         airport:"Airport Ride",
@@ -40,30 +70,32 @@ const bookingSlice =  createSlice({
 name:'booking',
 initialState,
 reducers:{
-  addPickupLocationCity :(state,{payload})=>{
-    state.bookingRideData.pickupCity = payload.city
+  addPickupLocation:(state,{payload})=>{
+    const { address,city,country,state1,postcode,lat,lng,inputVal} = payload
+    state.bookingRideData.pickupLocation = {address, city ,country,state:state1,postcode,lat,lng}
+    state.pickupLocationInputVal = inputVal
   },
-  addPickupLocationArea:(state,{payload})=>{
-    state.bookingRideData.pickupArea = payload.area
+  addDestination :(state,{payload})=>{
+    const { address,city,country,state1,postcode,lat,lng,inputVal} = payload
+    state.bookingRideData.destinationLocation = {address, city ,country,state:state1,postcode,lat,lng} 
+    state.destinationLocationInputVal = inputVal
   },
-  addDestinationCity :(state,{payload})=>{
-    state.bookingRideData.destinationCity = payload.city
+  
+  addDistanceDuration:(state,{payload})=>{
+    state.bookingRideData.distance = payload.distance
+    state.bookingRideData.duration = payload.duration
   },
-  addDestinationArea:(state,{payload})=>{
-    state.bookingRideData.destinationArea = payload.area
-  },
-  changeCategory:(state,{payload})=>{
-    state.bookingRideData.category = payload
-  },
+
+ 
   handleBookingNavi:(state,{payload})=>{
-    // const {bookingRideData } = state
-    // if(!(bookingRideData.destinationCity?.trim() && bookingRideData.destinationArea?.trim())){
-    //   toast.warn('Please Fill all feild of Destination')
-    // }else if(!(bookingRideData.pickupCity?.trim() &&bookingRideData.pickupArea?.trim())){
-    //   toast.warn('Please Fill all feild of Pickup Location')
-    // }else {
+    const {bookingRideData } = state
+    if(!(bookingRideData.pickupLocation.city?.trim())){
+      toast.warn('Please Fill Pickup Location')
+    }else if(!(bookingRideData.destinationLocation.city?.trim())){
+      toast.warn('Please Fill  Destination')
+    }else {
       payload('/book-ride/in-process')
-    // } 
+    } 
   },
   handleBookingDate:(state,{payload})=>{
     state.bookingRideData.bookingDate = payload
@@ -72,14 +104,21 @@ reducers:{
     state.bookingRideData.bookingTime = payload
   },
   handleMapLangLogArr:(state,{payload})=>{
-    if(!state.bookingRideData.mapLanLogArr.some((el)=>el.name === payload.name)){
-      state.bookingRideData.mapLanLogArr = [...state.bookingRideData.mapLanLogArr,payload]
-    }
-  } 
+    state.bookingRideData.mapUpdateCount =  state.bookingRideData.mapUpdateCount+1
+      const newArr = state.bookingRideData.mapLanLogArr.filter((el)=>el.name !== payload.name)
+      state.bookingRideData.mapLanLogArr = [...newArr,payload]
+  }, 
+  handlePickupLocation:(state,{payload})=>{
+    state.bookingRideData.pickupLocationInputVal=payload
+  },
+   changeCategory:(state,{payload})=>{
+    state.bookingRideData.category = payload
+  },
+ 
 }
 })
 
-export const {addPickupLocationCity,addPickupLocationArea,addDestinationCity,handleMapLangLogArr,
-  addDestinationArea,changeCategory,handleBookingNavi,handleBookingDate,handleBookingTime} = bookingSlice.actions
+export const {addPickupLocation,addDestination,handleMapLangLogArr,
+  changeCategory,handleBookingNavi,handleBookingDate,handleBookingTime,addDistanceDuration} = bookingSlice.actions
 
 export default bookingSlice.reducer

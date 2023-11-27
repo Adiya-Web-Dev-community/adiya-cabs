@@ -84,7 +84,7 @@ const Login = () => {
 
 
   return (
-    <div className='min-h-[fit-content] h-[100vh] bg-gray-400 flex justify-end items-center relative '>
+    <div className='min-h-[fit-content] h-[100vh] bg-gray-400 flex justify-end items-center relative  '>
      <ToastContainer  position='top-right' />
      <MapCotainer/>
       {!activeVarification?<form onSubmit={(e)=>handleSubmitLoginInfo(e,'email')} className='w-[24rem] mr-16  z-[500] bg-white rounded-md p-4 '>

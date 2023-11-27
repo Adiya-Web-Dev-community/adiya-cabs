@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import {AiOutlineDown,AiOutlineUp,AiOutlineSearch} from 'react-icons/ai'
 
-const CustomSelectinput = ({data,getData,label,onClick,setDropDownId,dropDownId,initialValue,animationStop}) => {
+const CustomSelectinput = ({data,getData,label,onClick,setDropDownId,dropDownId,initialValue,Autocomplete,name}) => {
 
 
     const [inputvalName,setInputValName] = useState('')
@@ -30,7 +30,7 @@ const CustomSelectinput = ({data,getData,label,onClick,setDropDownId,dropDownId,
 
   return (
  <div className='w-full bg-white rounded-sm relative my-4  ' >
-    <div className="w-full rounded-md h-[2.6rem]  p-2 border-gray-300 border-2 flex justify-between cursor-pointer" calssName='w-100' onClick={handleClick} >
+    {!Autocomplete &&<> <div className="w-full rounded-md h-[2.6rem]  p-2 border-gray-300 border-2 flex justify-between cursor-pointer" calssName='w-100' onClick={handleClick} >
         <p className='text-md'>{selectedName}</p>
         {!label===dropDownId?<div className='justify-self-end '><AiOutlineDown/></div>:
         <div className='justify-self-end'> <AiOutlineUp/></div>}
@@ -40,11 +40,12 @@ const CustomSelectinput = ({data,getData,label,onClick,setDropDownId,dropDownId,
           <div className='py-2' ><AiOutlineSearch/></div>
           <input spellcheck="false" type="text" placeholder="Search" className='w-full outline-none border-none text-md'
            value={inputvalName}
-           onChange={(e)=>setInputValName(e.target.value)}/>
+           onChange={(e)=>setInputValName(e.target.value)}/>'
+           '
         </div>
       <div className="overflow-y-scroll  max-h-[160px] rounded-sm relative border" calssName='w-100'>
       
-        <ul className="p-0 m-0">
+        <ul className="p-0 m-0" id={'dropdown'}> 
 
         {data?.filter((el)=>(el?.value ).toLocaleLowerCase().includes(inputvalName.toLocaleLowerCase())).map((el,i)=>{
                   return( 
@@ -54,10 +55,16 @@ const CustomSelectinput = ({data,getData,label,onClick,setDropDownId,dropDownId,
                         {el.label}
                         </li>
                         )
-                    })}
+        })}
+
+
         </ul>
       </div>
       </div>
+      </>
+}
+{Autocomplete&&<Autocomplete value={inputvalName} label={label} name/>}
+
  </div>
   )
 }
