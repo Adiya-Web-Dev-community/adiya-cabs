@@ -148,7 +148,7 @@ const handleDateVali2 = (dateObjEl,dateObjEl2)=>{
   return (
     <div className='rounded-md p-2 px-1 relative  z-[2] flex overflow-hidden open-calender' >
       <div className={`w-[330px] relative bg-white rounded-md p-4 mx-2 shadow-xl transition-all duration-200 h-[420px]`} >
-        <h2 className='text-xl'>{name} Date </h2>
+        <h2 className='text-xl font-montserrat'>{name} Date </h2>
         <div className='flex justify-between items-center relative'>
           <h2 className='p-1 py-4 flex relative' onClick={() => steActiveYear(prev => !prev)}>
             <span>{months[calenderMY.month]} {calenderMY.year}</span>
@@ -196,7 +196,7 @@ const handleDateVali2 = (dateObjEl,dateObjEl2)=>{
         </ul>
       </div>
       <div className=' py-4 pl-4 w-[330px]  rounded border-l-2 h-[400px] '>
-        <h2 className='text-xl'>{name} Time</h2>
+        <h2 className='text-xl font-montserrat'>{name} Time</h2>
         <div className='h-full relative  rounded-md w-full   flex items-center justify-end '>
           <div className='h-32  flex  w-64'>
             <div className='flex items-center flex-col'>
