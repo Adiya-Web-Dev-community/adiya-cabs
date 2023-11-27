@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import delhiImg from'../../assets/rentals/frontPageLoaction/india-gate.png'
-import bengaluruImg from'../../assets/rentals/frontPageLoaction/bangalore.png'
-import mumbaiImg from'../../assets/rentals/frontPageLoaction/mumbai.png'
-import PuneImg from'../../assets/rentals/frontPageLoaction/Pune.png'
-import jaipurImg from'../../assets/rentals/frontPageLoaction/jaipur.png'
-import charminarImg from'../../assets/rentals/frontPageLoaction/charminar.png'
+import LocationPicker from './LocationPicker';
 
 
 import DatePicker from './DatePicker';
@@ -21,32 +16,6 @@ const [dateObj2,setDateObj2] = useState({
   date:new Date().setDate(new Date().getDate()+15)
 })
 
-const famusCity = [
-  {
-    icon:delhiImg,
-    cityName:'Delhi'
-  },
-  {
-    icon:bengaluruImg,
-    cityName:'Bengaluru'
-  },
-  {
-    icon:mumbaiImg,
-    cityName:'Mumbai'
-  },
-  {
-    icon:PuneImg,
-    cityName:'Pune'
-  },
-  {
-    icon:jaipurImg,
-    cityName:'Jaipur'
-  },
-  {
-    icon:charminarImg,
-    cityName:'Hyderabad'
-  }
-]
 
 const handlePickupDate = (value)=>{
   setActive(prev=>prev===value?'':value)
@@ -74,8 +43,8 @@ const handlePickupDate = (value)=>{
         `}
         onClick={()=>handlePickupDate('Pick-Up Date')}
         >
-          <h2 className='text-lg flex p-0 text-gray-600'> Pick-Up Date <MdOutlineKeyboardArrowDown className={`cursor-pointer duration-200 mx-2 mt-1 ${active==='Pick-Up Date'?'-rotate-180':''}`}/></h2>
-          <p className='text-sm text-gray-400'>{new Date(dateObj.date).toDateString()}<br/> {dateObj.time}</p>
+          <h2 className='text-lg flex p-0 text-gray-600 '> Pick-Up Date <MdOutlineKeyboardArrowDown className={`cursor-pointer duration-200 mx-2 mt-1 ${active==='Pick-Up Date'?'-rotate-180':''}`}/></h2>
+          <p className='text-sm text-gray-400 font-montserrat'>{new Date(dateObj.date).toDateString()}<br/> {dateObj.time}</p>
         </div>
         <div className={`p-3  w-44 mx-2 rounded-lg cursor-pointer border  hover:border-gray-300
         ${active==='Return Date'?'border-gray-300':'border-transparent'}
@@ -83,32 +52,17 @@ const handlePickupDate = (value)=>{
         onClick={()=>handlePickupDate('Return Date')}
         >
           <h2 className='text-lg flex p-0 text-gray-600'> Return Date <MdOutlineKeyboardArrowDown className={`cursor-pointer duration-200 mx-2 mt-1 ${active==='Return Date'?'-rotate-180':''}`}/></h2>
-          <p className='text-sm text-gray-400'>{new Date(dateObj2.date).toDateString()}<br/> {dateObj2.time}</p>
+          <p className='text-sm text-gray-400 font-montserrat'>{new Date(dateObj2.date).toDateString()}<br/> {dateObj2.time}</p>
         </div>
         </div>
 
         <div className='h-[inherit] flex py-2 items-center  p-4 '>
-          <button className='bg-red-500 p-[6px] px-8 text-md text-white rounded-[40px]'>Search</button>
+          <button className='bg-red-500 p-[6px] px-8 text-md text-white rounded-[40px]  cursor-pointer'>Search</button>
         </div>
 
         <div className={`w-full shadow-lg  mt-5 px-8 py-3 absolute z-[2] top-full left-0 bg-white ${active==='Location'?'block':'hidden'}`}>
-        <h2 className='mt-2 mb-4 font-semibold text-gray-600'>Popular Cities</h2>
-        <div className='flex justify-evenly'>
-          
-       {
-        famusCity.map((el)=>
-         <div>
-           <div className='h-20 w-20 relative p-2 shadow'>
-            <img src={el.icon} className='w-100 h-100 object-cover '/>
-            <div className='w-full h-full absolute top-0 left-0 bg-black/5 cursor-pointer'></div>
-           </div>
-           <div className='text-center text-gray-600'>{el.cityName}</div>
-         </div>
-        )
-       }
+        <LocationPicker/>
         </div>
-
-      </div>
       <div className={`w-full shadow-lg  mt-5 px-3  absolute z-[2] top-full left-0 bg-white ${active==='Pick-Up Date'?'block':'hidden'}`}>
       <DatePicker name={'Pickup'} getDate={setDateObj} dateObj={dateObj} endTo={dateObj2.date}/>
       </div>
@@ -119,10 +73,10 @@ const handlePickupDate = (value)=>{
 
       </div>
 
-      <h2 className='text-4xl text-gray-600 mt-14 pr-12 font-semibold'>
+      <h2 className='text-5xl text-gray-600 mt-14 pr-12 font-semibold  font-montserrat '>
       Our vehicles are meticulously maintained to guarantee a  comfortable journey, 
       </h2>
-      <p className='text-xl mt-6 text-gray-400'>
+      <p className='text-xl mt-6 text-gray-400 font-montserrat'>
       Book your rental vehicle  for a seamless travel experience!
       </p>
       </div>
