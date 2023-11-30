@@ -4,7 +4,8 @@ import BookingRules from '../components/rentals/BookingRules'
 import Features from '../components/rentals/Features'
 import rentalImg from '../assets/rentals/frontPage/rental-image.png'
 import TrendingOffers from '../components/rentals/TrendingOffers'
-
+import SaleRentalCar from '../components/rentals/SaleRentalCar'
+import Info from '../components/rentals/Info'
 const AdiyaRental = () => {
   return (
     <main>
@@ -15,12 +16,18 @@ const AdiyaRental = () => {
       <section >
         <TrendingOffers/>
       </section>
+    <section className='px-20 mt-24 ' >
+      <SaleRentalCar/>
+    </section>
       <section className='px-20 mt-24 '>
          <BookingRules/>
       </section>
       <section className='px-20  mt-24 '>
          <Features/>
       </section>
+      <section className='px-20  mt-24 '>
+         <Info/>
+      </section>   
     </main>
   )
 }

@@ -1,8 +1,9 @@
 import React from 'react'
-import { experience, featAndBanifict } from '../../configs/AdiyaRental'
+import { experience, featAndBanifict,cityAvailable } from '../../configs/AdiyaRental'
 import carviewImg from'../../assets/rentals/Offers/carview.png'
-import Card from '../Ui/Card'
-import wave from'../../assets/rentals/Offers/wave.svg'
+import Testimonial from '../utils/Testimonial'
+import RVFAQs from './RVFAQs'
+
 
 const Features = () => {
   return (
@@ -17,8 +18,8 @@ const Features = () => {
       <ul className='grid grid-cols-2 gap-8 py-8 font-montserrat w-[55rem]  '>
        {featAndBanifict.map((el)=>
          <li className=
-         'p-4 rounded-md bg-white border cursor-pointer hover:shadow-md duration-300 hover:bg-red-400
-         hover:text-white hover:mt-[-1px] 
+         'p-4 rounded-md bg-white  cursor-pointer hover:shadow-md duration-300  border
+          hover:mt-[-1px] 
          '>{el}</li>
         )}
      </ul>
@@ -57,6 +58,33 @@ const Features = () => {
         </div>
       )}   
     </div>
+
+    <div>
+         <h2  className='text-center text-5xl text-black/50 font-montserrat '>Cities Where Rentals Service Are Available </h2>
+         <div className=' p-4 w-full grid grid-cols-4  bg-gray-50'>
+         {
+          cityAvailable.map((el)=>
+          <div className='shadow text-gray-600 p-2 m-2 cursor-pointer bg-white rounded-lg hover:shadow-xl duration-200'>
+            <h4 className='font-montserrat font-bold'>{el.cityName}</h4>
+            {el.selfDrive?<p className='font-montserrat  text-md'>Self-Drive Available</p>:''}
+            {el.subscription?<p className='font-montserrat  text-sm '>Monthly Subscription Available</p>:''}
+
+          </div>
+          )
+         }
+         </div>
+    </div>
+    <RVFAQs/> 
+
+    <div className='bg-gray-100 p-4 rounded-lg '>
+    <h2  className='text-center text-3xl text-gray-600 font-montserrat font-semibold'>
+ What customers express about our rental service expertise.
+       </h2>
+       <div>
+     <Testimonial/>
+
+       </div>
+    </div>
     </>
   )
 }
@@ -64,5 +92,3 @@ const Features = () => {
 export default Features
 
 
-{/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ff0000" fill-opacity="0.3" d="M0,224L48,213.3C96,203,192,181,288,144C384,107,480,53,576,58.7C672,64,768,128,864,128C960,128,1056,64,1152,69.3C1248,75,1344,149,1392,186.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg> */}
-{/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffffff" fill-opacity="1" d="M0,224L48,213.3C96,203,192,181,288,144C384,107,480,53,576,58.7C672,64,768,128,864,128C960,128,1056,64,1152,69.3C1248,75,1344,149,1392,186.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg> */}
