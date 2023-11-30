@@ -93,14 +93,14 @@ const Login = () => {
         <Input name={'email'} type={'email'} label={'Email*'} required className='m-5 mb-24' onChange={handleChange} value={loginInfo.email} />
 
         <div className='flex justify-center items-center mt-4 mb-2'>
-         <Button disabeld={(false||!!userInfo?.userName)}> SEND OTP</Button>
+         <Button  classname={'w-[10rem] shadow-lg bg-blue-400 border text-white hover:bg-blue-500 '} disabeld={(false||!!userInfo?.userName)}> SEND OTP</Button>
         </div>
       </form>:<form onSubmit={(e)=>handleSubmitLoginInfo(e,'otp')} className='w-[24rem]  mr-16   bg-white rounded-md p-4 z-[500]'>
       <h2 className='m-5 mb-16 text-2xl' onClick={()=>setVriFiactionActive(false)}>Go Back To Email</h2>
         <Input name={'otp'} type={'number'} label={'OTP'} required className='m-5 mb-24' onChange={handleChange} value={loginInfo.otp} />
 
         <div className='flex justify-center items-center mt-4 mb-2'>
-         <Button > Verify</Button>
+         <Button  classname={'w-[10rem] shadow-lg bg-blue-400 border text-white hover:bg-blue-500 '}> Verify</Button>
         </div>
       </form>}
     </div>
