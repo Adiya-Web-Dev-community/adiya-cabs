@@ -3,10 +3,6 @@ import merBizImg from '../assets/Meru-biz.jpg'
 import svgUpgrade from '../assets/upgrade-svgrepo-com.svg'
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
 import { merBizWhy, meruBizAdvantages, meruBizVersus, meruComprehensiveBusiness } from '../configs/meruBiz';
 import { LiaArrowRightSolid, LiaArrowCircleRightSolid, LiaArrowAltCircleLeftSolid } from 'react-icons/lia'
 
