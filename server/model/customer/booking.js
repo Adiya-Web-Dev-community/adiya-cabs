@@ -23,6 +23,7 @@ const bookingSchema = new mongoose.Schema({
   //passsenger and rider ids
   passengerId: { type: mongoose.Schema.Types.ObjectId, ref: "passenger" },
   riderId: { type: mongoose.Schema.Types.ObjectId, ref: "rider" },
+  carId : { type: mongoose.Schema.Types.ObjectId, ref: "car" },
 });
 
 const bookingModel = mongoose.model("booking", bookingSchema);
