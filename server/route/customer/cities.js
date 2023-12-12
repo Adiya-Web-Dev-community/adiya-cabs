@@ -19,9 +19,11 @@ router.post("/cities", async (req, resp) => {
         });
     }
 });
-router.get("/cities", async (req, resp) => {
+
+//todo : change req body to req params to get city name
+router.get("/cities/:cityName", async (req, resp) => {
     try {
-        const {cityName} = req.body;
+        const {cityName} = req.params.cityName;
         const city = await City.find({
             cityName: cityName,
         });
