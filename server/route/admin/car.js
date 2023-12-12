@@ -56,4 +56,22 @@ router.put("/admin/cars", async (req, resp) => {
         })
     }
 })
+
+// Delete car
+router.delete("/admin/cars", async (req, resp)=>{
+    try {
+        const deletedCar = await Car.findByIdAndDelete(req.body._id);
+        resp.status(200).json({
+            success: true,
+            message: "Car deleted successfully",
+            deletedCar: deletedCar
+        });
+    } catch (error) {
+        resp.status(500).json({
+            success : false,
+            message: "Error deleting car",
+            error: error
+        });
+    }
+})
  module.exports = router
