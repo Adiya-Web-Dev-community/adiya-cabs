@@ -112,6 +112,7 @@ const rentalCarsDummy = [
         imgUrl:carTataImgUrl,
         brandName: 'Tata',
         fuellType:'Disal',
+        carNo:'GF4739',
         content: {
             description: `The Government of India established Maruti Udyog Limited in February 1981 as a 
             joint venture with Suzuki Motor Corporation as a small partner. The Government of India partially 

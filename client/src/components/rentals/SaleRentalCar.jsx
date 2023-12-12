@@ -26,6 +26,14 @@ const SaleRentalCar = () => {
     
     const [activeSlide,setActiveSlide] = useState(0)
 
+    const pagination = {
+        clickable: true,
+        renderBullet: function (index, className) {
+          return '<span   class="' +
+           className+ '"></span>';
+        },
+      };
+
     return (
         <>
            <h1 className='text-center text-5xl font-montserrat mb-20 text-black/50 '
@@ -121,24 +129,6 @@ const SaleRentalCar = () => {
                                     </div>
                                   
 
-{/* 
-                                    <div className="bg-white text-gray-600   rounded-md mt-[-0.2rem] p-2 grid gap-1" style={{ background: '' }}>
-                                        <h2 className="text-lg  text-center font-semibold font-montserrat">
-
-                                            
-                                               {el.title}</h2>
-                                        <p className="flex items-center ">
-                                            <FaBuildingCircleArrowRight className="mx-2" />Company Name:- {el.brandName}</p>
-
-                                        <p className="flex"><FaHandPointRight className="mx-2" />Specifications:- {(el.content.specifications.engine + ' ' +
-                                            el.content.specifications.transmission + ' ' +
-                                            el.content.specifications.seatingCapacity + '').slice(0, 10) + "..."}</p>
-
-                                        <Button  classname={'w-[10rem] m-auto shadow-lg bg-blue-400 border text-white hover:bg-blue-500 text-sm'}>
-                                           View More
-                                            <BsArrowDown className={`cursor-pointer duration-200 -rotate-90 inline-block`} />
-                                        </Button>
-                                    </div> */}
 
 
                                     
@@ -146,21 +136,6 @@ const SaleRentalCar = () => {
                             </SwiperSlide >
                         )}
 
-
-                        {/* <div className="flex items-center justify-center xl:justify-center mt-5 space-x-5">
-              <div
-                ref={navigationPrevRef}
-                className="rounded-full group bg-white hover:bg-slate-100 duration-200 cursor-pointer p-5"
-              >
-                <BsArrowLeft className="text-xl text-red-500" />
-              </div>
-              <div
-                ref={navigationNextRef}
-                className="rounded-full group bg-white hover:bg-slate-100 duration-200 cursor-pointer p-5"
-              >
-                <BsArrowRight className="text-xl text-red-500" />
-              </div>
-            </div> */}
                     </Swiper>
                     <div className=" flex  rounded-md pt-4 px-2 border">
                       <div className="flex items-center mr-2 " ref={navigationPrevRef} >
@@ -168,8 +143,9 @@ const SaleRentalCar = () => {
                         </div>   
                         <div className="hidden" ref={navigationNextRef}></div>
                         <Swiper
+
               modules={[FreeMode, Navigation, Thumbs,Pagination]}
-              pagination={{ clickable: true }}
+              pagination={pagination}
               speed={400}
               spaceBetween={6}
               onSwiper={(swiper) => console.log(swiper)}
@@ -205,7 +181,7 @@ const SaleRentalCar = () => {
 
                         {rentalCarsDummy.map((el, i) =>
                             <SwiperSlide key={i} className='h-full ' >
-                                <div   onClick={()=>{setActiveSlide(i)}} className={`border  mb-5 flex-col  overflow-hidden  cursor-pointer  rounded-md shadow-md 
+                                <div   onClick={()=>{setActiveSlide(i)}} className={`border  mb-8 flex-col  overflow-hidden  cursor-pointer  rounded-md shadow-md 
                                  ${activeSlide===i?'bg-red-100':'bg-white'}`}>
                                    <div className="h-24">
                                    <div className="h-full" style={{
