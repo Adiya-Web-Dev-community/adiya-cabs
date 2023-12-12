@@ -1,4 +1,5 @@
 
+
 .animate-text{
 width: fit-content;
 height:fit-content;
@@ -168,6 +169,10 @@ display: none;
   50% {
     overflow: hidden;
   }
+}
+
+.swiper-pagination-bullet-active{
+  background:red !important;
 }
 
 

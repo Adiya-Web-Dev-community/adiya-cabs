@@ -1,5 +1,5 @@
 import React from 'react'
-import rulesImg from'../../assets/rentals/Offers/rules.jpg'
+import rulesImg from'../../assets/rentals/Offers/sellerDeal.png'
 import carImg from'../../assets/rentals/Offers/car.png'
 import calenderIcon  from'../../assets/rentals/Offers/schedule.png'
 import carCollection  from'../../assets/rentals/Offers/car-collection.png'
@@ -17,7 +17,7 @@ const BookingRules = () => {
         <p className='text-gray-600 text-md text-center font-montserrat '>Reserve a car online in India through AdiyaCab with these four easy steps:</p>
       
       <div className=' h-[fit-content] mx-auto flex justify-center mt-5' >
-        <div className='w-[30rem]  '>
+        <div className='w-[40rem]  '>
             <img src={rulesImg}/>
 
         </div>

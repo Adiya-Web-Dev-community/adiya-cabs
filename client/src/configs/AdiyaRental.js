@@ -104,13 +104,20 @@ const experience = [
     }
 ]
 
+
+
 const rentalCarsDummy = [
     {
         title: 'Maruti',
         imgUrl:carTataImgUrl,
         brandName: 'Tata',
+        fuellType:'Disal',
+        carNo:'GF4739',
         content: {
-            description: 'This is created by Maruti company and is considered one of the best.',
+            description: `The Government of India established Maruti Udyog Limited in February 1981 as a 
+            joint venture with Suzuki Motor Corporation as a small partner. The Government of India partially 
+            departed the business in 2003 and then sold all of its remaining shares to Suzuki Motor Corporation
+             in 2007.[2][10][11][8] In 1982, Maruti opened its first production facility in Gurugram, Haryana, India.[12`,
             features: ['Fuel-efficient', 'Compact design', 'Advanced safety features'],
             specifications: {
                 engine: '1.5L V4',
@@ -118,8 +125,9 @@ const rentalCarsDummy = [
                 seatingCapacity: 5,
             },
             rentalInfo: {
+                baggage:2,
                 dailyRate: '$50',
-                weeklyRate: '$300',
+                monthly: '$300',
                 availability: 'Available for rent',
             },
         },
@@ -127,6 +135,7 @@ const rentalCarsDummy = [
     {
         title: 'Honda Civic',
         imgUrl:carHondaImgUrl,
+        fuellType:'Petrol',
         brandName: 'Honda',
         content: {
             description: 'A stylish and reliable option from the Honda lineup.',
@@ -137,15 +146,17 @@ const rentalCarsDummy = [
                 seatingCapacity: 5,
             },
             rentalInfo: {
+                baggage:2,
                 dailyRate: '$60',
-                weeklyRate: '$350',
+                monthly: '$350',
                 availability: 'Available for rent',
             },
         },
     },
     {
         title: 'Ford Explorer',
-        imgUrl:carTataImgUrl,
+        imgUrl:carHondaImgUrl,
+        fuellType:'Petrol',
         brandName: 'Ford',
         content: {
             description: 'The Ford Explorer is a versatile and spacious SUV for family trips.',
@@ -156,15 +167,17 @@ const rentalCarsDummy = [
                 seatingCapacity: 7,
             },
             rentalInfo: {
+                baggage:2,
                 dailyRate: '$70',
-                weeklyRate: '$400',
+                monthly: '$400',
                 availability: 'Available for rent',
             },
         },
     },
     {
         title: 'Toyota Camry',
-        imgUrl:carTataImgUrl,
+        imgUrl:carHondaImgUrl,
+        fuellType:'Disal',
         brandName: 'Toyota',
         content: {
             description: 'Known for its fuel efficiency and comfortable ride, the Camry is a popular choice.',
@@ -175,8 +188,9 @@ const rentalCarsDummy = [
                 seatingCapacity: 5,
             },
             rentalInfo: {
+                baggage:2,
                 dailyRate: '$55',
-                weeklyRate: '$330',
+                monthly: '$330',
                 availability: 'Available for rent',
             },
         },
@@ -194,14 +208,230 @@ const rentalCarsDummy = [
                 seatingCapacity: 5,
             },
             rentalInfo: {
+                baggage:2,
                 dailyRate: '$58',
-                weeklyRate: '$340',
+                monthly: '$340',
                 availability: 'Available for rent',
             },
         },
     },
-    // Add more entries with detailed content and rental information as needed
+    // A
+    {
+        title: 'Audi A4',
+        imgUrl: carHondaImgUrl,
+        brandName: 'Audi',
+        fuellType:'Disal',
+        content: {
+            description: 'The Audi A4 combines luxury and performance in a sleek package.',
+            features: ['Premium interior', 'Powerful engine', 'Advanced technology'],
+            specifications: {
+                engine: '2.0L Turbocharged Inline-4',
+                transmission: 'Automatic',
+                seatingCapacity: 5,
+            },
+            rentalInfo: {
+                baggage:2,
+                dailyRate: '$80',
+                monthly: '$480',
+                availability: 'Available for rent',
+            },
+        },
+    },
+    {
+        title: 'Hyundai Sonata',
+        imgUrl: carHondaImgUrl,
+        brandName: 'Hyundai',
+        fuellType:'Disal',
+        content: {
+            description: 'The Sonata is known for its stylish design and comfortable ride.',
+            features: ['Modern exterior', 'Fuel efficiency', 'User-friendly features'],
+            specifications: {
+                engine: '2.4L Inline-4',
+                transmission: 'Automatic',
+                seatingCapacity: 5,
+            },
+            rentalInfo: {
+                baggage:2,
+                dailyRate: '$55',
+                monthly: '$330',
+                availability: 'Available for rent',
+            },
+        },
+    },
+    // Repeat the above block with different details for the next cars
+    {
+        title: 'BMW 3 Series',
+        imgUrl: carHondaImgUrl,
+        brandName: 'BMW',
+        fuellType:'Disal',
+        content: {
+            description: 'The BMW 3 Series offers a perfect balance of luxury and driving dynamics.',
+            features: ['Elegant design', 'Dynamic performance', 'Luxurious interior'],
+            specifications: {
+                engine: '2.0L Turbocharged Inline-4',
+                transmission: 'Automatic',
+                seatingCapacity: 5,
+                
+            },
+            rentalInfo: {
+                baggage:2,
+                dailyRate: '$85',
+                monthly: '$500',
+                availability: 'Available for rent',
+            },
+        },
+    },
+    {
+        title: 'Kia Sportage',
+        imgUrl: carHondaImgUrl,
+        brandName: 'Kia',
+        fuellType:'Disal',
+        content: {
+            description: 'The Sportage is a compact SUV with a stylish design and practical features.',
+            features: ['Compact size', 'Comfortable interior', 'Advanced safety features'],
+            specifications: {
+                engine: '2.4L Inline-4',
+                transmission: 'Automatic',
+                seatingCapacity: 5,
+            },
+            rentalInfo: {
+                baggage:2,
+                dailyRate: '$65',
+                monthly: '$390',
+                availability: 'Available for rent',
+            },
+        },
+    },
+    {
+        title: 'Mercedes-Benz C-Class',
+        imgUrl: carHondaImgUrl,
+        brandName: 'Mercedes-Benz',
+        fuellType:'Disal',
+        content: {
+            description: 'The C-Class represents luxury and sophistication with cutting-edge technology.',
+            features: ['Premium materials', 'Powerful engine', 'State-of-the-art tech'],
+            specifications: {
+                engine: '2.0L Turbocharged Inline-4',
+                transmission: 'Automatic',
+                seatingCapacity: 5,
+            },
+            rentalInfo: {
+                baggage:2,
+                dailyRate: '$90',
+                monthly: '$550',
+                availability: 'Available for rent',
+            },
+        },
+    },
+    {
+        title: 'Subaru Outback',
+        imgUrl: carHondaImgUrl,
+        brandName: 'Subaru',
+        fuellType:'Disal',
+        content: {
+            description: 'The Outback is a reliable and versatile crossover with off-road capabilities.',
+            features: ['Spacious interior', 'All-wheel drive', 'Rugged design'],
+            specifications: {
+                engine: '2.5L Boxer-4',
+                transmission: 'CVT',
+                seatingCapacity: 5,
+            },
+            rentalInfo: {
+                baggage:2,
+                dailyRate: '$70',
+                monthly: '$420',
+                availability: 'Available for rent',
+            },
+        },
+    },
+    {
+        title: 'Lexus RX',
+        imgUrl: carHondaImgUrl,
+        brandName: 'Lexus',
+        fuellType:'Disal',
+        content: {
+            description: 'The Lexus RX is a luxury SUV known for its refined interior and smooth ride.',
+            features: ['Premium materials', 'Silent cabin', 'Advanced safety tech'],
+            specifications: {
+                engine: '3.5L V6',
+                transmission: 'Automatic',
+                seatingCapacity: 5,
+            },
+            rentalInfo: {
+                baggage:2,
+                dailyRate: '$95',
+                monthly: '$580',
+                availability: 'Available for rent',
+            },
+        },
+    },
+    {
+        title: 'Jeep Wrangler',
+        imgUrl: carHondaImgUrl,
+        brandName: 'Jeep',
+        fuellType:'Disal',
+        content: {
+            description: 'The Jeep Wrangler is an iconic off-road vehicle with rugged capabilities.',
+            features: ['Convertible top', 'Trail-rated performance', 'Adventure-ready'],
+            specifications: {
+                engine: '3.6L V6',
+                transmission: 'Manual',
+                seatingCapacity: 4,
+            },
+            rentalInfo: {
+                baggage:2,
+                dailyRate: '$75',
+                monthly: '$450',
+                availability: 'Available for rent',
+            },
+        },
+    },
+    {
+        title: 'Acura MDX',
+        imgUrl: carHondaImgUrl,
+        brandName: 'Acura',
+        fuellType:'Disal',
+        content: {
+            description: 'The Acura MDX is a luxury SUV with a spacious interior and advanced features.',
+            features: ['Three-row seating', 'High-tech amenities', 'Smooth handling'],
+            specifications: {
+                engine: '3.5L V6',
+                transmission: 'Automatic',
+                seatingCapacity: 7,
+            },
+            rentalInfo: {
+                baggage:2,
+                dailyRate: '$80',
+                monthly: '$480',
+                availability: 'Available for rent',
+            },
+        },
+    },
+    {
+        title: 'Chrysler Pacifica',
+        imgUrl: carHondaImgUrl,
+        brandName: 'Chrysler',
+        fuellType:'Disal',
+        content: {
+            description: 'The Pacifica is a stylish minivan with modern features and ample space.',
+            features: ['Family-friendly', 'Entertainment system', 'Versatile interior'],
+            specifications: {
+                engine: '3.6L V6',
+                transmission: 'Automatic',
+                seatingCapacity: 8,
+            },
+            rentalInfo: {
+                baggage:2,
+                dailyRate: '$75',
+                monthly: '$450',
+                availability: 'Available for rent',
+            },
+        },
+    },
 ];
+
+// Make sure to replace the placeholder values with the actual details for each new car.
+
 
 const cityAvailable = [ 
      { cityName:'Delhi',selfDrive:true,subscription:true},

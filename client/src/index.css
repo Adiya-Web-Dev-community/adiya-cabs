@@ -83,8 +83,8 @@ html::-webkit-scrollbar {
     position: static;
     background-color: #f6adad;
     position: relative;
-
-
+    /* color:#e20707 */
+    color:#f2c163;
   }
 
  

@@ -189,8 +189,11 @@ function BookingProcess({ booking, children }) {
     stePlaceObj(prev=>({...prev,destination:autocomplete}))
   }
 
+
+
+
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyCzSOQHv63VsWrPjwRI58388Dtui5T7MdI",
+    googleMapsApiKey: import.meta.env.VITE_GOOGALE_MAP_TOKEN,
     libraries: ["places"]
   });
 

@@ -1,30 +1,29 @@
 import React from 'react'
 import { experience, featAndBanifict,cityAvailable } from '../../configs/AdiyaRental'
-import carviewImg from'../../assets/rentals/Offers/carview.png'
+import carviewImg from'../../assets/rentals/Offers/rules.jpg'
 import Testimonial from '../utils/Testimonial'
 import RVFAQs from './RVFAQs'
-
+import Subscribe from './Subscribe'
 
 const Features = () => {
   return (
     <>
-    <div className='relative ' >
+    <div className='relative' >
 
        <div className='relative z-[1] '>
            <h2  className='text-center text-5xl text-black/50 font-montserrat '>Exclusive Features, and Benefits .</h2>
            <p className='text-gray-600 text-md text-center font-montserrat '>Discover the Elegance in Our Features and the Luxury in Your Benefits.</p>
 
-   <div className='flex justify-between items-end'>
-      <ul className='grid grid-cols-2 gap-8 py-8 font-montserrat w-[55rem]  '>
+   <div className='flex justify-between items-end '>
+      <ul className='grid grid-cols-2 gap-4 py-8 font-montserrat w-[55rem] bg-gray-50  '>
        {featAndBanifict.map((el)=>
          <li className=
-         'p-4 rounded-md bg-white  cursor-pointer hover:shadow-md duration-300  border
-          hover:mt-[-1px] 
-         '>{el}</li>
+         'shadow text-gray-600  m-2 cursor-pointer rounded-lg  duration-200 p-4  bg-white'
+         >{el}</li>
         )}
      </ul>
      <div>
-      <img src={carviewImg} className='h-80 w-80'/>
+      <img src={carviewImg} className='w-[44rem]'/>
      </div>
    </div>
 
@@ -32,9 +31,9 @@ const Features = () => {
 
 
      </div>
-     <div style={{background:'linear-gradient(45deg,rgba(255, 255, 255, 0.254) 50%, white 50%)'}} 
+     {/* <div style={{background:'linear-gradient(45deg,rgba(255, 255, 255, 0.254) 50%, white 50%)'}} 
      className='absolute h-full w-full top-0 left-0 z-[0]'>     
-     </div> 
+     </div>  */}
     </div>
 
 
@@ -59,6 +58,8 @@ const Features = () => {
       )}   
     </div>
 
+    <Subscribe/>
+
     <div>
          <h2  className='text-center text-5xl text-black/50 font-montserrat '>Cities Where Rentals Service Are Available </h2>
          <div className=' p-4 w-full grid grid-cols-4  bg-gray-50'>
@@ -82,7 +83,7 @@ const Features = () => {
        </h2>
        <div>
      <Testimonial/>
-
+      
        </div>
     </div>
     </>
