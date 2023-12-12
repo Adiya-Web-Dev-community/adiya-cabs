@@ -19,17 +19,23 @@ router.post("/cities", async (req, resp) => {
         });
     }
 });
-
-router.get("/cities/:cityName", async (req, resp) => {
+// todo I have two params  of cityName one is from and another one to i have to send detilais in array
+router.get("/cities/:source/:destination", async (req, resp) => {
     try {
-        const {cityName} = req.params;
-        const city = await City.find({
-            cityName: cityName,
+        const { source, destination } = req.params;
+        const cities = await City.find({
+            cityName: { $in: [source, destination] },
         });
+
+        const sourceCity = cities.find(city => city.cityName === source);
+        const destinationCity = cities.find(city => city.cityName === destination);
         resp.json({
             success: true,
             msg: "City Data",
-            data: city,
+            data: [
+                sourceCity, 
+                destinationCity
+            ],
         });
     } catch (err) {
         resp.json({

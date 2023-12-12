@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const citySchema = new mongoose.Schema({
     cityName: { type: String },
-    cityBreif: [],
+    cityBrief: [],
     thumbnailUrl: {
         type: String,
         default:
