@@ -18,6 +18,7 @@ app.use(require("./route/customer/cities"));
 app.use(require("./route/customer/profile"));
 app.use(require("./route/customer/enquiry"));
 app.use(require("./route/customer/partner"));
+app.use(require("./route/customer/cars"));
 
 // driver routes
 app.use(require("./route/rider/account"));
