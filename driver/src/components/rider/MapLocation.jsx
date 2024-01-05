@@ -15,7 +15,7 @@ const MapLocation = ({ setOpenMap, openMap, bookingData, location }) => {
   console.log(bookingData);
   // LOAD JS API
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyCzSOQHv63VsWrPjwRI58388Dtui5T7MdI",
+    googleMapsApiKey: "AIzaSyA312x40OgaxL1ifZyztNEw1vwkMOxQPx8",
     libraries: ["places"],
   });
 

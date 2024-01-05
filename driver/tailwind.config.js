@@ -2,6 +2,7 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   fontFamily: {
+    acme: ["Acme", "sans-serif"],
     quicksand: ["Quicksand", "sans-serif"],
     montserrat: ["Montserrat", "sans-serif"],
   },

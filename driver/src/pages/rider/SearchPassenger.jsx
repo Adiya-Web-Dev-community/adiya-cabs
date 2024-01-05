@@ -128,7 +128,7 @@ const SearchPassenger = () => {
 
   //! Load google map api
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyCzSOQHv63VsWrPjwRI58388Dtui5T7MdI",
+    googleMapsApiKey: "AIzaSyA312x40OgaxL1ifZyztNEw1vwkMOxQPx8",
     libraries: ["places"],
   });
   if (!isLoaded) {

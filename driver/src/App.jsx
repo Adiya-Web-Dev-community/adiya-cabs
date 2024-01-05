@@ -15,6 +15,8 @@ import SearchPassenger from "./pages/rider/SearchPassenger";
 import AdminNav from "./components/admin/AdminNav";
 import Admin from "./routes/Admin";
 import VerificationData from "./pages/admin/VerificationData";
+import NewVehicle from "./pages/admin/NewVehicle";
+import CarsData from "./pages/admin/carsData";
 
 function App() {
   // auth=token
@@ -53,6 +55,8 @@ function App() {
             element={<Admin setAuth={setAuth} setAdminAuth={setAdminAuth} />}
           >
             <Route path="/admin" element={<VerificationData />}></Route>
+            <Route path="/new-vehicle" element={<NewVehicle />}></Route>
+            <Route path="/all-vehicles" element={<CarsData />}></Route>
           </Route>
         </Routes>
       </div>

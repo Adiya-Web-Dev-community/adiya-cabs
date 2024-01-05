@@ -18,8 +18,6 @@ const bookingSchema = new mongoose.Schema({
   //waiting for pickup->req sent from passenger and looking for cab rider
   //in transit-> cab rider has accepted booking
   //cancel-> passenger or cab rider cancelled the booking
-
-
   //passsenger and rider ids
   passengerId: { type: mongoose.Schema.Types.ObjectId, ref: "passenger" },
   riderId: { type: mongoose.Schema.Types.ObjectId, ref: "rider" },
