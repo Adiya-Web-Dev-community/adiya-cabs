@@ -73,4 +73,21 @@ router.delete("/admin/cars", async (req, resp) => {
     });
   }
 });
+
+//get car details by id
+router.get("/admin/cars/:id", async (req, resp) => {
+  try {
+    const car = await Car.findById(req.params.id);
+    resp.json({
+      success: true,
+      message: "Car Details",
+      car: car,
+    });
+  } catch (err) {
+    resp.json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
 module.exports = router;
