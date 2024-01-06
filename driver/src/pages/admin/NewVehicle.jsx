@@ -1,19 +1,42 @@
 import { useState } from "react";
 import { carData } from "../../configs/carData";
+import { useNavigate } from "react-router-dom";
 import axios from "../../helper/axios";
 
 const NewVehicle = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(carData);
   const handleInputs = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  //handle image(
+  const [imageByteCode, setImageByteCode] = useState("");
+  const handleImageChange = async (event) => {
+    const selectedFile = event.target.files[0];
+    // Read the image file as a data URL
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+
+    reader.onload = () => {
+      const imageDataUrl = reader.result;
+      setImageByteCode(imageDataUrl);
+    };
+
+    reader.onerror = (error) => {
+      alert(error);
+    };
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const data = { ...formData, imgUrl: imageByteCode };
     try {
-      const resp = await axios.post("/admin/cars ", formData);
-      console.log(resp);
+      const resp = await axios.post("/admin/cars ", data);
+      if (resp.data.success) {
+        navigate("/all-vehicles");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -60,8 +83,8 @@ const NewVehicle = () => {
               >
                 <option value="">Select</option>
                 <option value="Petrol">Petrol</option>
-                <option value="diesel">Diesel</option>
-                <option value="electric">Electric</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Electric">Electric</option>
                 <option value="CNG">CNG</option>
               </select>
             </section>
@@ -74,8 +97,8 @@ const NewVehicle = () => {
                 className="border-[1px] px-3 w-full py-2 rounded-md"
               >
                 <option value="">Select</option>
-                <option value="Petrol">Automatic</option>
-                <option value="diesel">Manual</option>
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
               </select>
             </section>
             <section className="col-span-2">
@@ -104,7 +127,7 @@ const NewVehicle = () => {
               <label>Seating Capacity</label>
               <select
                 type="number"
-                name='seatingCapacity'
+                name="seatingCapacity"
                 value={formData.seatingCapacity}
                 onChange={handleInputs}
                 className="border-[1px] px-3 w-full py-2 rounded-md"
@@ -118,7 +141,8 @@ const NewVehicle = () => {
             <section className="space-y-2">
               <label>Luggage Capacity</label>
               <select
-                name="number"
+                type="number"
+                name="luggageCapacity"
                 value={formData.luggageCapacity}
                 onChange={handleInputs}
                 className="border-[1px] px-3 w-full py-2 rounded-md"
@@ -147,6 +171,22 @@ const NewVehicle = () => {
                 onChange={handleInputs}
                 className="w-full border-[1px] py-1.5 px-2 placeholder:text-sm placeholder:text-gray-400 rounded-md focus:outline-gray-400"
               />
+            </section>
+            <section>
+              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Upload file
+              </label>
+              <input
+                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                id="file_input"
+                type="file"
+                onChange={(e) => handleImageChange(e)}
+              />
+            </section>
+            <section>
+              {imageByteCode && (
+                <img src={imageByteCode} alt="image-loading..." />
+              )}
             </section>
             <section className="space-y-2 col-span-2">
               <button

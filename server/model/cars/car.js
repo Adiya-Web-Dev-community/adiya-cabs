@@ -24,7 +24,7 @@ const carSchema = new mongoose.Schema({
   // engine: {
   //   type: String,
   // },
-
+  imgUrl: { type: String },
   seatingCapacity: {
     type: Number,
   },
