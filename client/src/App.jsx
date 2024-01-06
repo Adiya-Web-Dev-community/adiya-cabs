@@ -5,12 +5,8 @@ import { store } from "./store";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 
-
 const App = () => {
-
   // Replace with your actual latitude and longitude values
-
-
 
   return (
     <Provider store={store}>
@@ -18,9 +14,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            {routes.map((el)=>
-            <Route path={el.path} element={<el.element/>} />
-            )}
+            {routes.map((el, i) => (
+              <Route path={el.path} element={<el.element />} key={i} />
+            ))}
           </Route>
         </Routes>
       </BrowserRouter>
