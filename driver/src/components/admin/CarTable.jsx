@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setShowCarDetailsPopup } from "../../store/adminSlice";
 import axios from "../../helper/axios";
 // components
 // icons
@@ -7,8 +9,8 @@ import { toast } from "react-hot-toast";
 import { FaEye } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 
-const CarTable = ({ data, setRidersData, getData }) => {
-  console.log(data);
+const CarTable = ({ data, setRidersData, getData, setCarId }) => {
+  const dispatch = useDispatch();
   // set count
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -115,14 +117,14 @@ const CarTable = ({ data, setRidersData, getData }) => {
                     <td className="px-3 py-2 text-lg text-left border-r border-gray-800 flex  justify-center gap-5">
                       <span
                         onClick={() => {
-                          view(ele);
+                          setCarId(ele._id);
                         }}
                       >
                         <FaEye />
                       </span>
-                      <span>
+                      {/* <span>
                         <MdDelete />
-                      </span>
+                      </span> */}
                     </td>
                   </tr>
                 );
