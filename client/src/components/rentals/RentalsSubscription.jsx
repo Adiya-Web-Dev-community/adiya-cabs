@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import LocationPicker from "./LocationPicker";
 
 import DatePicker from "./DatePicker";
 const RentalsSubscription = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const obj = {
     calender1: { time: new Date().toLocaleTimeString(), date: new Date() },
     calender2: {
@@ -123,7 +126,10 @@ const RentalsSubscription = () => {
           <div className="h-[inherit] flex py-2 items-center  p-4 ">
             <button
               className="bg-red-500 p-[6px] px-8 text-md text-white rounded-[40px]  cursor-pointer"
-              onClick={() => navigate("/rentals-booking")}
+              onClick={() => {
+                console.log("clicked");
+                navigate("/rentals-booking");
+              }}
             >
               Search
             </button>

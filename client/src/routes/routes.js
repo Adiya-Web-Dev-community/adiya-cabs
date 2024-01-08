@@ -6,6 +6,7 @@ import { Login } from "../pages/Login";
 import Booking from "../pages/Booking";
 import AdiyaRentals from "../pages/AdiyaRental";
 import RentalsBooking from "../pages/RentalsBooking";
+import BookingSummary from "../pages/RentalsBooking/BookingSummary";
 
 const routes = [
   {
@@ -23,6 +24,11 @@ const routes = [
     path: "/rentals-booking",
     name: "Rentals Booking",
     element: RentalsBooking,
+  },
+  {
+    path: "/rentals/booking-summary",
+    name: "Rentals Booking Summary",
+    element: BookingSummary,
   },
 ];
 
