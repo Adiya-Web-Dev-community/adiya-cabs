@@ -21,7 +21,7 @@ const RentalsBooking = () => {
       const resp = await axiosInstance.get(
         `/cars?fuelType=${filterInputs.fuelType}&transmissionType=${filterInputs.transmissionType}&seatingCapacity=${filterInputs.seatingCapacity}&luggageCapacity=${filterInputs.luggageCapacity}`
       );
-      console.log(resp.data.data);
+      // w=-w5.log(resp.data.data);
       dispatch(setCarList(resp.data.data));
     } catch (err) {
       console.log(err);

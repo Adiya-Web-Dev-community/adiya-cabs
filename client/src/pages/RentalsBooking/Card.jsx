@@ -1,13 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setCarDetails } from "../../store/rental";
+import { useDispatch, useSelector } from "react-redux";
+import { setCarDetails, setPayableAmount } from "../../store/rental";
 
 const Card = ({ car }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { locationDetails, rentalsInitialData, carDetails, payableAmount } =
+    useSelector((state) => state.rental);
+  console.log(locationDetails, rentalsInitialData, carDetails, payableAmount);
   const handleBookNow = () => {
     dispatch(setCarDetails(car));
+    dispatch(setPayableAmount(car.dailyRate * 7));
     navigate("/rentals/booking-summary");
   };
   return (
