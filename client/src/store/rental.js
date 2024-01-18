@@ -5,6 +5,7 @@ const initialState = {
   carDetails: null,
   locationDetails: null,
   loggedInUser: null,
+  payableAmount: null,
 };
 
 const rentalSlice = createSlice({
@@ -20,6 +21,9 @@ const rentalSlice = createSlice({
     setLocationDetails: (state, { payload }) => {
       state.locationDetails = payload;
     },
+    setPayableAmount: (state, { payload }) => {
+      state.payableAmount = payload;
+    },
     setLoggedInUser: (state, { payload }) => {
       state.loggedInUser = payload;
     },
@@ -27,5 +31,5 @@ const rentalSlice = createSlice({
 });
 
 export default rentalSlice.reducer;
-export const { setInitialData, setCarDetails, setLocationDetails } =
+export const { setInitialData, setCarDetails, setLocationDetails, setPayableAmount } =
   rentalSlice.actions;

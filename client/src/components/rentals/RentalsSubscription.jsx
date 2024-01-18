@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import LocationPicker from "./LocationPicker";
+import { setInitialData } from "../../store/rental";
 
 import DatePicker from "./DatePicker";
 const RentalsSubscription = () => {
@@ -33,6 +34,16 @@ const RentalsSubscription = () => {
     setDateObj2(obj.calender2);
   };
 
+  //handle search
+  const handleSearch = () => {
+    dispatch(
+      setInitialData({
+        pickupDate: dateObj.date,
+        dropDate: dateObj2.date,
+        city: "Delhi",
+      })
+    );
+  };
   return (
     <section className=" w-[47rem] p-4 self-start   mt-16  ">
       <div className="bg-white">
@@ -127,7 +138,7 @@ const RentalsSubscription = () => {
             <button
               className="bg-red-500 p-[6px] px-8 text-md text-white rounded-[40px]  cursor-pointer"
               onClick={() => {
-                console.log("clicked");
+                handleSearch();
                 navigate("/rentals-booking");
               }}
             >
