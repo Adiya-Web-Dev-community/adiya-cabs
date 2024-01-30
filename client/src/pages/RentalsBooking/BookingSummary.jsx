@@ -72,66 +72,160 @@ const BookingSummary = () => {
   if (carDetails === null) {
     navigate("/rentals");
   }
+  console.log("rentdate:", rentalsInitialData);
+  console.log("cardetails:", carDetails);
+  console.log("location:", locationDetails);
+  console.log("paybleamnt:", payableAmount);
 
   return (
-    <div className="border-2 py-[5rem]">
+    <div className="border-2 py-[5rem] px-24">
       <div className="py-5 px-5 grid grid-cols-3 gap-3">
-        <div className="col-span-2">Car Details here</div>
-        <div>
-          <div className="border-2 p-2">
+        <div className="col-span-2 h-fit overflow-hidden rounded-xl shadow-lg bg-white hover:shadow-xl transition duration-300 ">
+          <div className="bg-red-500  text-white text-lg px-4 py-2 ">
+            {carDetails.manufacturer} {carDetails.model}
+          </div>
+          <div className="flex p-4">
+            <div className="w-1/2 flex">
+              <img
+                className=" rounded-xl object-cover"
+                src={carDetails.imgUrl}
+              ></img>
+            </div>
+            <div className="w-1/2  pl-4">
+              <div className="h-full flex flex-col justify-between">
+                <div>
+                  <h4 className="font-semibold">ECONOMY</h4>
+                </div>
+                <div className="bg-gray-100 px-4 py-5 mt-2">
+                  <h3 className="text-center font-semibold">
+                    Location: <span className="">Bengaluru</span>
+                  </h3>
+                  <div className="flex my-3 justify-evenly">
+                    <div className="text-center">
+                      <p>Wed, 31 Jan 2024</p>
+                      <p>09:30 AM</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="w-10 h-10 p-2 font-semibold rounded-full bg-red-500 text-white">
+                        To
+                      </p>
+                    </div>
+                    <div className="text-center">
+                      <p>Sat, 03 Feb 2024</p>
+                      <p>06:30 PM</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col mt-2 px-6 pb-2 text-sm font-semibold text-center">
+                  <p className="pb-2">Duration: 3 Days and 9 hours</p>
+                  <span className="w-full h-[1px] bg-gray-300 "></span>
+                </div>
+                <div className="flex justify-between">
+                  <div className="text-sm font-semibold text-gray-400">
+                    <p>Package Type</p>
+                    <p>Free kms for rental</p>
+                    <p>Extra km charges at </p>
+                  </div>
+                  <div className="text-sm font-semibold">
+                    <p>300 kms/day</p>
+                    <p>
+                      <p>1013kms</p>
+                    </p>
+                    <p>7/km</p>
+                  </div>
+                </div>
+              </div>
+              {/* dailyRate:{carDetails.dailyRate}
+              <br />
+              monthlyRate:{carDetails.monthlyRate}
+              <br />
+              fuelType:{carDetails.fuelType}
+              <br />
+              seatingCapacity:{carDetails.seatingCapacity}
+              <br />
+              luggageCapacity:{carDetails.luggageCapacity}
+              <br />
+              transmissionType:{carDetails.transmissionType} */}
+            </div>
+          </div>
+        </div>
+        <div className="second">
+          <div className="rounded-lg shadow-lg bg-white px-4 py-6">
             <section className="space-y-2">
-              <label>Pickup Loaction</label>
+              <label className="text-sm font-semibold">Pickup Loaction</label>
               {isLoaded && (
                 <Autocomplete>
                   <input
                     type="text"
                     ref={pickupLocationRef}
                     placeholder="Pickup Location"
-                    className="border-2 py-2 px-3 italic rounded-xl"
+                    className="w-full border-[1px] border-red-500 focus:outline-none focus:border-red-400 focus:ring-red-300 focus:ring-2 ring-offset-1 py-2 px-3 italic rounded-xl"
                   />
                 </Autocomplete>
               )}
             </section>
-            <section className="space-y-2">
-              <label>Drop Loaction</label>
+            <section className="space-y-2 mt-2">
+              <label className="text-sm font-semibold">Drop Loaction</label>
               {isLoaded && (
                 <Autocomplete>
                   <input
                     type="text"
                     ref={dropLocationRef}
                     placeholder="Pickup Location"
-                    className="border-2 py-2 px-3 italic rounded-xl"
+                    className="w-full border-[1px] border-red-500 focus:outline-none focus:border-red-400 focus:ring-red-300 focus:ring-2 ring-offset-1 py-2 px-3 italic rounded-xl"
                   />
                 </Autocomplete>
               )}
             </section>
           </div>
-          <section className="h-[15rem] mt-3 border-2 p-2">
-            Payment summary here
-            {console.log(carDetails)}
-            <p>Rent/day: {carDetails?.dailyRate}</p>
-            <p>Number of day: 7</p>
-            <h className="font-bold text-lg">
-              Total Payable amount: {carDetails?.dailyRate * 7}
-            </h>
+          <section className="rounded-lg overflow-hidden h-auto mt-4 shadow-lg">
+            <h1 className="bg-red-500 text-white px-4 py-2">Payment Summary</h1>
+            <div className="flex justify-between">
+              <div className="font-semibold p-4">
+                <p>Rent/day: </p>
+                <p>Number of day: </p>
+                <h1 className="text-lg">Total Payable amount:</h1>
+              </div>
+              <div className="p-4 font-semibold">
+                <p>{carDetails?.dailyRate}</p>
+                <p>7</p>
+                <p>{carDetails?.dailyRate * 7}</p>
+              </div>
+            </div>
           </section>
           {loginToken === "" && username === "" && !loginStatus ? (
-            <section className="p-2 border-2 my-2">
-              <button onClick={() => dispatch(setOtpModal(true))}>Login</button>
+            <section className="p-4  my-2">
+              <button
+                className="bg-red-500 focus:ring-red-300 focus:ring-2 ring-offset-1 px-4 py-2 rounded-lg text-white"
+                onClick={() => dispatch(setOtpModal(true))}
+              >
+                Login
+              </button>
             </section>
           ) : null}
           {loginStatus ? (
-            <section className="p-2 border-2 my-2">
-              <h1>Personal Details</h1>
-              <p>Name: {username}</p>
-              <p>Gmail: {userEmail}</p>
+            <section className="rounded-lg overflow-hidden h-auto mt-4 shadow-lg">
+              <h1 className="bg-red-500 text-white px-4 py-2">
+                Personal Details
+              </h1>
+              <div className="flex justify-between">
+                <div className="p-4 font-medium">
+                  <p>Name :</p>
+                  <p>Email :</p>
+                </div>
+                <div className="p-4 font-medium">
+                  <p>Ajmal Shaikh</p>
+                  <p>Qwerty123@gmail.com</p>
+                </div>
+              </div>
             </section>
           ) : null}
-          <section>
+          <section className="flex items-center justify-center mt-5">
             <button
               onClick={handlePayment}
               disabled={!loginStatus}
-              className="bg-orange-400 rounded-md px-4 py-1.5 mt-5 disabled:cursor-not-allowed disabled:bg-gray-200"
+              className="w-3/4 bg-red-500 text-white rounded-lg  focus:ring-red-300 hover:ring-2 hover:ring-red-300 ring-offset-2 px-4 py-1.5  disabled:cursor-not-allowed disabled:bg-gray-200"
             >
               Confirm & Proceed
             </button>
