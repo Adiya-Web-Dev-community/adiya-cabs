@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { IoFilterOutline } from "react-icons/io5";
 const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
-  const [collapsed, setCollapsed] = useState(false);
   return (
     <div className="bg-gray-100 p-6 rounded-md shadow-md border-2 border-red-50 text-red-500 ">
       <div className="flex justify-between items-center">
@@ -25,7 +24,7 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
         </section>
       </div>
       {/* fuel type */}
-      <section className={`mt-4 ${collapsed ? "hidden" : "block"}`}>
+      <section className="mt-4">
         <h1 className="text-md pb-2 font-bold">Fuel Type</h1>
         <div>
           <div className="flex item-center gap-2">
@@ -106,7 +105,7 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
         </div>
       </section>
       {/* transmission type */}
-      <section className={`mt-4 ${collapsed ? "hidden" : "block"}`}>
+      <section className="mt-4">
         <h1 className="text-md pb-2 font-bold">Transmission Type</h1>
         <div>
           <div className="flex gap-2">
@@ -151,7 +150,7 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
         </div>
       </section>
       {/* seating capacity */}
-      <section className={`mt-4 ${collapsed ? "hidden" : "block"}`}>
+      <section className="mt-4">
         <h1 className="text-md pb-2 font-bold">Seating Capacity</h1>
         <div>
           <div className="flex gap-2">
@@ -211,7 +210,7 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
         </div>
       </section>
       {/*luggage capacity */}
-      <section className={`mt-4 ${collapsed ? "hidden" : "block"}`}>
+      <section className="mt-4">
         <h1 className="text-md pb-2 font-bold">Luggage Capacity</h1>
         <div>
           <div className="flex gap-2">
@@ -252,13 +251,6 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
           </div>
         </div>
       </section>
-      {/* Toggle button for collapsing/expanding the filter sections */}
-      <button
-        className="mt-4 text-red-500 text-sm focus:outline-none"
-        onClick={() => setCollapsed(!collapsed)}
-      >
-        {collapsed ? "Show Filters" : "Hide Filters"}
-      </button>
     </div>
   );
 };

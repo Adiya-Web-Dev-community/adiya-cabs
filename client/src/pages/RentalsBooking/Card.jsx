@@ -60,11 +60,11 @@ const Card = ({ car }) => {
         <div className="ml-6  text-red-700">
           <h1 className="font-semibold">Economy</h1>
           <div className="pl-4 mt-4 space-y-2 ">
-            <div className="flex items-center">
+            <div className="flex items-center ">
               <Fuel /> <p className="pl-2">{car?.fuelType}</p>
             </div>
 
-            <div className="flex items-center">
+            <div className="flex items-center ">
               <GiGearStickPattern />{" "}
               <p className="pl-2">{car?.transmissionType}</p>
             </div>
@@ -120,7 +120,7 @@ const Card = ({ car }) => {
         </div>
         <button
           onClick={() => handleBookNow()}
-          className="cursor-pointer bg-red-500 px-6  focus:border-red-400  hover:ring-2  hover:ring-red-300  focus:ring-red-300 focus:ring-2 ring-offset-1  text-white py-1.5 rounded-md font-montserrat text-sm"
+          className="cursor-pointer font-semibold bg-red-500 px-6  focus:border-red-400  hover:ring-2  hover:ring-red-300  focus:ring-red-300 focus:ring-2 ring-offset-1  text-white py-1.5 rounded-md font-montserrat text-sm"
         >
           Book Now
         </button>
