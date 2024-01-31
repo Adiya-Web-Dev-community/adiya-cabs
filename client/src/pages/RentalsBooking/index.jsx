@@ -36,8 +36,8 @@ const RentalsBooking = () => {
 
   return (
     <div className="py-20 mx-10">
-      <div className="grid grid-cols-4 gap-3">
-        <div className="col-span-1 rounded-lg px-5  h-auto">
+      <div className="grid grid-cols-4 gap-6">
+        <div className="col-span-1 rounded-lg h-auto">
           <FilterBox
             filterInputs={filterInputs}
             setFilterInputs={setFilterInputs}

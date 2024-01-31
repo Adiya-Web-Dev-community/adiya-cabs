@@ -6,6 +6,7 @@ import { LuLuggage } from "react-icons/lu";
 import { MdAirlineSeatReclineNormal } from "react-icons/md";
 import Fuel from "../../assets/fuel.svg?react";
 import { useState } from "react";
+import { FaArrowRight } from "react-icons/fa6";
 
 const Card = ({ car }) => {
   const navigate = useNavigate();
@@ -120,9 +121,12 @@ const Card = ({ car }) => {
         </div>
         <button
           onClick={() => handleBookNow()}
-          className="cursor-pointer font-semibold bg-red-500 px-6  focus:border-red-400  hover:ring-2  hover:ring-red-300  focus:ring-red-300 focus:ring-2 ring-offset-1  text-white py-1.5 rounded-md font-montserrat text-sm"
+          className="flex items-center cursor-pointer font-semibold bg-red-500 px-6   focus:border-red-400  hover:ring-2  hover:ring-red-300  focus:ring-red-300 focus:ring-2 ring-offset-1  text-white py-1.5 rounded-full hover:bg-white hover:text-black font-montserrat text-sm"
         >
           Book Now
+          <div className="ml-2">
+            <FaArrowRight />
+          </div>
         </button>
       </div>
     </div>
