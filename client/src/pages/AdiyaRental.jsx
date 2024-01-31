@@ -1,4 +1,4 @@
-import RentalsSubscription from "../components/rentals/RentalsSubscription copy";
+import RentalsSubscription from "../components/rentals/RentalsSubscription";
 import BookingRules from "../components/rentals/BookingRules";
 import Features from "../components/rentals/Features";
 import rentalImg from "../assets/rentals/frontPage/rental-image.png";

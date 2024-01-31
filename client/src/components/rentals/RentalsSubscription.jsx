@@ -21,6 +21,7 @@ const RentalsSubscription = () => {
   const [typeOfSubscription, setSubscription] = useState("daily");
   const [dateObj, setDateObj] = useState(obj.calender1);
   const [dateObj2, setDateObj2] = useState(obj.calender2);
+  const [selectedLocation, setSelectedLocation] = useState("Delhi");
 
   const handlePickupDate = (value) => {
     setActive((prev) => (prev === value ? "" : value));
@@ -32,6 +33,9 @@ const RentalsSubscription = () => {
     setDateObj(obj.calender1);
     setDateObj2(obj.calender2);
   };
+  const handleLocationChange = (location) => {
+    setSelectedLocation(location);
+  };
 
   //handle search
   const handleSearch = () => {
@@ -39,7 +43,7 @@ const RentalsSubscription = () => {
       setInitialData({
         pickupDate: dateObj.date,
         dropDate: dateObj2.date,
-        city: "Delhi",
+        city: selectedLocation,
       })
     );
   };
@@ -87,7 +91,7 @@ const RentalsSubscription = () => {
                   }`}
                 />
               </h2>
-              <p className="text-sm text-gray-400"> Add City</p>
+              <p className="text-sm text-gray-400"> {selectedLocation}</p>
             </div>
             <div
               className={`p-3  w-44 mx-2 rounded-lg cursor-pointer border  hover:border-gray-300
@@ -150,7 +154,7 @@ const RentalsSubscription = () => {
               active === "Location" ? "block" : "hidden"
             }`}
           >
-            <LocationPicker />
+            <LocationPicker onLocationChange={handleLocationChange} />
           </div>
           <div
             className={`w-full shadow-lg  mt-5 px-3  absolute z-[2] top-full left-0 bg-white ${
