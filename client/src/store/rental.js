@@ -13,7 +13,10 @@ const rentalSlice = createSlice({
   initialState: initialState,
   reducers: {
     setInitialData: (state, { payload }) => {
-      state.rentalsInitialData = payload;
+      return {
+        ...state,
+        rentalsInitialData: payload.rentalsInitialData,
+      };
     },
     setCarDetails: (state, { payload }) => {
       state.carDetails = payload;
@@ -31,5 +34,9 @@ const rentalSlice = createSlice({
 });
 
 export default rentalSlice.reducer;
-export const { setInitialData, setCarDetails, setLocationDetails, setPayableAmount } =
-  rentalSlice.actions;
+export const {
+  setInitialData,
+  setCarDetails,
+  setLocationDetails,
+  setPayableAmount,
+} = rentalSlice.actions;

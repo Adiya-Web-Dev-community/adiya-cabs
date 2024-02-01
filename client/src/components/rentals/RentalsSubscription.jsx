@@ -10,12 +10,16 @@ const RentalsSubscription = () => {
   const dispatch = useDispatch();
 
   const obj = {
-    calender1: { time: new Date().toLocaleTimeString(), date: new Date() },
+    calender1: {
+      time: new Date().toLocaleTimeString(),
+      date: new Date(),
+    },
     calender2: {
       time: new Date().toLocaleTimeString(),
-      date: new Date().setDate(new Date().getDate() + 15),
+      date: new Date(),
     },
   };
+  obj.calender2.date.setDate(new Date().getDate() + 15);
 
   const [active, setActive] = useState("");
   const [typeOfSubscription, setSubscription] = useState("daily");
@@ -41,12 +45,14 @@ const RentalsSubscription = () => {
   const handleSearch = () => {
     dispatch(
       setInitialData({
-        pickupDate: dateObj.date,
-        dropDate: dateObj2.date,
+        pickupDate: dateObj,
+        dropDate: dateObj2,
         city: selectedLocation,
       })
     );
   };
+  console.log("PICKUPDATE:", dateObj);
+  console.log("DROPDATE", dateObj2);
   return (
     <section className=" w-[47rem] p-4 self-start   mt-16  ">
       <div className="bg-white">

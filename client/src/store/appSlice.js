@@ -20,11 +20,13 @@ const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    setAboutQuery: ({ aboutQuery }, { payload }) => {
-      aboutQuery = payload;
+    setAboutQuery: (state, { payload }) => {
+      state.aboutQuery = payload;
     },
-    saveTokenToLoacal: ({ userloginToken }, { payload }) => {
-      userloginToken = payload;
+    saveTokenToLoacal: (state, { payload }) => {
+      state.userloginToken = payload.token;
+      state.username = payload.userName;
+      state.userEmail = payload.email;
       localStorage.setItem("userInfo", JSON.stringify(payload));
     },
     setLoginToken: (state, { payload }) => {

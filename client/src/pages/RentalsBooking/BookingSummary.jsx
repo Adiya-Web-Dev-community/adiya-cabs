@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 import { useEffect, useRef, useState } from "react";
 import { setLocationDetails, setPayableAmount } from "../../store/rental";
@@ -9,12 +9,17 @@ import axiosInstance from "../../api/axiosInstance";
 import { loadStripe } from "@stripe/stripe-js";
 
 const BookingSummary = () => {
+  const [loginStatus, setLoginStatus] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loginToken, otpModal, username, userEmail } = useSelector(
     (state) => state.app
   );
-  const [loginStatus, setLoginStatus] = useState(false);
+  console.log("loginToken", loginToken);
+  console.log("otpmodal", otpModal);
+  console.log("useremail", userEmail);
+  console.log("username", username);
+
   useEffect(() => {
     if (loginToken) {
       setLoginStatus(true);
@@ -23,14 +28,12 @@ const BookingSummary = () => {
 
   const { locationDetails, rentalsInitialData, carDetails, payableAmount } =
     useSelector((state) => state.rental);
-  // fetch pickup and drop locations
+
   const pickupLocationRef = useRef();
   const dropLocationRef = useRef();
 
-  //error message
   const [errMsg, setErrMsg] = useState(null);
 
-  //set data
   const handlePayment = async () => {
     dispatch(setPayableAmount(carDetails?.dailyRate * 7));
     dispatch(
@@ -45,7 +48,6 @@ const BookingSummary = () => {
     });
     if (response?.data?.url) {
       window.location.href = response?.data?.url;
-      // console.log(response.data.url);
       handleConfirmBooking();
     }
     const session = await response.json();
@@ -76,22 +78,42 @@ const BookingSummary = () => {
   console.log("cardetails:", carDetails);
   console.log("location:", locationDetails);
   console.log("paybleamnt:", payableAmount);
-  const calculateDuration = (startDate, endDate) => {
-    const startDateTime = new Date(startDate).getTime();
-    const endDateTime = new Date(endDate).getTime();
+
+  const calculateDuration = (startDate, startTime, endDate, endTime) => {
+    const startDateTime = new Date(`${startDate} ${startTime}`).getTime();
+    const endDateTime = new Date(`${endDate} ${endTime}`).getTime();
     const duration = endDateTime - startDateTime;
 
     const days = Math.floor(duration / (24 * 60 * 60 * 1000));
-    const hours = Math.floor(
-      (duration % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000)
-    );
+    const remainingTime = duration % (24 * 60 * 60 * 1000);
+    const hours = Math.floor(remainingTime / (60 * 60 * 1000));
 
-    return { days, hours };
+    return { days, hours, totalHours: duration / (60 * 60 * 1000) };
   };
+
+  // Convert Date objects to strings
+  const pickupDateStr = rentalsInitialData?.pickupDate?.date
+    .toISOString()
+    .split("T")[0];
+  const dropDateStr = rentalsInitialData?.dropDate?.date
+    .toISOString()
+    .split("T")[0];
+
   const duration = calculateDuration(
-    rentalsInitialData?.pickupDate,
-    rentalsInitialData?.dropDate
+    pickupDateStr,
+    rentalsInitialData?.pickupDate?.time,
+    dropDateStr,
+    rentalsInitialData?.dropDate?.time
   );
+
+  const pickuptime = rentalsInitialData?.pickupDate.time;
+  const formattedPickupTime = pickuptime
+    ? pickuptime.slice(0, -6) + " " + pickuptime.slice(-2)
+    : "";
+  const droptime = rentalsInitialData?.dropDate.time;
+  const formattedDropTime = droptime
+    ? droptime.slice(0, -6) + " " + droptime.slice(-2)
+    : "";
 
   return (
     <div className="border-2 py-[5rem] px-24">
@@ -118,53 +140,45 @@ const BookingSummary = () => {
                     <span className="">{rentalsInitialData?.city}</span>
                   </h3>
                   <div className="flex my-3 justify-evenly">
-                    <div className="text-center">
+                    <div className="text-center text-sm text-gray-600 font-semibold">
                       <p>
-                        {rentalsInitialData?.pickupDate.toLocaleDateString(
+                        {rentalsInitialData?.pickupDate?.date.toLocaleDateString(
                           undefined,
                           {
-                            weekday: "long",
-                            month: "long",
-                            day: "numeric",
+                            weekday: "short",
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
                           }
                         )}
                       </p>
-                      <p>
-                        {rentalsInitialData?.pickupDate.toLocaleTimeString([], {
-                          hour: "numeric",
-                          minute: "numeric",
-                        })}
-                      </p>
+                      <p>{formattedPickupTime}</p>
                     </div>
                     <div className="text-center">
                       <p className="w-10 h-10 p-2 font-semibold rounded-full bg-red-500 text-white">
                         To
                       </p>
                     </div>
-                    <div className="text-center">
+                    <div className="text-center text-sm text-gray-600 font-semibold">
                       <p>
-                        {rentalsInitialData?.dropDate.toLocaleDateString(
+                        {rentalsInitialData?.dropDate?.date.toLocaleDateString(
                           undefined,
                           {
-                            weekday: "long",
-                            month: "long",
-                            day: "numeric",
+                            weekday: "short",
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
                           }
                         )}
                       </p>
-                      <p>
-                        {rentalsInitialData?.dropDate.toLocaleTimeString([], {
-                          hour: "numeric",
-                          minute: "numeric",
-                        })}
-                      </p>
+                      <p>{formattedDropTime}</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="flex flex-col mt-2 px-6 pb-2 text-sm font-semibold text-center">
                   <p className="pb-2">
-                    Duration: {duration.days} Days and {duration.hours} hours
+                    Duration: {duration?.days} Days and {duration?.hours} hours
                   </p>
                   <span className="w-full h-[1px] bg-gray-300 "></span>
                 </div>
@@ -251,8 +265,8 @@ const BookingSummary = () => {
                   <p>Email :</p>
                 </div>
                 <div className="p-4 font-medium">
-                  <p>{username}</p>
-                  <p>{userEmail}</p>
+                  <p>{username && username}</p>
+                  <p>{userEmail && userEmail}</p>
                 </div>
               </div>
             </section>
