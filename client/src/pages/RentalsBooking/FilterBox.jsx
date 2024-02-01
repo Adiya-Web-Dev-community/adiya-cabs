@@ -1,16 +1,22 @@
+import { useState } from "react";
 import { IoFilterOutline } from "react-icons/io5";
 const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
   return (
-    <div className="flex flex-col gap-2 ">
-      <div className="flex justify-between">
-        <section className="flex gap-3">
-          <IoFilterOutline className="mt-1" />
-          <h1 className="text-blue-900">Filter</h1>
+    <div className="bg-gray-100 p-6 rounded-md shadow-md border-2 border-red-50 text-red-500 ">
+      <div className="flex justify-between items-center">
+        <section className="flex gap-3 items-center">
+          <IoFilterOutline className="text-2xl text-red-500" />
+          <h1 className="text-red-500 text-md font-semibold">Filter</h1>
         </section>
         <section
-          className="cursor-pointer"
+          className="cursor-pointer text-red-500"
           onClick={() => {
-            setFilterInputs({fuelType:"", transmissionType:"", seatingCapacity:"", luggageCapacity:""});
+            setFilterInputs({
+              fuelType: "",
+              transmissionType: "",
+              seatingCapacity: "",
+              luggageCapacity: "",
+            });
             handleFetchCarsList();
           }}
         >
@@ -18,13 +24,15 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
         </section>
       </div>
       {/* fuel type */}
-      <section>
-        <h1 className="text-lg pb-2 font-bold">Fuel Type</h1>
+      <section className="mt-4">
+        <h1 className="text-md pb-2 font-bold">Fuel Type</h1>
         <div>
-          <div className="flex gap-2">
+          <div className="flex item-center gap-2">
             <input
+              id="petrolCheckbox"
               type="checkbox"
               value="Petrol"
+              className="appearance-none  w-4 h-4 m-1 p-1 rounded-full border-2 border-red-500 checked:bg-red-500 checked:border-none checked:outline-none cursor-pointer"
               checked={filterInputs.fuelType === "Petrol"}
               onChange={(e) =>
                 setFilterInputs((prev) => ({
@@ -33,10 +41,14 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
                 }))
               }
             />
-            <label className="text-lg">Petrol</label>
+            <label htmlFor="petrolCheckbox" className="cursor-pointer text-md">
+              Petrol
+            </label>
           </div>
           <div className="flex gap-2">
             <input
+              id="dieselCheckbox"
+              className="appearance-none w-4 h-4 m-1 rounded-full border-2 border-red-500 checked:bg-red-500 checked:border-none checked:outline-none cursor-pointer"
               type="checkbox"
               value="Diesel"
               checked={filterInputs.fuelType === "Diesel"}
@@ -47,10 +59,14 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
                 }))
               }
             />
-            <label className="text-lg">Diesel</label>
+            <label htmlFor="dieselCheckbox" className="cursor-pointer text-md">
+              Diesel
+            </label>
           </div>
           <div className="flex gap-2">
             <input
+              id="ElectricCheckbox"
+              className="appearance-none  w-4 h-4 m-1 rounded-full border-2 border-red-500 checked:bg-red-500 checked:border-none checked:outline-none cursor-pointer"
               type="checkbox"
               value="Electric"
               checked={filterInputs.fuelType === "Electric"}
@@ -61,10 +77,17 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
                 }))
               }
             />
-            <label className="text-lg">Electric</label>
+            <label
+              htmlFor="ElectricCheckbox"
+              className="cursor-pointer text-md"
+            >
+              Electric
+            </label>
           </div>
           <div className="flex gap-2">
             <input
+              id="cngCheckbox"
+              className="appearance-none w-4 h-4 m-1 rounded-full border-2 border-red-500 checked:bg-red-500 checked:border-none checked:outline-none cursor-pointer"
               type="checkbox"
               value="CNG"
               checked={filterInputs.fuelType === "CNG"}
@@ -75,16 +98,20 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
                 }))
               }
             />
-            <label className="text-lg">CNG</label>
+            <label htmlFor="cngCheckbox" className="cursor-pointer text-md">
+              CNG
+            </label>
           </div>
         </div>
       </section>
       {/* transmission type */}
-      <section>
-        <h1 className="text-lg pb-2 font-bold">Transmission Type</h1>
+      <section className="mt-4">
+        <h1 className="text-md pb-2 font-bold">Transmission Type</h1>
         <div>
           <div className="flex gap-2">
             <input
+              id="automaticCheckbox"
+              className="appearance-none w-4 h-4 m-1 rounded-full border-2 border-red-500 checked:bg-red-500 checked:border-none checked:outline-none cursor-pointer"
               type="checkbox"
               value="Automatic"
               checked={filterInputs.transmissionType === "Automatic"}
@@ -95,10 +122,17 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
                 }))
               }
             />
-            <label className="text-lg">Automatic</label>
+            <label
+              htmlFor="automaticCheckbox"
+              className="cursor-pointer text-md"
+            >
+              Automatic
+            </label>
           </div>
           <div className="flex gap-2">
             <input
+              id="ManualCheckbox"
+              className="appearance-none w-4 h-4 m-1 rounded-full border-2 border-red-500 checked:bg-red-500 checked:border-none checked:outline-none cursor-pointer"
               type="checkbox"
               value="Manual"
               checked={filterInputs.transmissionType === "Manual"}
@@ -109,16 +143,20 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
                 }))
               }
             />
-            <label className="text-lg">Manual</label>
+            <label htmlFor="ManualCheckbox" className="cursor-pointer text-md">
+              Manual
+            </label>
           </div>
         </div>
       </section>
       {/* seating capacity */}
-      <section>
-        <h1 className="text-lg pb-2 font-bold">Seating Capacity</h1>
+      <section className="mt-4">
+        <h1 className="text-md pb-2 font-bold">Seating Capacity</h1>
         <div>
           <div className="flex gap-2">
             <input
+              id="five"
+              className="appearance-none  w-4 h-4 m-1 rounded-full border-2 border-red-500 checked:bg-red-500 checked:border-none checked:outline-none cursor-pointer"
               type="checkbox"
               value="5"
               checked={filterInputs.seatingCapacity === "5"}
@@ -129,10 +167,14 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
                 }))
               }
             />
-            <label className="text-lg">5</label>
+            <label htmlFor="five" className="cursor-pointer text-md">
+              5
+            </label>
           </div>
           <div className="flex gap-2">
             <input
+              id="six"
+              className="appearance-none w-4 h-4 m-1 rounded-full border-2 border-red-500 checked:bg-red-500 checked:border-none checked:outline-none cursor-pointer"
               type="checkbox"
               value="6"
               checked={filterInputs.seatingCapacity === "6"}
@@ -143,10 +185,14 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
                 }))
               }
             />
-            <label className="text-lg">6</label>
+            <label htmlFor="six" className="cursor-pointer text-md">
+              6
+            </label>
           </div>
           <div className="flex gap-2">
             <input
+              id="seven"
+              className="appearance-none w-4 h-4 m-1 rounded-full border-2 border-red-500 checked:bg-red-500 checked:border-none checked:outline-none cursor-pointer"
               type="checkbox"
               value="7"
               checked={filterInputs.seatingCapacity === "7"}
@@ -157,16 +203,20 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
                 }))
               }
             />
-            <label className="text-lg">7</label>
+            <label htmlFor="seven" className="cursor-pointer text-md">
+              7
+            </label>
           </div>
         </div>
       </section>
       {/*luggage capacity */}
-      <section>
-        <h1 className="text-lg pb-2 font-bold">Luggage Capacity</h1>
+      <section className="mt-4">
+        <h1 className="text-md pb-2 font-bold">Luggage Capacity</h1>
         <div>
           <div className="flex gap-2">
             <input
+              id="two"
+              className="appearance-none  w-4 h-4 m-1 rounded-full border-2 border-red-500 checked:bg-red-500 checked:border-none checked:outline-none cursor-pointer"
               type="checkbox"
               value="2"
               checked={filterInputs.luggageCapacity === "2"}
@@ -177,10 +227,14 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
                 }))
               }
             />
-            <label className="text-lg">2</label>
+            <label htmlFor="two" className="cursor-pointer text-md">
+              2
+            </label>
           </div>
           <div className="flex gap-2">
             <input
+              id="three"
+              className="appearance-none w-4 h-4 m-1 rounded-full border-2 border-red-500 checked:bg-red-500 checked:border-none checked:outline-none cursor-pointer"
               type="checkbox"
               value="3"
               checked={filterInputs.luggageCapacity === "3"}
@@ -191,7 +245,9 @@ const FilterBox = ({ filterInputs, setFilterInputs, handleFetchCarsList }) => {
                 }))
               }
             />
-            <label className="text-lg">3</label>
+            <label htmlFor="three" className="cursor-pointer text-md">
+              3
+            </label>
           </div>
         </div>
       </section>

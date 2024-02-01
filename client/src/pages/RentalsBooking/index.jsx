@@ -35,17 +35,19 @@ const RentalsBooking = () => {
   }, [filterInputs]);
 
   return (
-    <div className="py-[4rem]">
-      <div className="p-2 my-5  grid grid-cols-4 gap-3">
-        <div className="col-span-1 border-2 bg-blue-200 rounded-lg px-5 py-3 h-[fit-content]">
+    <div className="py-20 mx-10">
+      <div className="grid grid-cols-4 gap-6">
+        <div className="col-span-1 rounded-lg h-auto">
           <FilterBox
             filterInputs={filterInputs}
             setFilterInputs={setFilterInputs}
             handleFetchCarsList={handleFetchCarsList}
           />
         </div>
-        <div className="border-2 col-span-3">
-          <h1 className="font-bold">Results : {car?.carList?.length}</h1>
+        <div className="flex col-span-3 ">
+          {/* <h1 className="pl-4 pb-4 font-bold text-xl text-red-700">
+            Results : {car?.carList?.length}
+          </h1> */}
           <CarList />
         </div>
       </div>

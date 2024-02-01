@@ -76,19 +76,35 @@ const BookingSummary = () => {
   console.log("cardetails:", carDetails);
   console.log("location:", locationDetails);
   console.log("paybleamnt:", payableAmount);
+  const calculateDuration = (startDate, endDate) => {
+    const startDateTime = new Date(startDate).getTime();
+    const endDateTime = new Date(endDate).getTime();
+    const duration = endDateTime - startDateTime;
+
+    const days = Math.floor(duration / (24 * 60 * 60 * 1000));
+    const hours = Math.floor(
+      (duration % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000)
+    );
+
+    return { days, hours };
+  };
+  const duration = calculateDuration(
+    rentalsInitialData?.pickupDate,
+    rentalsInitialData?.dropDate
+  );
 
   return (
     <div className="border-2 py-[5rem] px-24">
       <div className="py-5 px-5 grid grid-cols-3 gap-3">
         <div className="col-span-2 h-fit overflow-hidden rounded-xl shadow-lg bg-white hover:shadow-xl transition duration-300 ">
           <div className="bg-red-500  text-white text-lg px-4 py-2 ">
-            {carDetails.manufacturer} {carDetails.model}
+            {carDetails?.manufacturer} {carDetails?.model}
           </div>
           <div className="flex p-4">
             <div className="w-1/2 flex">
               <img
                 className=" rounded-xl object-cover"
-                src={carDetails.imgUrl}
+                src={carDetails?.imgUrl}
               ></img>
             </div>
             <div className="w-1/2  pl-4">
@@ -98,12 +114,27 @@ const BookingSummary = () => {
                 </div>
                 <div className="bg-gray-100 px-4 py-5 mt-2">
                   <h3 className="text-center font-semibold">
-                    Location: <span className="">Bengaluru</span>
+                    Location:{" "}
+                    <span className="">{rentalsInitialData?.city}</span>
                   </h3>
                   <div className="flex my-3 justify-evenly">
                     <div className="text-center">
-                      <p>Wed, 31 Jan 2024</p>
-                      <p>09:30 AM</p>
+                      <p>
+                        {rentalsInitialData?.pickupDate.toLocaleDateString(
+                          undefined,
+                          {
+                            weekday: "long",
+                            month: "long",
+                            day: "numeric",
+                          }
+                        )}
+                      </p>
+                      <p>
+                        {rentalsInitialData?.pickupDate.toLocaleTimeString([], {
+                          hour: "numeric",
+                          minute: "numeric",
+                        })}
+                      </p>
                     </div>
                     <div className="text-center">
                       <p className="w-10 h-10 p-2 font-semibold rounded-full bg-red-500 text-white">
@@ -111,14 +142,30 @@ const BookingSummary = () => {
                       </p>
                     </div>
                     <div className="text-center">
-                      <p>Sat, 03 Feb 2024</p>
-                      <p>06:30 PM</p>
+                      <p>
+                        {rentalsInitialData?.dropDate.toLocaleDateString(
+                          undefined,
+                          {
+                            weekday: "long",
+                            month: "long",
+                            day: "numeric",
+                          }
+                        )}
+                      </p>
+                      <p>
+                        {rentalsInitialData?.dropDate.toLocaleTimeString([], {
+                          hour: "numeric",
+                          minute: "numeric",
+                        })}
+                      </p>
                     </div>
                   </div>
                 </div>
 
                 <div className="flex flex-col mt-2 px-6 pb-2 text-sm font-semibold text-center">
-                  <p className="pb-2">Duration: 3 Days and 9 hours</p>
+                  <p className="pb-2">
+                    Duration: {duration.days} Days and {duration.hours} hours
+                  </p>
                   <span className="w-full h-[1px] bg-gray-300 "></span>
                 </div>
                 <div className="flex justify-between">
@@ -136,17 +183,6 @@ const BookingSummary = () => {
                   </div>
                 </div>
               </div>
-              {/* dailyRate:{carDetails.dailyRate}
-              <br />
-              monthlyRate:{carDetails.monthlyRate}
-              <br />
-              fuelType:{carDetails.fuelType}
-              <br />
-              seatingCapacity:{carDetails.seatingCapacity}
-              <br />
-              luggageCapacity:{carDetails.luggageCapacity}
-              <br />
-              transmissionType:{carDetails.transmissionType} */}
             </div>
           </div>
         </div>
@@ -215,8 +251,8 @@ const BookingSummary = () => {
                   <p>Email :</p>
                 </div>
                 <div className="p-4 font-medium">
-                  <p>Ajmal Shaikh</p>
-                  <p>Qwerty123@gmail.com</p>
+                  <p>{username}</p>
+                  <p>{userEmail}</p>
                 </div>
               </div>
             </section>
