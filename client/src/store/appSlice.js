@@ -8,6 +8,7 @@ const initialState = {
   userloginToken: userInfo?.token || "",
   username: userInfo?.userName || "",
   userEmail: userInfo?.email || "",
+  userId: userInfo?.userId || "",
   aboutQuery: "",
   profileUrl: "",
   userName: "",
@@ -24,6 +25,7 @@ const appSlice = createSlice({
       state.aboutQuery = payload;
     },
     saveTokenToLoacal: (state, { payload }) => {
+      state.userId = payload.userId;
       state.userloginToken = payload.token;
       state.username = payload.userName;
       state.userEmail = payload.email;

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 import { useEffect, useRef, useState } from "react";
 import { setLocationDetails, setPayableAmount } from "../../store/rental";
-import { setOtpModal } from "../../store/appSlice";
+import { setOtpModal, saveTokenToLoacal } from "../../store/appSlice";
 import OtpModal from "../../modal/OtpModal";
 import axiosInstance from "../../api/axiosInstance";
 import { loadStripe } from "@stripe/stripe-js";
@@ -12,15 +12,17 @@ const BookingSummary = () => {
   const [loginStatus, setLoginStatus] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loginToken, otpModal, username, userEmail } = useSelector(
+  const { loginToken, otpModal, username, userEmail, userId } = useSelector(
     (state) => state.app
   );
-  console.log("loginToken", loginToken);
-  console.log("otpmodal", otpModal);
-  console.log("useremail", userEmail);
-  console.log("username", username);
 
   useEffect(() => {
+    const locationDetails = {
+      pickupLocation: pickupLocationRef.current?.value || null,
+      dropLocation: dropLocationRef.current?.value || null,
+    };
+
+    dispatch(setLocationDetails(locationDetails));
     if (loginToken) {
       setLoginStatus(true);
     }
@@ -29,8 +31,26 @@ const BookingSummary = () => {
   const { locationDetails, rentalsInitialData, carDetails, payableAmount } =
     useSelector((state) => state.rental);
 
-  const pickupLocationRef = useRef();
-  const dropLocationRef = useRef();
+  const pickupLocationRef = useRef(null);
+  const dropLocationRef = useRef(null);
+  const handlePlaceChanged = () => {
+    if (pickupLocationRef.current && dropLocationRef.current) {
+      const pickup = pickupLocationRef.current.value;
+      const drop = dropLocationRef.current.value;
+      console.log("Selected pick place:", pickup);
+      console.log("Selected drop place:", drop);
+      dispatch(
+        setLocationDetails({
+          pickupLocation: pickupLocationRef.current.value,
+          dropLocation: dropLocationRef.current.value,
+        })
+      );
+    }
+  };
+
+  // dispatch(setLocationDetails({ pickupLocation, dropLocation }));
+  // console.log(pickupLocation);
+  // console.log(dropLocation);
 
   const [errMsg, setErrMsg] = useState(null);
 
@@ -61,11 +81,40 @@ const BookingSummary = () => {
   };
 
   //handle booking confirm
+  // const handleConfirmBooking = async () => {
+  //   console.log(rentalsInitialData, carDetails, locationDetails, payableAmount);
+  // };
   const handleConfirmBooking = async () => {
-    console.log(rentalsInitialData, carDetails, locationDetails, payableAmount);
+    try {
+      const bookingDetails = {
+        rideCategory: "rental",
+        pickupCity: rentalsInitialData.city,
+        pickupLocation: locationDetails.pickupLocation,
+        pickupDate: rentalsInitialData.pickupDate.date,
+        dropLocation: locationDetails.dropLocation,
+        endDate: rentalsInitialData.dropDate.date,
+        totalDays: duration.days,
+        fairAmount: payableAmount,
+        userName: username,
+        userEmail: userEmail,
+        passengerId: userId,
+        carId: carDetails._id,
+        bookingDate: new Date(),
+      };
+      // console.log("Booking Details:", bookingDetails);
+
+      const response = await axiosInstance.post("/booking", bookingDetails);
+
+      console.log("Booking successful:", response.data);
+    } catch (error) {
+      console.error("Error confirming booking:", error);
+
+      setErrMsg(
+        "An error occurred while confirming the booking. Please try again."
+      );
+    }
   };
 
-  // LOAD JS API
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyA312x40OgaxL1ifZyztNEw1vwkMOxQPx8",
     libraries: ["places"],
@@ -74,10 +123,8 @@ const BookingSummary = () => {
   if (carDetails === null) {
     navigate("/rentals");
   }
-  console.log("rentdate:", rentalsInitialData);
-  console.log("cardetails:", carDetails);
+
   console.log("location:", locationDetails);
-  console.log("paybleamnt:", payableAmount);
 
   const calculateDuration = (startDate, startTime, endDate, endTime) => {
     const startDateTime = new Date(`${startDate} ${startTime}`).getTime();
@@ -205,10 +252,12 @@ const BookingSummary = () => {
             <section className="space-y-2">
               <label className="text-sm font-semibold">Pickup Loaction</label>
               {isLoaded && (
-                <Autocomplete>
+                <Autocomplete onPlaceChanged={handlePlaceChanged}>
                   <input
                     type="text"
-                    ref={pickupLocationRef}
+                    ref={(input) => {
+                      pickupLocationRef.current = input;
+                    }}
                     placeholder="Pickup Location"
                     className="w-full border-[1px] border-red-500 focus:outline-none focus:border-red-400 focus:ring-red-300 focus:ring-2 ring-offset-1 py-2 px-3 italic rounded-xl"
                   />
@@ -218,10 +267,12 @@ const BookingSummary = () => {
             <section className="space-y-2 mt-2">
               <label className="text-sm font-semibold">Drop Loaction</label>
               {isLoaded && (
-                <Autocomplete>
+                <Autocomplete onPlaceChanged={handlePlaceChanged}>
                   <input
                     type="text"
-                    ref={dropLocationRef}
+                    ref={(input) => {
+                      dropLocationRef.current = input;
+                    }}
                     placeholder="Pickup Location"
                     className="w-full border-[1px] border-red-500 focus:outline-none focus:border-red-400 focus:ring-red-300 focus:ring-2 ring-offset-1 py-2 px-3 italic rounded-xl"
                   />
@@ -240,7 +291,7 @@ const BookingSummary = () => {
               <div className="p-4 font-semibold">
                 <p>{carDetails?.dailyRate}</p>
                 <p>7</p>
-                <p>{carDetails?.dailyRate * 7}</p>
+                <p className="text-lg">{carDetails?.dailyRate * 7}</p>
               </div>
             </div>
           </section>
@@ -278,6 +329,16 @@ const BookingSummary = () => {
               className="w-3/4 bg-red-500 text-white rounded-lg  focus:ring-red-300 hover:ring-2 hover:ring-red-300 ring-offset-2 px-4 py-1.5  disabled:cursor-not-allowed disabled:bg-gray-200"
             >
               Confirm & Proceed
+            </button>
+            {errMsg ? <p className="text-red-500 text-sm">{errMsg}</p> : null}
+          </section>
+          <section className="flex items-center justify-center mt-5">
+            <button
+              onClick={handleConfirmBooking}
+              disabled={!loginStatus}
+              className="w-3/4 bg-red-500 text-white rounded-lg  focus:ring-red-300 hover:ring-2 hover:ring-red-300 ring-offset-2 px-4 py-1.5  disabled:cursor-not-allowed disabled:bg-gray-200"
+            >
+              Confirm booking
             </button>
             {errMsg ? <p className="text-red-500 text-sm">{errMsg}</p> : null}
           </section>

@@ -54,6 +54,7 @@ const OtpModal = ({ setLoginStatus }) => {
               token: response.data.token,
               userName: loginInfo.name,
               email: loginInfo.email,
+              userId: response.data.findUser._id,
             })
           );
 

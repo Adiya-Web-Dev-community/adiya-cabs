@@ -13,10 +13,7 @@ const rentalSlice = createSlice({
   initialState: initialState,
   reducers: {
     setInitialData: (state, { payload }) => {
-      return {
-        ...state,
-        rentalsInitialData: payload.rentalsInitialData,
-      };
+      state.rentalsInitialData = payload;
     },
     setCarDetails: (state, { payload }) => {
       state.carDetails = payload;
