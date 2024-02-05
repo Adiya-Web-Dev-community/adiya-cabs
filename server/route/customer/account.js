@@ -88,6 +88,7 @@ router.post("/verify-otp", async (req, resp) => {
           status: true,
           msg: "OTP verification successful",
           token: token,
+          findUser
         });
       } else {
         resp.json({ status: false, msg: "Invalid OTP. Please enter again" });
