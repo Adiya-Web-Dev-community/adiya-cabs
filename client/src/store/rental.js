@@ -31,5 +31,9 @@ const rentalSlice = createSlice({
 });
 
 export default rentalSlice.reducer;
-export const { setInitialData, setCarDetails, setLocationDetails, setPayableAmount } =
-  rentalSlice.actions;
+export const {
+  setInitialData,
+  setCarDetails,
+  setLocationDetails,
+  setPayableAmount,
+} = rentalSlice.actions;

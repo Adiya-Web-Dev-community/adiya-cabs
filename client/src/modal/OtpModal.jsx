@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Input, Button } from "../components/form/form";
 import axiosInstance from "../api/axiosInstance";
 import { ToastContainer, toast } from "react-toastify";
@@ -11,19 +11,19 @@ const OtpModal = ({ setLoginStatus }) => {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const dispatch = useDispatch();
   const loginObj = {
-    name: "" || userInfo?.userName,
-    email: "" || userInfo?.email,
+    name: userInfo?.userName || " ",
+    email: userInfo?.email || " ",
     otp: "",
   };
 
-  const [loginInfo, steLoginInfo] = useState({ ...loginObj });
+  const [loginInfo, setLoginInfo] = useState({ ...loginObj });
 
   console.log(loginInfo);
 
   const [activeVarification, setVriFiactionActive] = useState(false);
 
   const handleChange = (e) => {
-    steLoginInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setLoginInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmitLoginInfo = async (e) => {
@@ -54,11 +54,12 @@ const OtpModal = ({ setLoginStatus }) => {
               token: response.data.token,
               userName: loginInfo.name,
               email: loginInfo.email,
+              userId: response.data.findUser._id,
             })
           );
 
           localStorage.setItem("token", response.data.token);
-          steLoginInfo({ ...loginObj });
+          setLoginInfo({ ...loginObj });
           dispatch(setOtpModal(false));
           setLoginStatus(true);
         } else {
@@ -78,7 +79,7 @@ const OtpModal = ({ setLoginStatus }) => {
   }, []);
 
   return (
-    <main className="absolute top-0 w-full h-full bg-black/60">
+    <main className="absolute top-0 left-0 w-full h-full bg-black/60">
       <div className="w-full h-full flex justify-center items-center">
         <div className=" flex justify-end items-center relative  ">
           <ToastContainer position="top-right" />
@@ -115,7 +116,7 @@ const OtpModal = ({ setLoginStatus }) => {
               <div className="flex justify-center items-center mt-4 mb-2">
                 <Button
                   classname={
-                    "w-[10rem] shadow-lg bg-blue-400 border text-white hover:bg-blue-500 "
+                    "w-[10rem] shadow-lg bg-red-400 border text-white hover:bg-red-500 "
                   }
                   disabeld={false || !!userInfo?.userName}
                 >
@@ -148,7 +149,7 @@ const OtpModal = ({ setLoginStatus }) => {
               <div className="flex justify-center items-center mt-4 mb-2">
                 <Button
                   classname={
-                    "w-[10rem] shadow-lg bg-blue-400 border text-white hover:bg-blue-500 "
+                    "w-[10rem] shadow-lg bg-red-400 border text-white hover:bg-red-500 "
                   }
                 >
                   {" "}

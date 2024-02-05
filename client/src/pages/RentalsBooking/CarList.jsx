@@ -1,7 +1,7 @@
 import Card from "./Card";
 import { useSelector } from "react-redux";
 
-const CarList = ({ data }) => {
+const CarList = (props) => {
   const { car } = useSelector((state) => state);
   console.log(car);
   return (

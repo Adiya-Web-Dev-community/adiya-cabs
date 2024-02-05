@@ -56,6 +56,7 @@ const Login = () => {
               token: response.data.token,
               userName: loginInfo.name,
               email: loginInfo.email,
+              userId: response.data.findUser._id,
             })
           );
 
@@ -113,10 +114,10 @@ const Login = () => {
 
           <div className="flex justify-center items-center mt-4 mb-2">
             <Button
-              classname={
-                "w-[10rem] shadow-lg bg-blue-400 border text-white hover:bg-blue-500 "
+              className={
+                "w-[10rem] shadow-lg bg-red-400 border text-white hover:bg-red-500 "
               }
-              disabeld={false || !!userInfo?.userName}
+              disabled={false || !!userInfo?.userName}
             >
               {" "}
               SEND OTP
@@ -146,8 +147,8 @@ const Login = () => {
 
           <div className="flex justify-center items-center mt-4 mb-2">
             <Button
-              classname={
-                "w-[10rem] shadow-lg bg-blue-400 border text-white hover:bg-blue-500 "
+              className={
+                "w-[10rem] shadow-lg bg-red-400 border text-white hover:bg-red-500 "
               }
             >
               {" "}

@@ -42,7 +42,7 @@ const Signup = ({ setNewRider, setAdmin }) => {
       .then((resp) => resp.json())
       .then((resp) => {
         setStates(resp);
-        console.log("states", resp);
+        // console.log("states", resp);
       })
       .catch((err) => console.log(err));
   };
@@ -80,8 +80,8 @@ const Signup = ({ setNewRider, setAdmin }) => {
     contact: "",
     drivingLicenseNo: "",
     vehicleRegistrationNo: "",
-    state: selectedState,
-    city: selectedCity,
+    // state: selectedState,
+    // city: selectedCity,
     locality: "",
     pincode: "",
     password: "",
@@ -105,8 +105,11 @@ const Signup = ({ setNewRider, setAdmin }) => {
     console.log(signupForm);
     const data = {
       ...signupForm,
+      state: selectedState,
+      city: selectedCity,
       serviceCategory: selectCategory,
     };
+    console.log(data);
     try {
       setLoading(true);
       const resp = await axios.post("/rider-signup", data);
