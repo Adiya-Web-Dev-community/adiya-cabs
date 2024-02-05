@@ -15,6 +15,7 @@ const Profile = () => {
             Authorization: `${token}`,
           },
         });
+        console.log(response);
         console.log(response.data.data);
         setUserData(response.data.data);
         // console.log(userData);
