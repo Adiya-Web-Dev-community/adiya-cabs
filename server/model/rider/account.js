@@ -3,7 +3,7 @@ const riderSchema = new mongoose.Schema({
   name: { type: String },
   email: { type: String },
   contact: { type: String },
-  password: { type: String },
+  password: { type: String, select: false },
   locality: { type: String },
   city: { type: String },
   state: { type: String },

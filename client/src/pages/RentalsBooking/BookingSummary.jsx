@@ -85,6 +85,13 @@ const BookingSummary = () => {
   //   console.log(rentalsInitialData, carDetails, locationDetails, payableAmount);
   // };
   const handleConfirmBooking = async () => {
+    if (
+      pickupLocationRef.current?.value === "" ||
+      (null && dropLocationRef.current?.value) ||
+      null
+    )
+      return setErrMsg("Add Pickup & Drop location");
+
     try {
       const bookingDetails = {
         rideCategory: "rental",
@@ -101,11 +108,11 @@ const BookingSummary = () => {
         carId: carDetails._id,
         bookingDate: new Date(),
       };
-      // console.log("Booking Details:", bookingDetails);
+      console.log("Booking Details:", bookingDetails);
 
-      const response = await axiosInstance.post("/booking", bookingDetails);
+      // const response = await axiosInstance.post("/booking", bookingDetails);
 
-      console.log("Booking successful:", response.data);
+      // console.log("Booking successful:", response.data);
     } catch (error) {
       console.error("Error confirming booking:", error);
 

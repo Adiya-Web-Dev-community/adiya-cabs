@@ -197,7 +197,7 @@ const SearchPassenger = () => {
             <div className="space-y-5 overflow-y-auto py-6 h-[40rem] md:px-12  ">
               {loading ? (
                 <FaSpinner className="animate-spin text-gray-300 text-2xl text-center" />
-              ) : data.length ? (
+              ) : data && data.length ? (
                 data.map((obj, i) => {
                   return (
                     <PassengerCard
