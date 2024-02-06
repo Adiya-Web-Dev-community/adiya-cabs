@@ -130,47 +130,6 @@ const BookingSummary = () => {
     ? droptime.slice(0, -6) + " " + droptime.slice(-2)
     : "";
 
-  // const handleConfirmBooking = async () => {
-  //   if (
-  //     pickupLocationRef.current?.value === "" ||
-  //     (null && dropLocationRef.current?.value) ||
-  //     null
-  //   )
-  //     return setErrMsg("Add Pickup & Drop location");
-
-  //   try {
-  //     const bookingDetails = {
-  //       rideCategory: "rental",
-  //       pickupCity: rentalsInitialData.city,
-  //       pickupLocation: locationDetails.pickupLocation,
-  //       pickupDate: rentalsInitialData.pickupDate.date,
-  //       dropLocation: locationDetails.dropLocation,
-  //       dropDate: rentalsInitialData.dropDate.date,
-  //       totalDays: duration.days,
-  //       fairAmount: payableAmount,
-  //       userName: username,
-  //       userEmail: userEmail,
-  //       passengerId: userId,
-  //       carId: carDetails._id,
-  //     };
-  //     console.log("Booking Details:", bookingDetails);
-
-  //     const response = await axiosInstance.post("/booking", bookingDetails, {
-  //       headers: {
-  //         Authorization: userloginToken,
-  //       },
-  //     });
-
-  //     console.log("Booking successful:", response);
-  //   } catch (error) {
-  //     console.error("Error confirming booking:", error);
-
-  //     setErrMsg(
-  //       "An error occurred while confirming the booking. Please try again."
-  //     );
-  //   }
-  // };
-
   const handleConfirmBooking = async () => {
     try {
       // Validate pickup and drop locations
@@ -184,7 +143,6 @@ const BookingSummary = () => {
         pickupLocation: locationDetails.pickupLocation,
         pickupDate: rentalsInitialData.pickupDate.date,
         endDate: rentalsInitialData.dropDate.date,
-        dropTime: rentalsInitialData.dropDate.time,
         totalDays: duration.days,
         payableAmount: payableAmount,
         passengerId: userId,

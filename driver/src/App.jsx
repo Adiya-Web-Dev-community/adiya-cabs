@@ -17,6 +17,7 @@ import Admin from "./routes/Admin";
 import VerificationData from "./pages/admin/VerificationData";
 import NewVehicle from "./pages/admin/NewVehicle";
 import CarsData from "./pages/admin/carsData";
+import AdminSidebar from "./components/admin/AdminSidebar";
 
 function App() {
   // auth=token
@@ -27,7 +28,8 @@ function App() {
     <>
       <Toaster position="top-right" />
       {adminAuth ? <AdminNav setAdminAuth={setAdminAuth} /> : null}
-      <div className="lg:flex h-[100vh]">
+      <div className="flex w-full h-screen">
+        {adminAuth ? <AdminSidebar setAdminAuth={setAdminAuth} /> : null}
         {auth ? <Navbar auth={auth} setAuth={setAuth} /> : null}
         <Routes>
           <Route element={<Public />}>
