@@ -1,6 +1,5 @@
 const router = require('express').Router()
-const RentalBooking = require('../../model/')
-const rental = require('../../model/bookings/rental')
+const RentalBooking = require('../../model/bookings/rental')
 
 router.get("/get-rental-bookings", async (req, resp) => {
     try {
