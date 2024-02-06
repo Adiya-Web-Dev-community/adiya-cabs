@@ -23,6 +23,7 @@ router.post("/search-data", async (req, resp) => {
 
 // Customer booking data
 router.post("/booking", accountMiddleware, async (req, resp) => {
+  console.log(req.accountId)
   const { rideCategory } = req.body
   let Model;
   if (!rideCategory) {

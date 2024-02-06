@@ -30,6 +30,7 @@ app.use(require("./route/admin/dailyOffers"))
 app.use(require("./route/admin/bankOffers"))
 app.use(require("./route/admin/monthlyOffers"))
 app.use(require("./route/admin/car"))
+app.use(require('./route/admin/rental-bookings'))
 
 
 // io.on('connection', function(socket){
