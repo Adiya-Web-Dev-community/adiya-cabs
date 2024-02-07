@@ -10,6 +10,7 @@ import ViewCarDetails from "../../model/ViewCarDetails";
 
 const CarsData = () => {
   const [loading, setLoading] = useState(true);
+  const [popupToggle, setPopupToggle] = useState(false); // New state for toggle
   const dispatch = useDispatch();
   const { showCarDetailsPopup } = useSelector((state) => state.admin);
 
@@ -21,6 +22,7 @@ const CarsData = () => {
       console.log(resp);
       if (resp.data.success) {
         setLoading(false);
+        console.log(resp.data);
         setCarData(resp.data.Cars);
       }
     } catch (err) {
@@ -46,7 +48,7 @@ const CarsData = () => {
     }
   };
   useEffect(() => {
-    if (carId) {
+    if (carId || popupToggle) {
       fetchCarDetails();
     }
   }, [carId]);
@@ -72,3 +74,4 @@ const CarsData = () => {
 };
 
 export default CarsData;
+//======================================

@@ -100,7 +100,7 @@ const CarTable = ({ data, setRidersData, getData, setCarId }) => {
                         onClick={() => {
                           setCarId(ele._id);
                         }}
-                        className=""
+                        className="w-4 h-4 cursor-pointer inline-block"
                       >
                         <FaEye />
                       </span>

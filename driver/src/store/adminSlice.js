@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   carData: [],
   showCarDetailsPopup: null,
-  carDetails:null
+  carDetails: null,
 };
 
 const adminSlice = createSlice({
@@ -17,8 +17,8 @@ const adminSlice = createSlice({
       state.showCarDetailsPopup = payload;
     },
     setCarDetails: (state, { payload }) => {
-      state.carDetails=payload
-    }
+      state.carDetails = payload;
+    },
   },
 });
 
