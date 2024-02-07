@@ -27,7 +27,7 @@ const VerificationData = () => {
   }, []);
 
   return (
-    <div className="w-full h-auto bg-gradient-to-br from-yellow-50 via-yellow-100 to-yellow-150">
+    <div className="w-full h-auto bg-gradient-to-br from-yellow-50 via-yellow-100 to-yellow-200">
       {/* table */}
 
       <div className="">

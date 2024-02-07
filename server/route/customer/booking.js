@@ -121,7 +121,8 @@ router.post("/payment", async (req, resp) => {
     payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
-    success_url: "http://localhost:5173",
+    // success_url: "http://localhost:5173",
+    success_url: "https://meru-cabs-delta.vercel.app/",
     cancel_url: "https://localhost:5000/route/response/sucess.html",
   });
   console.log(session.url);

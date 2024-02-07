@@ -28,7 +28,7 @@ function App() {
     <>
       <Toaster position="top-right" />
       {adminAuth ? <AdminNav setAdminAuth={setAdminAuth} /> : null}
-      <div className="flex w-full h-screen">
+      <div className="flex w-full h-[90vh]">
         {adminAuth ? <AdminSidebar setAdminAuth={setAdminAuth} /> : null}
         {auth ? <Navbar auth={auth} setAuth={setAuth} /> : null}
         <Routes>

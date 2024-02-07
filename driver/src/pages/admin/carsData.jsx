@@ -52,10 +52,10 @@ const CarsData = () => {
   }, [carId]);
 
   return (
-    <div className="w-full h-[100vh] bg-gradient-to-br from-yellow-100 via-yellow-200 to-yellow-300">
+    <div className="w-full h-[90vh] bg-gradient-to-br from-yellow-50 via-yellow-100 to-yellow-200">
       {/* table */}
 
-      <div className="w-[99%] m-auto ">
+      <div className="w-full m-auto ">
         {loading ? (
           <LoadingTable />
         ) : carData.length ? (

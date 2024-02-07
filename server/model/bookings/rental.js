@@ -14,4 +14,4 @@ const mongoose_schema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model('renatl-bookings', mongoose_schema)
+module.exports = mongoose.model('rental-bookings', mongoose_schema)

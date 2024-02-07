@@ -4,7 +4,7 @@ const ViewCarDetails = () => {
   const dispatch = useDispatch();
   const { carDetails } = useSelector((state) => state.admin);
   return (
-    <main className="absolute top-0 w-full h-full bg-black/80 flex justify-center items-center">
+    <main className="absolute top-0 left-0 w-full h-full bg-black/80 flex justify-center items-center">
       <div className="w-full h-full flex justify-center items-center">
         <div className="w-[40%]  p-3 rounded-md bg-white ">
           <section className="flex justify-end">

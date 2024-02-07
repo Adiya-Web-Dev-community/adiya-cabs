@@ -1,7 +1,7 @@
 import { FaSignOutAlt } from "react-icons/fa";
 const AdminNav = ({ setAdminAuth }) => {
   return (
-    <header className="flex justify-between bg-black text-white px-3 shadow-xl">
+    <header className="flex justify-between w-full h-[10vh] bg-black text-white px-3 shadow-xl">
       <h1 className="font-thin text-xl py-6 px-3">Admin Dasboard</h1>
       <nav className=" flex gap-3">
         <button
