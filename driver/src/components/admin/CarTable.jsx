@@ -13,13 +13,13 @@ const CarTable = ({ data, setRidersData, getData, setCarId }) => {
   useEffect(() => {
     setCount(data.length);
   }, []);
-  //handle view
-  const view = async () => {};
 
-  // send access
+  // handle view
+  const view = async (carId) => {
+    setCarId(carId);
+    dispatch(setShowCarDetailsPopup(true)); // Open the modal
+  };
 
-  // filter box
-  //   const [category, setCategory] = useState("");
   return (
     <div className="m-4 text-left">
       <div className="">
@@ -47,70 +47,53 @@ const CarTable = ({ data, setRidersData, getData, setCarId }) => {
             <th className="px-2 py-2 italic text-md text-left">Action</th>
           </thead>
           <tbody>
-            {data
-              //   .filter((rider) => {
-              //     if (category) {
-              //       if (rider.serviceCategory === category) {
-              //         return rider;
-              //       } else if (category === "show-all") {
-              //         return rider;
-              //       }
-              //     } else {
-              //       return rider;
-              //     }
-              //   })
-              .map((ele, i) => {
-                return (
-                  <tr
-                    key={i}
-                    className={
-                      (i % 2 === 0 ? "bg-yellow-50 " : "bg-white ") +
-                      "text-sm hover:bg-gray-200"
-                    }
-                  >
-                    <td className="px-1 py-2 text-sm text-left  capitalize">
-                      {ele.manufacturer || "---"}
-                    </td>
-                    <td className="px-1 py-2 text-sm text-left ">
-                      {ele.model || "---"}
-                    </td>
-                    <td className="px-2 py-2 text-sm text-left">
-                      {ele.carNo || "---"}
-                    </td>
-                    <td className="px-2 py-2 text-sm text-left">
-                      {ele.fuelType || "---"}
-                    </td>
-                    <td className="px-2 py-2 text-sm text-left">
-                      {ele.transmissionType || "---"}
-                    </td>
-                    <td className="px-2 py-2 text-sm text-left">
-                      {ele.seatingCapacity || "---"}
-                    </td>
-                    <td className="px-2 py-2 text-sm text-left">
-                      {ele.luggageCapacity || "---"}
-                    </td>
-                    <td className="px-2 py-2 text-sm text-left">
-                      {ele.dailyRate || "---"}
-                    </td>
-                    <td className="px-2 py-2 text-sm text-left">
-                      {ele.monthlyRate || "---"}
-                    </td>
-                    <td className="px-3 py-2 text-lg text-left flex justify-center gap-5">
-                      <span
-                        onClick={() => {
-                          setCarId(ele._id);
-                        }}
-                        className="w-4 h-4 cursor-pointer inline-block"
-                      >
-                        <FaEye />
-                      </span>
-                      {/* <span>
-                        <MdDelete />
-                      </span> */}
-                    </td>
-                  </tr>
-                );
-              })}
+            {data.map((ele, i) => {
+              return (
+                <tr
+                  key={i}
+                  className={
+                    (i % 2 === 0 ? "bg-yellow-50 " : "bg-white ") +
+                    "text-sm hover:bg-gray-200"
+                  }
+                >
+                  <td className="px-1 py-2 text-sm text-left  capitalize">
+                    {ele.manufacturer || "---"}
+                  </td>
+                  <td className="px-1 py-2 text-sm text-left ">
+                    {ele.model || "---"}
+                  </td>
+                  <td className="px-2 py-2 text-sm text-left">
+                    {ele.carNo || "---"}
+                  </td>
+                  <td className="px-2 py-2 text-sm text-left">
+                    {ele.fuelType || "---"}
+                  </td>
+                  <td className="px-2 py-2 text-sm text-left">
+                    {ele.transmissionType || "---"}
+                  </td>
+                  <td className="px-2 py-2 text-sm text-left">
+                    {ele.seatingCapacity || "---"}
+                  </td>
+                  <td className="px-2 py-2 text-sm text-left">
+                    {ele.luggageCapacity || "---"}
+                  </td>
+                  <td className="px-2 py-2 text-sm text-left">
+                    {ele.dailyRate || "---"}
+                  </td>
+                  <td className="px-2 py-2 text-sm text-left">
+                    {ele.monthlyRate || "---"}
+                  </td>
+                  <td className="px-3 py-2 text-lg text-left flex justify-center gap-5">
+                    <span
+                      onClick={() => view(ele._id)} // Call view function with carId
+                      className="w-4 h-4 cursor-pointer inline-block"
+                    >
+                      <FaEye />
+                    </span>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
