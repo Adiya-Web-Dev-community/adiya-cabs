@@ -9,10 +9,6 @@ import { MdDelete } from "react-icons/md";
 
 const CarTable = ({ data, setRidersData, getData, setCarId }) => {
   const dispatch = useDispatch();
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    setCount(data.length);
-  }, []);
 
   const view = async (carId) => {
     setCarId(carId);

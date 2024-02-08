@@ -35,10 +35,6 @@ router.post("/booking", accountMiddleware, async (req, resp) => {
       ...req.body,
       carId: req.body.carId,
       passengerId: req.accountId,
-<<<<<<< HEAD
-      bookingDate: new Date(),
-=======
->>>>>>> 54993901d8ca16e6bdf69efb7981846a3e946723
     });
 
     resp.json({ success: true, msg: "Booking confirmed", newBooking });
