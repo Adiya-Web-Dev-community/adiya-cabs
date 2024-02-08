@@ -8,9 +8,9 @@ const mongoose_schema = new mongoose.Schema({
     endDate: { type: String },
     totalDays: { type: Number },
     payableAmount: { type: Number },
-    passengerId: { type: mongoose.Schema.Types.ObjectId },
-    carId: { type: mongoose.Schema.Types.ObjectId },
-    bookingDate: { type: String }
+    passengerId: { type: mongoose.Schema.Types.ObjectId, ref:'passenger' },
+    carId: { type: mongoose.Schema.Types.ObjectId , ref:"car"},
+    bookingDate: { type: Date, default: Date.now }
 })
 
 
