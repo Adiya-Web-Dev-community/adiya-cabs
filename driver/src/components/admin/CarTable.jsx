@@ -14,10 +14,9 @@ const CarTable = ({ data, setRidersData, getData, setCarId }) => {
     setCount(data.length);
   }, []);
 
-  // handle view
   const view = async (carId) => {
     setCarId(carId);
-    dispatch(setShowCarDetailsPopup(true)); // Open the modal
+    dispatch(setShowCarDetailsPopup(true));
   };
 
   return (
