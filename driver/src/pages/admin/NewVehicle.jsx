@@ -45,7 +45,7 @@ const NewVehicle = () => {
   return (
     <div className="w-full h-[90vh] bg-gradient-to-br from-yellow-50 via-yellow-100 to-yellow-200">
       <div className="">
-        <div className="px-10">
+        <div className="px-24">
           <h1 className="text-center text-3xl font-mono font-semibold mt-4 underline decoration-dashed underline-offset-2 ">
             ADD NEW VEHICLE
           </h1>
@@ -126,10 +126,10 @@ const NewVehicle = () => {
                 value={formData.carNo}
                 onChange={handleInputs}
                 placeholder="MH05EV4430"
-                className="border-2 border-gray-500 px-3 py-3 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
+                className="border-2 border-gray-500 px-3 py-2 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
               />
             </section>
-            <section className="flex flex-col w-full row-span-2">
+            <section className="flex flex-col w-full row-span-3">
               <label className="text-lg" htmlFor="file_input">
                 Upload file
               </label>
@@ -160,9 +160,7 @@ const NewVehicle = () => {
                       d="M12 4v16m8-8H4"
                     />
                   </svg>
-                  <p className="ml-4">
-                    Drop your files here or click to upload
-                  </p>
+                  <p className="ml-4">Click to upload</p>
                 </div>
               </label>
 
@@ -179,17 +177,6 @@ const NewVehicle = () => {
               </section>
             </section>
 
-            <section className="flex flex-col w-full col-span-2 ">
-              <label>Description</label>
-              <textarea
-                type="text"
-                name="description"
-                value={formData.description}
-                onChange={handleInputs}
-                placeholder="Brief information abput car ex:dimensions, technology & safety features, interior-exterior color, "
-                className="border-2 h-28 border-gray-500 px-3 py-2 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
-              />
-            </section>
             <section className="flex flex-col w-full ">
               <label className="text-lg" htmlFor="seatingCapacity">
                 Seating Capacity
@@ -251,11 +238,21 @@ const NewVehicle = () => {
                 className="border-2 border-gray-500 px-3 py-2 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
               />
             </section>
-
-            <section className="flex items-center justify-center w-full col-span-2">
+            <section className="flex flex-col w-full col-span-2 ">
+              <label>Description</label>
+              <textarea
+                type="text"
+                name="description"
+                value={formData.description}
+                onChange={handleInputs}
+                placeholder="Brief information abput car ex:dimensions, technology & safety features, interior-exterior color, "
+                className="border-2 h-28 border-gray-500 px-3 py-2 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
+              />
+            </section>
+            <section className="flex items-center justify-center w-full ">
               <button
                 type="submit"
-                className="mt-6 flex items-center justify-center w-full border-2 bg-black text-white border-black px-3 py-2 rounded-xl hover:ring-2 hover:ring-black focus:ring-2 ring-offset-1 focus:ring-gray-500"
+                className="mt-6 flex items-center justify-center w-full border-2 bg-black text-white border-black px-3 py-4 rounded-xl hover:ring-2 hover:ring-black focus:ring-2 ring-offset-1 focus:ring-gray-500"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
