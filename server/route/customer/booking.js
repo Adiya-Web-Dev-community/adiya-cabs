@@ -3,7 +3,7 @@ const CityData = require("../../model/data");
 const Booking = require("../../model/customer/booking");
 const accountMiddleware = require("../../middleware/account");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const RentalBooking = require('../../model/bookings/rental');
+const RentalBooking = require("../../model/bookings/rental");
 
 // get data
 router.get("/city-data", async (req, resp) => {
@@ -23,14 +23,12 @@ router.post("/search-data", async (req, resp) => {
 
 // Customer booking data
 router.post("/booking", accountMiddleware, async (req, resp) => {
-  console.log(req.accountId)
-  const { rideCategory } = req.body
+  const { rideCategory } = req.body;
   let Model;
   if (!rideCategory) {
-    return resp.send('ride category is not mentioned')
-  }
-  else if (rideCategory === 'rental') {
-    Model = RentalBooking
+    return resp.send("ride category is not mentioned");
+  } else if (rideCategory === "rental") {
+    Model = RentalBooking;
   }
   try {
     const newBooking = await Model.create({
@@ -38,6 +36,7 @@ router.post("/booking", accountMiddleware, async (req, resp) => {
       carId: req.body.carId,
       passengerId: req.accountId,
     });
+
     resp.json({ success: true, msg: "Booking confirmed", newBooking });
   } catch (err) {
     resp.send(err.message);
