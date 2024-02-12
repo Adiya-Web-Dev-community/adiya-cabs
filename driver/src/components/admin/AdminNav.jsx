@@ -9,7 +9,7 @@ const AdminNav = ({ setAdminAuth }) => {
             localStorage.clear();
             setAdminAuth("");
           }}
-          className="flex items-center  px-4 rounded-full py-2 border-[1px] border-white shadow-md shadow-black hover:scale-105 hover:bg-orange-300 hover:text-black text-sm"
+          className="flex items-center  px-4 rounded-full py-2 border-[1px] border-white shadow-md shadow-black hover:scale-105 hover:bg-yellow-100 hover:text-black text-sm"
         >
           Signout
           <FaSignOutAlt className="text-lg ml-2" />

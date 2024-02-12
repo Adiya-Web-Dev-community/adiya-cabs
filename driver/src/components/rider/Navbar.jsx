@@ -34,7 +34,7 @@ const Navbar = ({ auth, setAuth }) => {
 
   return (
     <>
-      <div className="lg:hidden flex justify-between gap-3 py-3 px-6 bg-gradient-to-r from-yellow-200 via-yellow-500 to-orange-200  ">
+      <div className="lg:hidden  gap-3 py-3 px-6 bg-gradient-to-r from-yellow-200 via-yellow-500 to-orange-200 h-full  ">
         <span className="text-xl font-sans">ADIYA RIDERS</span>
         <GiHamburgerMenu
           className={`mt-1 text-2xl hover:scale-125 transition ease-in duration-300 ${
