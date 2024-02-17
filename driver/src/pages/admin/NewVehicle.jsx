@@ -43,43 +43,54 @@ const NewVehicle = () => {
   };
 
   return (
-    <div className="w-full mb-10">
-      <div className="py-10   w-full">
-        <div className="border-[1px] border-gray-300 w-[60%] h-auto p-2 m-auto rounded-md ">
-          <h1 className="text-center text-xl font-mono">ADD NEW VEHICLE</h1>
+    <div className="w-full h-[90vh] bg-gradient-to-br from-yellow-50 via-yellow-100 to-yellow-200">
+      <div className="">
+        <div className="px-24">
+          <h1 className="text-center text-3xl font-mono font-semibold mt-4 underline decoration-dashed underline-offset-2 ">
+            ADD NEW VEHICLE
+          </h1>
           <form
-            className=" py-10 grid grid-cols-2 gap-10 px-5"
+            className="grid grid-cols-3 py-6 gap-4 "
             onSubmit={handleSubmit}
           >
-            <section className="space-y-2">
-              <label>Manufacturer</label>
+            <section className="flex flex-col w-full ">
+              <label className="text-lg" htmlFor="manufacturer">
+                Manufacturer
+              </label>
               <input
+                id="manufacturer"
                 type="text"
                 name="manufacturer"
                 value={formData.manufacturer}
                 onChange={handleInputs}
                 placeholder="ex: TATA, Toyota, Mercedes-Benz"
-                className="w-full border-[1px] py-1.5 px-2 placeholder:text-sm placeholder:text-gray-400 rounded-md focus:outline-gray-400"
+                className="border-2 border-gray-500 px-3 py-2 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
               />
             </section>
-            <section className="space-y-2">
-              <label>Model</label>
+            <section className="flex flex-col w-full ">
+              <label className="text-lg" htmlFor="model">
+                Model
+              </label>
               <input
+                id="model"
                 type="text"
                 name="model"
                 value={formData.model}
                 onChange={handleInputs}
                 placeholder="ex: Corolla, Sonata,  E-Class"
-                className="w-full border-[1px] py-1.5 px-2 placeholder:text-sm placeholder:text-gray-400 rounded-md focus:outline-gray-400"
+                className="border-2 border-gray-500 px-3 py-2 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
               />
             </section>
-            <section className="space-y-2">
-              <label>Fuel Type</label>
+            <section className="flex flex-col w-full ">
+              <label className="text-lg" htmlFor="fuelType">
+                Fuel Type
+              </label>
               <select
+                id="fuelType"
                 name="fuelType"
                 value={formData.fuelType}
                 onChange={handleInputs}
-                className="border-[1px] px-3 w-full py-2 rounded-md"
+                className="border-2 border-gray-500 px-3 py-3 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
               >
                 <option value="">Select</option>
                 <option value="Petrol">Petrol</option>
@@ -88,49 +99,95 @@ const NewVehicle = () => {
                 <option value="CNG">CNG</option>
               </select>
             </section>
-            <section className="space-y-2">
-              <label>Trasmission Type</label>
+            <section className="flex flex-col w-full  ">
+              <label className="text-lg" htmlFor="transmissionType">
+                Transmission Type
+              </label>
               <select
+                id="transmissionType"
                 name="transmissionType"
                 value={formData.transmissionType}
                 onChange={handleInputs}
-                className="border-[1px] px-3 w-full py-2 rounded-md"
+                className="border-2 border-gray-500 px-3 py-3 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
               >
                 <option value="">Select</option>
                 <option value="Automatic">Automatic</option>
                 <option value="Manual">Manual</option>
               </select>
             </section>
-            <section className="col-span-2">
-              <label>Vehicle Registartion Number</label>
+            <section className="flex flex-col w-full ">
+              <label className="text-lg" htmlFor="carNo">
+                Vehicle Registration Number
+              </label>
               <input
+                id="carNo"
                 type="text"
                 name="carNo"
                 value={formData.carNo}
                 onChange={handleInputs}
                 placeholder="MH05EV4430"
-                className="w-full border-[1px] py-1.5 px-2 placeholder:text-sm placeholder:text-gray-400 rounded-md focus:outline-gray-400"
+                className="border-2 border-gray-500 px-3 py-2 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
               />
             </section>
-            <section className="col-span-2">
-              <label>Description</label>
-              <textarea
-                type="text"
-                name="description"
-                value={formData.description}
-                onChange={handleInputs}
-                placeholder="Brief information abput car ex:dimensions, technology & safety features, interior-exterior color, "
-                className="w-full border-[1px] py-1.5 px-2 placeholder:text-sm placeholder:text-gray-400 rounded-md focus:outline-gray-400 min-h-[7rem]"
+            <section className="flex flex-col w-full row-span-3">
+              <label className="text-lg" htmlFor="file_input">
+                Upload file
+              </label>
+
+              <input
+                className="hidden" // Hide the default file input visually
+                id="file_input"
+                type="file"
+                onChange={(e) => handleImageChange(e)}
               />
+
+              <label
+                htmlFor="file_input"
+                className="cursor-pointer p-2 flex items-center justify-center border-2 border-gray-500  rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
+              >
+                <div className="flex items-center mx-10">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 "
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                  <p className="ml-4">Click to upload</p>
+                </div>
+              </label>
+
+              <section className="flex items-center justify-center w-full h-full p-6 border-2 border-gray-500 border-dashed rounded-2xl mt-4">
+                {imageByteCode ? (
+                  <img
+                    className="flex h-36 object-cover"
+                    src={imageByteCode}
+                    alt="image-loading..."
+                  />
+                ) : (
+                  <div className="text-center">No Image selected</div>
+                )}
+              </section>
             </section>
-            <section className="space-y-2">
-              <label>Seating Capacity</label>
+
+            <section className="flex flex-col w-full ">
+              <label className="text-lg" htmlFor="seatingCapacity">
+                Seating Capacity
+              </label>
               <select
+                id="seatingCapacity"
                 type="number"
                 name="seatingCapacity"
                 value={formData.seatingCapacity}
                 onChange={handleInputs}
-                className="border-[1px] px-3 w-full py-2 rounded-md"
+                className="border-2 border-gray-500 px-3 py-3 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
               >
                 <option value="">Select</option>
                 <option value="5">5</option>
@@ -138,62 +195,80 @@ const NewVehicle = () => {
                 <option value="7">7</option>
               </select>
             </section>
-            <section className="space-y-2">
-              <label>Luggage Capacity</label>
+            <section className="flex flex-col w-full ">
+              <label className="text-lg" htmlFor="luggageCapacity">
+                Luggage Capacity
+              </label>
               <select
+                id="luggageCapacity"
                 type="number"
                 name="luggageCapacity"
                 value={formData.luggageCapacity}
                 onChange={handleInputs}
-                className="border-[1px] px-3 w-full py-2 rounded-md"
+                className="border-2 border-gray-500 px-3 py-3 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
               >
                 <option value="">Select</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
             </section>
-            <section className="space-y-2">
-              <label>Daily Rate</label>
+            <section className="flex flex-col w-full ">
+              <label className="text-lg" htmlFor="dailyRate">
+                Daily Rate
+              </label>
               <input
+                id="dailyRate"
                 type="number"
                 name="dailyRate"
                 value={formData.dailyRate}
                 onChange={handleInputs}
-                className="w-full border-[1px] py-1.5 px-2 placeholder:text-sm placeholder:text-gray-400 rounded-md focus:outline-gray-400"
+                className="border-2 border-gray-500 px-3 py-2 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
               />
             </section>
-            <section className="space-y-2">
-              <label>Monthly Rate</label>
+            <section className="flex flex-col w-full ">
+              <label className="text-lg" htmlFor="monthlyRate">
+                Monthly Rate
+              </label>
               <input
+                id="monthlyRate"
                 type="number"
                 name="monthlyRate"
                 value={formData.monthlyRate}
                 onChange={handleInputs}
-                className="w-full border-[1px] py-1.5 px-2 placeholder:text-sm placeholder:text-gray-400 rounded-md focus:outline-gray-400"
+                className="border-2 border-gray-500 px-3 py-2 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
               />
             </section>
-            <section>
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Upload file
-              </label>
-              <input
-                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                id="file_input"
-                type="file"
-                onChange={(e) => handleImageChange(e)}
+            <section className="flex flex-col w-full col-span-2 ">
+              <label>Description</label>
+              <textarea
+                type="text"
+                name="description"
+                value={formData.description}
+                onChange={handleInputs}
+                placeholder="Brief information abput car ex:dimensions, technology & safety features, interior-exterior color, "
+                className="border-2 h-28 border-gray-500 px-3 py-2 rounded-xl hover:ring-2 hover:ring-gray-500 focus:ring-2 ring-offset-1 focus:ring-gray-500"
               />
             </section>
-            <section>
-              {imageByteCode && (
-                <img src={imageByteCode} alt="image-loading..." />
-              )}
-            </section>
-            <section className="space-y-2 col-span-2">
+            <section className="flex items-center justify-center w-full ">
               <button
                 type="submit"
-                className="w-full bg-gray-200 rounded-lg text-sm py-2"
+                className="mt-6 flex items-center justify-center w-full border-2 bg-black text-white border-black px-3 py-4 rounded-xl hover:ring-2 hover:ring-black focus:ring-2 ring-offset-1 focus:ring-gray-500"
               >
-                ADD
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 mr-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+                ADD VEHICLE
               </button>
             </section>
           </form>

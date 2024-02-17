@@ -30,9 +30,9 @@ const AdminSidebar = ({ setAdminAuth }) => {
   };
 
   return (
-    <header className="flex flex-col h-full bg-black text-white shadow-xl shadow-black  transition-all ease-in-out duration-1000">
+    <header className="flex flex-col h-full bg-black text-white shadow-xl shadow-black transition-all ease-in-out duration-1000">
       <div
-        className="toggle_sidebar p-4 text-center cursor-pointer border-y-[1px] border-gray-500"
+        className="toggle_sidebar p-4 text-center cursor-pointer border-y-[1px] border-gray-500 hover:bg-yellow-100 hover:text-black "
         onClick={handleToggleSidebar}
       >
         <div className="w-full px-2">
@@ -46,13 +46,13 @@ const AdminSidebar = ({ setAdminAuth }) => {
       <nav
         className={`${
           !showSidebar ? "" : " w-52"
-        } flex flex-col divide-y-[1px] divide-solid divide-gray-500 transition-all duration-1000`}
+        } flex flex-col divide-y-[1px] divide-solid divide-gray-500 transition-all ease-in-out duration-1000`}
       >
         <div
           onClick={() => navigate("/admin")}
           className={` ${
-            !showSidebar ? "flex justify-center" : "ml-2"
-          } flex items-center p-4 cursor-pointer`}
+            !showSidebar ? "flex justify-center" : ""
+          } flex items-center p-4 cursor-pointer hover:bg-yellow-100 hover:text-black`}
           onMouseEnter={() => handleMouseEnter("Cab service")}
           onMouseLeave={handleMouseLeave}
         >
@@ -73,8 +73,8 @@ const AdminSidebar = ({ setAdminAuth }) => {
         <div
           onClick={() => navigate("/all-vehicles")}
           className={` ${
-            !showSidebar ? "flex justify-center" : "ml-2"
-          } flex items-center p-4 cursor-pointer`}
+            !showSidebar ? "flex justify-center " : ""
+          } flex items-center p-4 cursor-pointer hover:bg-yellow-100 hover:text-black`}
           onMouseEnter={() => handleMouseEnter("Vehicles")}
           onMouseLeave={handleMouseLeave}
         >
@@ -89,8 +89,8 @@ const AdminSidebar = ({ setAdminAuth }) => {
         <div
           onClick={() => navigate("/new-vehicle")}
           className={` ${
-            !showSidebar ? "flex justify-center" : "ml-2"
-          } flex items-center p-4 cursor-pointer`}
+            !showSidebar ? "flex justify-center" : ""
+          } flex items-center p-4 cursor-pointer hover:bg-yellow-100 hover:text-black`}
           onMouseEnter={() => handleMouseEnter("New Vehicle")}
           onMouseLeave={handleMouseLeave}
         >
@@ -105,8 +105,8 @@ const AdminSidebar = ({ setAdminAuth }) => {
         <div
           onClick={() => navigate("/rental-bookings")}
           className={` ${
-            !showSidebar ? "flex justify-center" : "ml-2"
-          } flex items-center p-4 cursor-pointer`}
+            !showSidebar ? "flex justify-center" : ""
+          } flex items-center p-4 cursor-pointer hover:bg-yellow-100 hover:text-black`}
           onMouseEnter={() => handleMouseEnter("Rental Bookings")}
           onMouseLeave={handleMouseLeave}
         >
@@ -126,8 +126,8 @@ const AdminSidebar = ({ setAdminAuth }) => {
             setAdminAuth("");
           }}
           className={` ${
-            !showSidebar ? "flex justify-center" : "ml-2"
-          } flex items-center p-4 cursor-pointer`}
+            !showSidebar ? "flex justify-center" : ""
+          } flex items-center p-4 cursor-pointer hover:bg-yellow-100 hover:text-black`}
           onMouseEnter={() => handleMouseEnter("Signout")}
           onMouseLeave={handleMouseLeave}
         >
