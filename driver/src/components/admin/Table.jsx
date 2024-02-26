@@ -57,53 +57,31 @@ const Table = ({ data, setRidersData, getData }) => {
   const [category, setCategory] = useState("");
 
   return (
-    <div className=" py-3 text-left ">
-      <div className=" py-3">
-        <select
+    <div className="m-4 text-left">
+      <div className="">
+        {/* <select
           onChange={(e) => setCategory(e.target.value)}
           className="px-2 py-3 rounded-md border-[1px] border-black"
         >
           <option value="show-all">Show all</option>
           <option value="cab-service">Cab service</option>
           <option value="car-rental">Car rental</option>
-        </select>
+        </select> */}
       </div>
-      <div className="bg-gray-100 shadow-lg shadow-gray-800 mt-3 overflow-y-auto">
-        <table className="border-[1px] border-black w-full ">
-          <thead className="border-b border-black bg-blue-600 text-black">
-            <th className="px-1 py-2 italic text-md text-left border-r border-gray-800">
-              Category
-            </th>
-            <th className="px-1 py-2 italic text-md text-left border-r border-gray-800">
-              RiderId
-            </th>
-            <th className="px-2 py-2 italic text-md text-left border-r border-gray-800">
-              Name
-            </th>
-            <th className="px-2 py-2 italic text-md text-left border-r border-gray-800">
-              Email
-            </th>
-            <th className="px-2 py-2 italic text-md text-left border-r border-gray-800">
-              Contact
-            </th>
-            <th className="px-2 py-2 italic text-md text-left border-r border-gray-800">
-              State
-            </th>
-            <th className="px-2 py-2 italic text-md text-left border-r border-gray-800">
-              City
-            </th>
-            <th className="px-1 py-2 italic text-sm text-left border-r border-gray-800">
-              Pincode
-            </th>
-            <th className="px-2 py-2 italic text-md text-left border-r border-gray-800">
-              Driving license
-            </th>
-            <th className="px-2 py-2 italic text-md text-left border-r border-gray-800">
-              Vehicle Registration
-            </th>
-            <th className="px-2 py-2 italic text-md text-left border-r border-gray-800">
-              Verification
-            </th>
+      <div className="bg-gray-100 rounded-lg overflow-hidden">
+        <table className=" w-full">
+          <thead className=" bg-black text-white divide-x-[1px] divide-gray-500 text-center">
+            <th className="px-2 py-2 italic  ">Category</th>
+            <th className="px-2 py-2 italic  ">RiderId</th>
+            <th className="px-2 py-2 italic  ">Name</th>
+            <th className="px-2 py-2 italic  ">Email</th>
+            <th className="px-2 py-2 italic  ">Contact</th>
+            <th className="px-2 py-2 italic  ">State</th>
+            <th className="px-2 py-2 italic  ">City</th>
+            <th className="px-2 py-2 italic  ">Pincode</th>
+            <th className="px-2 py-2 italic  ">Driving license</th>
+            <th className="px-2 py-2 italic  ">Vehicle Registration</th>
+            <th className="px-2 py-2 italic ">Verification</th>
           </thead>
           <tbody>
             {data
@@ -120,38 +98,48 @@ const Table = ({ data, setRidersData, getData }) => {
               })
               .map((ele, i) => {
                 return (
-                  <tr key={i} className="border-b border-black ">
-                    <td className="px-1 py-2 text-sm text-left border-r border-gray-800 capitalize">
+                  <tr
+                    key={i}
+                    className={
+                      (i % 2 === 0 ? "bg-yellow-50 " : "bg-white ") +
+                      "text-sm hover:bg-gray-200"
+                    }
+                  >
+                    <td className="p-2  text-sm text-left capitalize">
                       {ele.serviceCategory.replace("-", " ") || "---"}
                     </td>
-                    <td className="px-1 py-2 text-sm text-left border-r border-gray-800">
+                    <td className="px-1 py-2 text-sm text-left">
                       {ele.riderId || "---"}
                     </td>
-                    <td className="px-2 py-2 text-sm text-left border-r border-gray-800">
-                      {ele.name || "---"}
+                    <td className="px-2 py-2 text-sm text-left">
+                      {ele.name && ele.name.length > 20
+                        ? `${ele.name.slice(0, 20)}...`
+                        : ele.name || "---"}
                     </td>
-                    <td className="px-2 py-2 text-sm text-left border-r border-gray-800">
-                      {ele.email || "---"}
+                    <td className="px-2 py-2 text-sm text-left">
+                      {ele.email && ele.email.length > 25
+                        ? `${ele.email.slice(0, 25)}...`
+                        : ele.email || "---"}
                     </td>
-                    <td className="px-2 py-2 text-sm text-left border-r border-gray-800">
+                    <td className="px-2 py-2 text-sm text-left">
                       {ele.contact || "---"}
                     </td>
-                    <td className="px-2 py-2 text-sm text-left border-r border-gray-800">
+                    <td className="px-2 py-2 text-sm text-left">
                       {ele.state || "---"}
                     </td>
-                    <td className="px-2 py-2 text-sm text-left border-r border-gray-800">
+                    <td className="px-2 py-2 text-sm text-left">
                       {ele.city || "---"}
                     </td>
-                    <td className="px-1 py-2 text-sm text-left border-r border-gray-800">
+                    <td className="px-1 py-2 text-sm text-left">
                       {ele.pincode || "---"}
                     </td>
-                    <td className="px-2 py-2 text-sm text-left border-r border-gray-800">
+                    <td className="px-2 py-2 text-sm text-left">
                       {ele.drivingLicenseNo || "---"}
                     </td>
-                    <td className="px-2 py-2 text-sm text-left border-r border-gray-800">
+                    <td className="px-2 py-2 text-sm text-left">
                       {ele.vehicleRegistrationNo || "---"}
                     </td>
-                    <td className="px-2 py-2 text-sm text-left border-r border-gray-800">
+                    {/* <td className="px-2 py-2 text-sm text-left">
                       <button
                         onClick={() => {
                           handleAdminAccess(ele);
@@ -159,6 +147,36 @@ const Table = ({ data, setRidersData, getData }) => {
                       >
                         {`${ele.adminVerification ? "deny" : "grant"}`}
                       </button>
+                    </td> */}
+                    <td className="px-2 py-2 text-sm text-left">
+                      <label
+                        htmlFor={`toggle-${i}`}
+                        className="flex items-center justify-center cursor-pointer"
+                      >
+                        <div className="relative">
+                          <input
+                            id={`toggle-${i}`}
+                            type="checkbox"
+                            className="sr-only"
+                            checked={ele.adminVerification}
+                            onChange={() => handleAdminAccess(ele)}
+                          />
+                          <div
+                            className={`block ${
+                              ele.adminVerification
+                                ? "bg-green-500"
+                                : "bg-black"
+                            } w-14 h-8 rounded-full`}
+                          ></div>
+                          <div
+                            className={`absolute left-1 top-1 bg-white w-6 h-6 rounded-full shadow transition-transform duration-300 ease-in-out ${
+                              ele.adminVerification
+                                ? "transform translate-x-full"
+                                : ""
+                            }`}
+                          ></div>
+                        </div>
+                      </label>
                     </td>
                   </tr>
                 );

@@ -15,6 +15,7 @@ const Profile = () => {
             Authorization: `${token}`,
           },
         });
+        console.log(response);
         console.log(response.data.data);
         setUserData(response.data.data);
         // console.log(userData);
@@ -53,7 +54,7 @@ const Profile = () => {
       "profileImgUrl",
       "adminVerification",
     ];
-    const nonEditableFields = ["riderId", "serviceCategory"];
+    const nonEditableFields = ["riderId", "serviceCategory", "currentLocation"];
 
     return Object.entries(userData)
       .filter(([key]) => !excludedProperties.includes(key))
@@ -85,7 +86,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="bg-[url('https://images.pexels.com/photos/5835277/pexels-photo-5835277.jpeg?auto=compress&cs=tinysrgb&w=600')] w-full bg-cover bg-center h-full">
+    <div className="bg-[url('https://images.pexels.com/photos/5835277/pexels-photo-5835277.jpeg?auto=compress&cs=tinysrgb&w=600')] w-full bg-cover bg-center h-screen">
       <div className="w-full h-full bg-black/50">
         <div className="flex justify-center p-10 items-center h-full">
           {userData && (

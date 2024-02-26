@@ -44,7 +44,7 @@ const OtpModal = ({ setLoginStatus }) => {
       );
       toast.success("User data posted successfully");
       toast.dismiss(loadingToast);
-
+      console.log(response);
       if (!response.statusText === "OK") {
         throw new Error("Network request failed");
       } else {
@@ -54,7 +54,7 @@ const OtpModal = ({ setLoginStatus }) => {
               token: response.data.token,
               userName: loginInfo.name,
               email: loginInfo.email,
-              userId: response.data.findUser._id,
+              userId: response?.data?.findUser?._id,
             })
           );
 

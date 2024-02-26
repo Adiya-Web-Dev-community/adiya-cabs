@@ -3,11 +3,13 @@ const CityData = require("../../model/data");
 const Booking = require("../../model/customer/booking");
 const accountMiddleware = require("../../middleware/account");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
 const RentalBooking = require('../../model/bookings/rental');
 const Airport = require('../../model/bookings/airport');
 const City = require('../../model/bookings/city');
 const BikeRide = require("../../model/bookings/bikeRider")
 const OutStation = require("../../model/bookings/outStation");
+
 
 // get data
 router.get("/city-data", async (req, resp) => {
@@ -27,10 +29,10 @@ router.post("/search-data", async (req, resp) => {
 
 // Customer booking data
 router.post("/booking", accountMiddleware, async (req, resp) => {
-  console.log(req.accountId)
-  const { rideCategory } = req.body
+  const { rideCategory } = req.body;
   let Model;
   if (!rideCategory) {
+
     return resp.send('ride category is not mentioned')
   }
   else if (rideCategory === 'rental') {
@@ -91,6 +93,7 @@ router.post("/booking", accountMiddleware, async (req, resp) => {
       return resp.send(err.message);
     }
   }
+
 
 });
 
