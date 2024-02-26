@@ -4,6 +4,10 @@ const Booking = require("../../model/customer/booking");
 const accountMiddleware = require("../../middleware/account");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const RentalBooking = require('../../model/bookings/rental');
+const Airport = require('../../model/bookings/airport');
+const City = require('../../model/bookings/city');
+const BikeRide = require("../../model/bookings/bikeRider")
+const OutStation = require("../../model/bookings/outStation");
 
 // get data
 router.get("/city-data", async (req, resp) => {
@@ -31,17 +35,63 @@ router.post("/booking", accountMiddleware, async (req, resp) => {
   }
   else if (rideCategory === 'rental') {
     Model = RentalBooking
+
+    try {
+      const newBooking = await Model.create({
+        ...req.body,
+        carId: req.body.carId,
+        passengerId: req.accountId,
+      });
+      return resp.json({ success: true, msg: "Booking confirmed", newBooking });
+    } catch (err) {
+      return resp.send(err.message);
+    }
+  } else if (rideCategory === 'airport') {
+    Model = Airport
+    try {
+      const newBooking = await Model.create({
+        ...req.body,
+        passengerId: req.accountId,
+      });
+      return resp.json({ success: true, msg: "Booking confirmed", newBooking });
+    } catch (err) {
+      return resp.send(err.message);
+    }
+  } else if (rideCategory === 'city') {
+    Model = City
+    try {
+      const newBooking = await Model.create({
+        ...req.body,
+        passengerId: req.accountId,
+      });
+      return resp.json({ success: true, msg: "Booking confirmed", newBooking });
+    } catch (err) {
+      return resp.send(err.message);
+    }
+  } else if (rideCategory === 'bikeRide') {
+    Model = BikeRide
+    try {
+      const newBooking = await Model.create({
+        ...req.body,
+        passengerId: req.accountId,
+      });
+      return resp.json({ success: true, msg: "Booking confirmed", newBooking });
+    } catch (err) {
+      return resp.send(err.message);
+    }
+  } else if (rideCategory === 'outStation') {
+    Model = OutStation
+    try {
+      const newBooking = await Model.create({
+        ...req.body,
+        passengerId: req.accountId,
+      });
+      return resp.json({ success: true, msg: "Booking confirmed", newBooking });
+    } catch (err) {
+      return resp.send(err.message);
+    }
   }
-  try {
-    const newBooking = await Model.create({
-      ...req.body,
-      carId: req.body.carId,
-      passengerId: req.accountId,
-    });
-    resp.json({ success: true, msg: "Booking confirmed", newBooking });
-  } catch (err) {
-    resp.send(err.message);
-  }
+
 });
 
 // get all bookings
