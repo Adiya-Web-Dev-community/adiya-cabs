@@ -233,7 +233,7 @@ if(originRef.current?.placeholder&&destinationRef.current?.placeholder){
      
 
      
-    <div className="space-x-2.5 flex text-white p-4  rounded-md  ">
+    <div className="space-x-2.5 flex text-white p-4  rounded-md">
       {
         buttonData.filter((el)=>isPickupActive?category===el.value:true).map((el, i) =>
           <button

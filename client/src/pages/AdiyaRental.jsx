@@ -8,10 +8,11 @@ import Info from "../components/rentals/Info";
 const AdiyaRental = () => {
   return (
     <main>
-<section className="w-full flex flex-col xl:flex-row mb-6 md:pt-6 bg-gray-50 justify-center md:px-8 px-6 items-center">
+<section className="w-full flex flex-col xl:flex-row mb-6 md:pt-6 bg-gray-50 justify-center md:px-8 lg:p-20 px-6 items-center  xl:px-18">
   <RentalsSubscription />
-  <img src={rentalImg} className="w-[310px] md:w-[40rem] lg:w-[40rem] xl:w-[45rem] right-0 top-0" />
+  <img src={rentalImg} className="w-[380px] md:w-[40rem] lg:w-[44rem] xl:w-[44rem] xl:right-12 right-0 top-0" />
 </section>
+
 
       <section className="md:px-10">
         <TrendingOffers />

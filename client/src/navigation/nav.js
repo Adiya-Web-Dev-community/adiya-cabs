@@ -318,28 +318,8 @@ const navigationData = [
         icon: GiCastle,
       },
       {
-        path: "/about-us/mahindra-logistics",
-        name: "Mahindra Logistics",
-        icon: GiModernCity,
-      },
-      {
         path: "/about-us/our-services",
         name: "Our Services",
-        icon: LiaCitySolid,
-      },
-      {
-        path: "/about-us/our-investors",
-        name: "Our Investors",
-        icon: GiCastle,
-      },
-      {
-        path: "/media-centre/press-releases",
-        name: "Media Centere",
-        icon: LiaCitySolid,
-      },
-      {
-        path: "/media-centre/press-releases",
-        name: "Media Centere",
         icon: LiaCitySolid,
       },
     ],

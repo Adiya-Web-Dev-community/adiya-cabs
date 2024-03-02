@@ -55,7 +55,7 @@ const RentalsSubscription = () => {
   console.log("DROPDATE", dateObj2);
   return (
     <section className=" self-start  mt-16 justify-center">
-       <div className="bg-white ">
+       <div className="bg-white xl:p-16">
         <nav className="flex w-full md:w-full">
           <button
             onClick={() => handleSubsCriptionType("daily")}
@@ -197,7 +197,7 @@ const RentalsSubscription = () => {
             />
           </div>
         </div>
-        <h2 className="md:text-5xl lg:text-6xl lg:justify-center text-lg text-gray-600 mt-14 font-semibold justify-center font-montserrat ">
+        <h2 className="md:text-5xl lg:text-5xl lg:justify-center text-lg text-gray-600 mt-14 font-semibold justify-center font-montserrat ">
           Our vehicles are meticulously maintained to guarantee a comfortable
           journey,
         </h2>
