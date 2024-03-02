@@ -6,17 +6,17 @@ import { BsChevronDown } from 'react-icons/bs'
 const RVFAQs = () => {
     const [activeFAQ,setActiveFaq] = useState('')
   return (
-    <div className='my-20'>
+    <div className='my-20 mx-7 md:px-0'>
            <h2 className='mt-8 font-semibold font-montserrat text-4xl text-gray-600'>FAQs of Our clients</h2>
            <p className='mb-8 font-montserrat text-md'>Frequently Asked Questions Of Our Client's</p>
            <Button classname={'w-[10rem] m-auto shadow-lg bg-blue-400 border text-white hover:bg-blue-500 text-sm'} >View All</Button>
 
-        <div className='flex justify-between'>
-        <div className='h-96 w-96 mx-20'>
+        <div className='flex justify-center items-center flex-col lg:flex-row'>
+        <div className='md:h-96 md:w-96 w-76 h-46 mx-20'>
          <img src={mobileSms} />
         </div>
 
-        <ul className='x-12 w-[40rem]'>
+        <ul className=' w-full md:w-[40rem] justify-center px-10'>
         {rentalVehicleFAQs.map((el)=>
              <li className='duration-200'>       
                 <h3 onClick={()=>setActiveFaq(prev=>prev=== el.question?'':el.question)} 

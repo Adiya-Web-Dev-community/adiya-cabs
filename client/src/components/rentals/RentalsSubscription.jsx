@@ -54,9 +54,9 @@ const RentalsSubscription = () => {
   console.log("PICKUPDATE:", dateObj);
   console.log("DROPDATE", dateObj2);
   return (
-    <section className=" w-[47rem] p-4 self-start   mt-16  ">
-      <div className="bg-white">
-        <nav className="inline-block  ">
+    <section className=" self-start  mt-16 justify-center">
+       <div className="bg-white ">
+        <nav className="flex w-full md:w-full">
           <button
             onClick={() => handleSubsCriptionType("daily")}
             className={`p-3 px-8  
@@ -80,81 +80,91 @@ const RentalsSubscription = () => {
             Monthly Subscription
           </button>
         </nav>
-        <div className="w-full shadow-lg flex justify-between relative">
-          <div className="flex py-2 text-start font-semibold  ">
-            <div
-              className={`p-3  w-44 mx-2 rounded-lg cursor-pointer border  hover:border-gray-300
-        ${active === "Location" ? "border-gray-300" : "border-transparent"}
-        `}
-              onClick={() => handlePickupDate("Location")}
-            >
-              <h2 className="text-lg flex p-0 text-gray-600">
-                {" "}
-                Location{" "}
-                <MdOutlineKeyboardArrowDown
-                  className={`cursor-pointer duration-200 mx-2 mt-1 ${
-                    active === "Location" ? "-rotate-180" : ""
-                  }`}
-                />
-              </h2>
-              <p className="text-sm text-gray-400"> {selectedLocation}</p>
+        <div className="w-full md:w-full shadow-lg flex justify-between  lg:justify-between xl:w-[40rem]">
+          <div className="md:py-2 py-0 text-start font-semibold md:flex ">
+            <div className="flex lg:gap-36 xl:gap-0">
+              <div
+                className={`p-3 w-full  rounded-lg cursor-pointer border hover:border-gray-300 ${
+                  active === "Location"
+                    ? "border-gray-300"
+                    : "border-transparent"
+                }`}
+                onClick={() => handlePickupDate("Location")}
+              >
+                <h2 className="text-lg flex p-0 text-gray-600">
+                  {" "}
+                  Location
+                  <MdOutlineKeyboardArrowDown
+                    className={`cursor-pointer duration-200 mx-2 mt-1 ${
+                      active === "Location" ? "-rotate-180" : ""
+                    }`}
+                  />{" "}
+                </h2>
+                <p className="text-sm text-gray-400"> {selectedLocation}</p>
+              </div>
+
+              <div
+                className={`p-3 w-full  rounded-lg cursor-pointer border hover:border-gray-300 ${
+                  active === "Pick-Up Date"
+                    ? "border-gray-300"
+                    : "border-transparent"
+                }`}
+                onClick={() => handlePickupDate("Pick-Up Date")}
+              >
+                <h2 className="text-lg flex p-0 text-gray-600 ">
+                  {" "}
+                  Pick-Up Date{" "}
+                  <MdOutlineKeyboardArrowDown
+                    className={`cursor-pointer duration-200 mx-2 mt-1 ${
+                      active === "Pick-Up Date" ? "-rotate-180" : ""
+                    }`}
+                  />{" "}
+                </h2>
+                <p className="text-sm text-gray-400 font-montserrat">
+                  {" "}
+                  {new Date(dateObj.date).toDateString()} <br /> {dateObj.time}{" "}
+                </p>
+              </div>
             </div>
-            <div
-              className={`p-3  w-44 mx-2 rounded-lg cursor-pointer border  hover:border-gray-300
-        ${active === "Pick-Up Date" ? "border-gray-300" : "border-transparent"}
-        `}
-              onClick={() => handlePickupDate("Pick-Up Date")}
-            >
-              <h2 className="text-lg flex p-0 text-gray-600 ">
-                {" "}
-                Pick-Up Date{" "}
-                <MdOutlineKeyboardArrowDown
-                  className={`cursor-pointer duration-200 mx-2 mt-1 ${
-                    active === "Pick-Up Date" ? "-rotate-180" : ""
-                  }`}
-                />
-              </h2>
-              <p className="text-sm text-gray-400 font-montserrat">
-                {new Date(dateObj.date).toDateString()}
-                <br /> {dateObj.time}
-              </p>
-            </div>
-            <div
-              className={`p-3 ${
-                typeOfSubscription === "monthly" ? "hidden" : ""
-              }  w-44 mx-2 rounded-lg cursor-pointer border  hover:border-gray-300
-        ${active === "Return Date" ? "border-gray-300" : "border-transparent"}
-        `}
-              onClick={() => handlePickupDate("Return Date")}
-            >
-              <h2 className="text-lg flex p-0 text-gray-600">
-                {" "}
-                Return Date{" "}
-                <MdOutlineKeyboardArrowDown
-                  className={`cursor-pointer duration-200 mx-2 mt-1 ${
-                    active === "Return Date" ? "-rotate-180" : ""
-                  }`}
-                />
-              </h2>
-              <p className="text-sm text-gray-400 font-montserrat">
-                {new Date(dateObj2.date).toDateString()}
-                <br /> {dateObj2.time}
-              </p>
+            <div className="flex lg:gap-36 xl:gap-0">
+              <div
+                className={`p-3 ${
+                  typeOfSubscription === "monthly" ? "hidden" : ""
+                } w-full mx-2 rounded-lg cursor-pointer border hover:border-gray-300 ${
+                  active === "Return Date"
+                    ? "border-gray-300"
+                    : "border-transparent"
+                }`}
+                onClick={() => handlePickupDate("Return Date")}
+              >
+                <h2 className="text-lg flex p-0 text-gray-600 lg:ml-22 xl:ml-0">
+                  {" "}
+                  Return Date
+                  <MdOutlineKeyboardArrowDown
+                    className={`cursor-pointer duration-200 mx-2 mt-1 ${
+                      active === "Return Date" ? "-rotate-180" : ""
+                    }`}
+                  />{" "}
+                </h2>
+                <p className="text-sm text-gray-400 font-montserrat lg:ml-22 xl:ml-0">
+                  {" "}
+                  {new Date(dateObj2.date).toDateString()} <br />{" "}
+                  {dateObj2.time}{" "}
+                </p>
+              </div>
+              <div className="h-[inherit] flex py-2 items-center  p-4 ">
+                <button
+                  className="bg-red-500 p-[6px] px-8 text-md text-white rounded-[40px]  cursor-pointer"
+                  onClick={() => {
+                    handleSearch();
+                    navigate("/rentals-booking");
+                  }}
+                >
+                  Search
+                </button>
+              </div>
             </div>
           </div>
-
-          <div className="h-[inherit] flex py-2 items-center  p-4 ">
-            <button
-              className="bg-red-500 p-[6px] px-8 text-md text-white rounded-[40px]  cursor-pointer"
-              onClick={() => {
-                handleSearch();
-                navigate("/rentals-booking");
-              }}
-            >
-              Search
-            </button>
-          </div>
-
           <div
             className={`w-full shadow-lg  mt-5 px-8 py-3 absolute z-[2] top-full left-0 bg-white ${
               active === "Location" ? "block" : "hidden"
@@ -187,15 +197,15 @@ const RentalsSubscription = () => {
             />
           </div>
         </div>
-
-        <h2 className="text-5xl text-gray-600 mt-14 pr-12 font-semibold  font-montserrat ">
+        <h2 className="md:text-5xl lg:text-6xl lg:justify-center text-lg text-gray-600 mt-14 font-semibold justify-center font-montserrat ">
           Our vehicles are meticulously maintained to guarantee a comfortable
           journey,
         </h2>
-        <p className="text-xl mt-6 text-gray-400 font-montserrat">
+        <p className="text-lg mt-6 text-gray-400 font-montserrat">
           Book your rental vehicle for a seamless travel experience!
         </p>
-      </div>
+      </div> 
+      
     </section>
   );
 };

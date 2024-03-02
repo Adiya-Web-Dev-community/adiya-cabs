@@ -3,7 +3,7 @@ import bikeRide from '../assets/Home/bikeride.jpg'
 export const banner = {
   ["Outstation Ride"]: {
     name:'outstation',
-    img: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
+     img:"https://media.istockphoto.com/id/1561068113/photo/3d-rendering-of-a-brand-less-generic-concept-car.jpg?s=612x612&w=0&k=20&c=UIGhTp6UivwK97ncdMVDckHR-ii8Um10owuR5lpYFIc="
   },
   ["Airport Ride"]: {
     name:'airport',

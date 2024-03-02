@@ -7,6 +7,7 @@ import Booking from "../pages/Booking";
 import AdiyaRentals from "../pages/AdiyaRental";
 import RentalsBooking from "../pages/RentalsBooking";
 import BookingSummary from "../pages/RentalsBooking/BookingSummary";
+import offers from "../components/Offers/offer";
 
 const routes = [
   {
@@ -29,6 +30,11 @@ const routes = [
     path: "/rentals/booking-summary",
     name: "Rentals Booking Summary",
     element: BookingSummary,
+  },
+  {
+    path: "/offers",
+    name: "offer",
+    element: offers,
   },
 ];
 

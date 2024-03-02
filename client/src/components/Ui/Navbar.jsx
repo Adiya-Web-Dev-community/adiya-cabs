@@ -21,20 +21,20 @@ const Navbar = ({ navArr }) => {
     return type === "child" ? (
       <Link
         to={el.path}
-        className="px-5 py-3 hover:bg-slate-100 hover:text-red-500 flex items-center justify-between rounded"
+        className="px-3 py-3  hover:bg-slate-100 hover:text-red-500 flex items-center justify-between rounded"
       >
         <span className="flex">
-          <el.icon className="mr-1" />
+          <el.icon className="mr-1"  />
           {el.name}
         </span>
       </Link>
     ) : (
       <Link
         to={el.path}
-        className="relative group px-5 py-3 border-b-2 border-b-transparent hover:border-b-red-500 text-base cursor-pointer duration-200"
+        className="relative group px-2 py-3 md:py-3 md:text-center border-b-transparent hover:border-b-red-500 text-base cursor-pointer duration-200"
       >
         <span className="flex items-center group-hover:text-red-500 duration-200 ">
-          <el.icon />
+          <el.icon  className="md:hidden lg:hidden"/>
           {el.name}
         </span>
       </Link>
@@ -45,7 +45,7 @@ const Navbar = ({ navArr }) => {
     return (
       <div>
         {type === "parent" ? (
-          <div className="relative group px-5 py-3  border-b-2 border-b-transparent  hover:border-b-red-500  text-base cursor-pointer duration-200">
+          <div className="relative group px-3 py-3  border-b-2 border-b-transparent  hover:border-b-red-500  text-base cursor-pointer duration-200">
             <span className="flex items-center group-hover:text-red-500 duration-200">
               <el.icon />
               <span>{el.name}</span>
@@ -53,7 +53,7 @@ const Navbar = ({ navArr }) => {
             </span>
 
             {
-              <ul className="absolute top-[40px] group-hover:top-[49.6px] duration-100 invisible group-hover:visible opacity-0 group-hover:opacity-100 left-0 rounded text-sm bg-white  shadow min-w-[100%] w-max">
+              <ul className="absolute top-[40px] group-hover:top-[39.6px] duration-100 invisible group-hover:visible opacity-0 group-hover:opacity-100 left-0 rounded text-sm bg-white  shadow min-w-[100%] w-max">
                 {el.items.map((el) =>
                   el.items ? navGroup(el, "child") : navItems(el, "child")
                 )}
@@ -101,19 +101,19 @@ const Navbar = ({ navArr }) => {
 
   return (
     <nav
-      className={`flex justify-end items-center font-montserrat z-20  px-5 md:px-20 sticky sm:fixed top-0  h-[49.6px] w-full select-none text-black ${
+      className={`flex justify-end items-center font-montserrat z-20  px-5 md:px-38 sticky sm:fixed top-0  h-fit w-full select-none text-black ${
         navBG || bookingStatus === "in-process"
           ? "bg-white/95 shadow"
           : "bg-transparent"
       }`}
     >
-      <div className="flex">
+      <div className="hidden lg:flex text-center">
         {navArr.map((el) =>
           el.items ? navGroup(el, "parent") : navItems(el, "parent")
         )}
       </div>
 
-      <section className="group relative block ">
+      <section className="group relative block md:flex lg:hidden py-3">
         <AiOutlineMenuFold
           onClick={() => setOpenSidebar(true)}
           className="text-2xl ml-5 cursor-pointer text-red-500"

@@ -16,7 +16,7 @@ const BokkingCart = ({ booking }) => {
 
 
   return (
-    <section className={`bg-white shadow-2xl  rounded-md sm:rounded text-sm    w-[27.2rem]  h-[32rem] mx-3  ${ booking ? 'z-10' : '' }`}>
+    <section className={`bg-white shadow-2xl  rounded-md sm:rounded text-sm items-center md:w-[24.5rem] w-full h-[34rem] my-3  ${ booking ? 'z-10' : '' }`}>
       <BookingProcess booking={booking}>
         {(booking?<PickUp/>:<PickUp button/>)}
       </BookingProcess>
@@ -24,6 +24,6 @@ const BokkingCart = ({ booking }) => {
   )
 }
 
-export default BokkingCart
+export default BokkingCart;
 
 

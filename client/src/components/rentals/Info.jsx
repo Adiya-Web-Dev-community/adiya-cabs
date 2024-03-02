@@ -4,9 +4,9 @@ const Info = () => {
   return (
     <div>
 
-        <h3  className='text-center text-5xl text-black/50 font-montserrat '>Why Renting a Vehicle with Adiya Cab </h3>
+        <h3  className='text-center md:text-5xl text-1xl text-black/50 font-montserrat '>Why Renting a Vehicle with Adiya Cab </h3>
       
-        <div className='grid grid-cols-2 mt-8'>
+        <div className='grid md:grid-cols-2 grid-cols-1 mt-8'>
          {
             adiyaCabRentalBenefits.map((el)=>
              <div className='p-4'>

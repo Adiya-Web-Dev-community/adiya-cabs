@@ -344,7 +344,7 @@ const navigationData = [
       },
     ],
   },
-  { path: "knnfjvn", name: "Offers", icon: MdOutlineLocalOffer, type: "both" },
+  { path: "/offers", name: "Offers", icon: MdOutlineLocalOffer, type: "both" },
   {
     path: "/collobrate-with-us",
     name: "Partners With Us",

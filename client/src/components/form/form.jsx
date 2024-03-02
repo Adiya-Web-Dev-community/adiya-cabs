@@ -51,7 +51,7 @@ const Input = ({ className, onChange, value, name, type, required, label,animati
 
 
 const Button = ({ onClick, children,classname,disabeld }) => {
-  return <button onClick={onClick } disabled={disabeld} className={`transition w-64 p-2 rounded ease-in-out  delay-150  active:-translate-y-1 active:shadow-xl   duration-300 ${disabeld?'cursor-no-drop bg-red-200':' hover:scale-110 '} ${classname}`}>
+  return <button onClick={onClick } disabled={disabeld} className={`transition w-full p-2 rounded ease-in-out  delay-150  active:-translate-y-1 active:shadow-xl   duration-300 ${disabeld?'cursor-no-drop bg-red-200':' hover:scale-110 '} ${classname}`}>
     {children}
   </button>
 }

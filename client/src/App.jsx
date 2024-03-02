@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 const App = () => {
   // Replace with your actual latitude and longitude values
 
+  
   return (
     <Provider store={store}>
       <BrowserRouter>

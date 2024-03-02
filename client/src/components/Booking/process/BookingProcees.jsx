@@ -240,7 +240,7 @@ if(originRef.current?.placeholder&&destinationRef.current?.placeholder){
             key={i}
             onClick={() => disPatch(changeCategory(el.value))}
             className={` flex border 
-               px-3 pt-[5px]
+               px-1 md:px-3 pt-[5px] py-2
               pb-1.5 rounded duration-200 ${ (!isPickupActive?category===el.value:false) ? "bg-red-500 text-white" : ""}
               ${(isPickupActive?true:false)?'w-full bg-white text-black  justify-between items-center text-lg '
               :'border-red-500  text-red-500  hover:bg-red-500 hover:text-white items-center flex-col'}
