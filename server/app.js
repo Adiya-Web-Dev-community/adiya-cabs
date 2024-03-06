@@ -20,11 +20,11 @@ app.use(require("./route/customer/enquiry"));
 app.use(require("./route/customer/partner"));
 app.use(require("./route/customer/cars"));
 
-// driver routes
+// // driver routes
 app.use(require("./route/rider/account"));
 app.use(require("./route/rider/booking"));
 
-// Admin routes
+// // Admin routes
 app.use(require("./route/admin/account"));
 app.use(require("./route/admin/dailyOffers"))
 app.use(require("./route/admin/bankOffers"))
