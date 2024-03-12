@@ -22,7 +22,7 @@ const Info = () => {
             backgroundImage:
               "url(https://blog.hubspot.com/hs-fs/hubfs/good%20car%20salesperson%20closing%20a%20deal%20with%20a%20car%20shopper.jpg?width=893&height=600&name=good%20car%20salesperson%20closing%20a%20deal%20with%20a%20car%20shopper.jpg)",
           }}
-          className="w-[350px] h-[175px] md:w-[700px] md:h-[350px] bg-cover bg-center rounded-xl"
+          className="w-full h-[175px] md:w-[700px] md:h-[350px] bg-cover bg-center rounded-xl"
         ></div>
       </section>
 
@@ -32,7 +32,7 @@ const Info = () => {
             backgroundImage:
               "url(https://www.ezidrive.in/blog/wp-content/uploads/2019/06/blog-2.jpg)",
           }}
-          className="w-[350px] h-[175px] md:w-[700px] md:h-[350px] bg-cover bg-center rounded-xl"
+          className="w-full h-[175px] md:w-[700px] md:h-[350px] bg-cover bg-center rounded-xl"
         ></div>
         <div className="w-auto md:w-[700px] mt-2.5 lg:mt-0">
           <h1 className="text-xl md:text-3xl">
@@ -73,7 +73,7 @@ const Info = () => {
             backgroundImage:
               "url(https://images.hertz.com/rentacar/content/US/product_services/one-way-car-rentals.jpg)",
           }}
-          className="w-[350px] h-[175px] md:w-[700px] md:h-[350px] bg-cover bg-center rounded-xl"
+          className="w-full h-[175px] md:w-[700px] md:h-[350px] bg-cover bg-center rounded-xl"
         ></div>
       </section>
     </main>

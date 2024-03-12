@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const CityData = require("../../model/data");
+const Booking = require("../../model/bookings/rental");
 const accountMiddleware = require("../../middleware/account");
 const Rider = require("../../model/rider/account");
 const socketIo = require("socket.io");

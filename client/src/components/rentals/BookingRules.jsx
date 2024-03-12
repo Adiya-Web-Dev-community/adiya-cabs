@@ -12,16 +12,16 @@ import mailImg  from'../../assets/rentals/Offers/check-mail.png'
 
 const BookingRules = () => {
   return (
-    <div className=' bg-white mt-4'>
-        <h2  className='text-center text-5xl text-black/50 font-montserrat '>How To Reserve a Car Online </h2>
+    <div className=' bg-white md:flex-row flex-col'>
+        <h2  className='text-center  text-1xl md:text-5xl text-black/50 font-montserrat '>How To Reserve a Car Online </h2>
         <p className='text-gray-600 text-md text-center font-montserrat '>Reserve a car online in India through AdiyaCab with these four easy steps:</p>
       
-      <div className=' h-[fit-content] mx-auto flex justify-center mt-5' >
-        <div className='w-[40rem]  '>
+      <div className=' h-[fit-content]  flex justify-center mt-5 lg:flex-row flex-col' >
+        <div className='md:w-full w-300px mx-3 '>
             <img src={rulesImg}/>
 
         </div>
-         <ul className='text-gray-800 text-md text-start font-montserrat p-4 w-[40rem]'>
+         <ul className='text-gray-800 text-md text-start font-montserrat p-4 w-full mt-32'>
      
 
             <div className="border-[10px] p-2 flex  h-24 w-full  border-r-transparent rounded-3xl bg-white rounded-r-none relative z-[1] border-blue-300
@@ -34,15 +34,15 @@ const BookingRules = () => {
             <img src={carImg} className='absolute top-[-135%] right-0'/>          
             
             </div>
-            <div className='border-[10px] flex p-2 pt-1  h-24 w-full border-l-transparent rounded-3xl  rounded-l-none mt-[-14.5px] ml-[2px] border-blue-300'>
+            <div className='border-[10px] flex p-2 pt-1  h-30 w-full border-l-transparent rounded-3xl  rounded-l-none mt-[-14.5px] ml-[2px] border-blue-300'>
             <p>Browse through available car options and choose the one that suits your needs</p>
             <img src={carCollection} className='w-12 h-12 inline-block' />          
             </div>
-            <div className='border-[10px] flex  p-2 h-24 w-full border-r-transparent rounded-3xl bg-white rounded-r-none mt-[-14.5px] border-blue-300 relative z-[1]'>
+            <div className='border-[10px] flex  p-2 h-30 w-full border-r-transparent rounded-3xl bg-white rounded-r-none mt-[-14.5px] border-blue-300 relative z-[1]'>
             <img src={needAssessmentImg} className='w-12 h-12 inline-block' />          
             <p>Fill in the necessary personal and payment details.</p>
             </div>
-            <div className="border-[10px] relative flex p-2  h-24 w-full border-l-transparent rounded-3xl  ml-[2px]
+            <div className="border-[10px] relative flex p-2  h-30 w-full border-l-transparent rounded-3xl  ml-[2px]
             rounded-l-none mt-[-14.5px] border-blue-300 after:content:'*' after:absolute after:border-[10px] after:left-[-10px] after:top-[94%] after:rounded-full">
             <p>Confirm your booking and receive a confirmation email with the reservation details.</p>
             <img src={mailImg} className='w-12 h-12 inline-block'/>

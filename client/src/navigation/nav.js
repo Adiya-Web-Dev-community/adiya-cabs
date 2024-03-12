@@ -313,38 +313,18 @@ const navigationData = [
     type: "both",
     items: [
       {
-        path: "/about-us/our-journey",
+        path: "/ourservices/ourjourney",
         name: "About our Journey",
         icon: GiCastle,
       },
       {
-        path: "/about-us/mahindra-logistics",
-        name: "Mahindra Logistics",
-        icon: GiModernCity,
-      },
-      {
-        path: "/about-us/our-services",
+        path: "/ourservices/service",
         name: "Our Services",
-        icon: LiaCitySolid,
-      },
-      {
-        path: "/about-us/our-investors",
-        name: "Our Investors",
-        icon: GiCastle,
-      },
-      {
-        path: "/media-centre/press-releases",
-        name: "Media Centere",
-        icon: LiaCitySolid,
-      },
-      {
-        path: "/media-centre/press-releases",
-        name: "Media Centere",
         icon: LiaCitySolid,
       },
     ],
   },
-  { path: "knnfjvn", name: "Offers", icon: MdOutlineLocalOffer, type: "both" },
+  { path: "/offers", name: "Offers", icon: MdOutlineLocalOffer, type: "both" },
   {
     path: "/collobrate-with-us",
     name: "Partners With Us",

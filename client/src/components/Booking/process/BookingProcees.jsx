@@ -11,6 +11,8 @@ import { ToastContainer } from 'react-toastify'
 import { handleBookingNavi,addPickupLocation,addDestination,addDistanceDuration } from '../../../store/bookingSlice'
 import axiosInstance from '../../../api/axiosInstance'
 import { toast } from "react-toastify";
+
+
 import {
   useJsApiLoader,
   GoogleMap,
@@ -23,14 +25,17 @@ import { FaSpinner } from "react-icons/fa";
 import DistanceCart from '../cart/DistanceCart'
 import Spinner from '../../Ui/Spinner'
 import axios from 'axios'
-
-
+import { setLocationDetails,setPayableAmount } from '../../../store/rental' 
+import { loadStripe } from "@stripe/stripe-js";
 
 function BookingProcess({ booking, children }) {
+  // console.log(bo)
 
-  const disPatch = useDispatch()
+ 
   const categoryName = useSelector(el => el.bookingSlice.categoryName)
+  console.log(categoryName);
   const category = useSelector(el => el.bookingSlice.bookingRideData.category)
+  console.log(category);
   const bookingObj = useSelector(el => el.bookingSlice.bookingRideData)
   const  {  pickupLocationInputVal,
   destinationLocationInputVal} =  useSelector(el => el.bookingSlice)
@@ -41,6 +46,7 @@ function BookingProcess({ booking, children }) {
   const [isActive,setActive] = useState(false)
   const [isDisabled,setDisabeld] = useState(true)
   const [isPickupActive,setPickupActive] = useState(false)
+ 
 
 
 
@@ -54,12 +60,54 @@ function BookingProcess({ booking, children }) {
   })
 
   const navigate = useNavigate()
+  const disPatch = useDispatch()
 
-  const handleSubmit = async (e) => {
-    setPickupActive(true)
+
+
+  // const handleSubmit = async () => {
+  //   setPickupActive(true);
+  //   try {
+  //     const response = await axiosInstance.post("/payment")
+  //     console.log(response);
+  //     if (response?.data?.url) {
+  //       window.location.href = response.data.url;
+  //     }
+  //   } catch (error) {
+  //     console.error("Error processing payment:", error);
+  //   }
+
+  
+  // }
+  const handleSubmit = async () => {
+    try{
+    const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHED_KEY);
+    const response = await axiosInstance.post("/payment", {
+      amount: 200 * 7,
+    });
+    if (response?.data?.url) {
+      window.location.href = response?.data?.url;
+    }
+    const session = await response.json();
+    const result = stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      console.log(result.error);
+    }
+  }
+  catch(error){
+    console.log("this is an error",error)
+  }
   };
 
+  
 
+
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyA312x40OgaxL1ifZyztNEw1vwkMOxQPx8",
+    libraries: ["places"],
+  });
 
   const buttonData = [
     { name: "Outstation", value: categoryName.outstation, icon: AiFillCar,quots:'We can arrange a comfortable trip for your outstation journey. ' },
@@ -126,7 +174,7 @@ function BookingProcess({ booking, children }) {
         const response = await axios.get(
           `https://nominatim.openstreetmap.org/reverse?lat=${lat()}&lon=${lng()}&format=json`
         );
-
+        console.log(response);
         if(response.status===200){
           setInputLoader(prev=>({...prev,pickupLocation:false}))
           const { display_name,address } = response.data;
@@ -190,14 +238,6 @@ function BookingProcess({ booking, children }) {
   }
 
 
-
-
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: import.meta.env.VITE_GOOGALE_MAP_TOKEN,
-    libraries: ["places"]
-  });
-
-
 useEffect(()=>{
 if (isLoaded) {
   setDisabeld(false)
@@ -206,13 +246,26 @@ if(originRef.current?.placeholder&&destinationRef.current?.placeholder){
   originRef.current.value = pickupLocationInputVal
   destinationRef.current.value = destinationLocationInputVal
 }
+console.log(pickupLocationInputVal,destinationLocationInputVal);
 },[isLoaded,originRef.current,destinationRef.current])
 
 
 
+
+window.addEventListener('load', function() {
+ console.log("page loaded")
+ navigate("/")
+});
+
+
+
+
+
   return <>
+  
+    <div className='flex-col flex-wrap flex mr-90'>
   {isDisabled|| <GoogleMap center={center} zoom={10}
-    mapContainerStyle={{ width: "100%", height: "100%", display: 'none' }}
+     mapContainerStyle={{ width: "100%", height: "100%" }}
     options={{
       zoonControl: false,
       streetViewControl: false,
@@ -233,14 +286,15 @@ if(originRef.current?.placeholder&&destinationRef.current?.placeholder){
      
 
      
-    <div className="space-x-2.5 flex text-white p-4  rounded-md  ">
+    <div className="space-x-2.5 flex text-white p-4  rounded-md">
+    
       {
         buttonData.filter((el)=>isPickupActive?category===el.value:true).map((el, i) =>
           <button
             key={i}
             onClick={() => disPatch(changeCategory(el.value))}
-            className={` flex border 
-               px-3 pt-[5px]
+            className={` flex border
+                md:px-3 pt-[5px] py-2 
               pb-1.5 rounded duration-200 ${ (!isPickupActive?category===el.value:false) ? "bg-red-500 text-white" : ""}
               ${(isPickupActive?true:false)?'w-full bg-white text-black  justify-between items-center text-lg '
               :'border-red-500  text-red-500  hover:bg-red-500 hover:text-white items-center flex-col'}
@@ -254,15 +308,15 @@ if(originRef.current?.placeholder&&destinationRef.current?.placeholder){
       }
 
     </div>
+  
 
-
-    <div className="px-5 pb-5 flex flex-col gap-2 ">
+    <div className="px-9 pb-5 flex flex-col gap-2">
 
       <h3 className="text-base mb ">Book ride!</h3>
       <h4 className="text-sm mt-3 ">Select Pickup Location and Destination</h4>
 
 
-      <div className="flex-col   h-[15rem]  flex justify-center items-center ">
+      <div className="flex-col   flex justify-center items-center ">
 
 
         {isDisabled?<Spinner/>:<div className='w-full'>
@@ -271,9 +325,9 @@ if(originRef.current?.placeholder&&destinationRef.current?.placeholder){
           <Autocomplete
             onPlaceChanged={onPlaceChanged} onLoad={onLoad}
           >
-          <input ref={originRef} type="text" placeholder={'Pickup Location'} className='w-full outline-none my-2  text-md  rounded border-gray-400 p-2 border' />
+          <input ref={originRef} type="text" disabled={booking} placeholder={'Pickup Location'} className='w-[15rem] md:w-full outline-none my-2  text-md  rounded border-gray-400 p-2 border' />
           </Autocomplete>
-          { inputLoader.pickupLocation&&<div className='absolute px-1 top-0 left-0 h-full w-full bg-white/20 flex justify-end items-center'>
+          { inputLoader.pickupLocation&&<div className='absolute px-1 top-0 left-0 h-full w-full md: bg-white/20 flex justify-end items-center'>
              <Spinner  small/>
           </div>}
         </div>
@@ -282,7 +336,7 @@ if(originRef.current?.placeholder&&destinationRef.current?.placeholder){
           <Autocomplete
             onPlaceChanged={onPlaceChanged2} onLoad={onLoad2}
           >
-            <input ref={destinationRef} type="text" placeholder={'Distination'} className='w-full outline-none my-2  text-md  rounded border-gray-400 p-2 border' />
+            <input ref={destinationRef} type="text" disabled={booking} placeholder={'Distination'} className='w-[15rem] md:w-full outline-none my-2  text-md  rounded border-gray-400 p-2 border' />
           </Autocomplete>
           {inputLoader.destination&&<div className='absolute px-1 top-0 left-0 h-full w-full bg-white/20 flex justify-end items-center'>
              <Spinner small/>
@@ -293,18 +347,18 @@ if(originRef.current?.placeholder&&destinationRef.current?.placeholder){
 
 
 
-        <div className='h-32 w-full flex justify-center items-center'>
+        <div className=' w-300px md:w-full flex justify-center items-center'>
           {isActive?<Spinner  />: <DistanceCart/>}
         </div>
         
       </div>
 
-      <div className="p-4 w-full grid grid-cols-1 gap-2">
+      <div className="w-[15rem] md:w-full grid grid-cols-1 gap-2">
 
         {booking ?
           <button
             onClick={() => handleSubmit()}
-            className="bg-blue-400   text-center text-md hover:bg-blue-500 pt-[9px] pb-2.5 rounded-md text-white mt-5 duration-200"
+            className="bg-blue-400  text-center text-md hover:bg-blue-500 md:pt-[9px] pb-2.5 rounded-md text-white mt-5 duration-200"
           >
             Pickup Now
           </button>
@@ -319,10 +373,18 @@ if(originRef.current?.placeholder&&destinationRef.current?.placeholder){
       </div>
 
     </div>
-    
-
+    </div>
   </>
 
 }
 
 export default memo(BookingProcess)
+
+
+
+
+
+
+
+
+

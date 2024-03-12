@@ -15,16 +15,17 @@ const Booking = () => {
   return (<section className=" min-h-[fit-content] max-h-max  mb-4  mt-8" >
            <div className=" h-full w-full p-2 mb-[1rem] " >
            
-            <div className="flex w-full my-4 ">
+            <div className="flex w-full flex-col md:flex-row my-4 ">
 
             <div className='col-span-2 shadow-xl b w-2/3 relative border-[0.5rem] outline outline-gray-100 rounded-md border-white'>
             <MapCotainer destinationLocation={destinationLocation.address} pickupLocation={pickupLocation.address}/>
+            
             </div>
             <div className=' col-span-2  w-1/3 '>
             <BokkingCart option={option} setOption={setOption} booking />
             </div>
             </div>
-             <div className=' col-span-4 min-h-[8rem] w-full  grid grid-cols-3 gap-3 mb-2'>
+             <div className=' col-span-4 min-h-[8rem] w-full  grid grid-cols-1 md:grid-cols-3 gap-3 mb-2 mt-20'>
               <div className="  bg-blue-100  ">
               <LocationCart name={'Current Location'} current />
               </div>

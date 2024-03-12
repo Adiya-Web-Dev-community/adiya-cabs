@@ -36,12 +36,12 @@ const SaleRentalCar = () => {
 
     return (
         <>
-           <h1 className='text-center text-5xl font-montserrat mb-20 text-black/50 '
+           <h1 className='text-center md:text-5xl text-lg font-montserrat text-black/50 '
                 >Top Rated Best Selling Vehicle Variants
                 </h1>
-            <div  className="p-5 ">
+            <div  className="">
 
-                <div  className="w-[75rem] bg-white mx-auto" >
+                <div  className="w-full bg-white px-5" >
                 <Swiper
                         thumbs={{ swiper: thumbsSwiper }}
                         loop={true}
@@ -56,23 +56,23 @@ const SaleRentalCar = () => {
                         }}
                     >  
                         {rentalCarsDummy.map((el, i) =>
-                            <SwiperSlide key={i} className='h-full mb-2' >
-                                <div className='  border  flex-col  overflow-hidden  cursor-pointer  rounded-md '>
+                            <SwiperSlide key={i} className='h-fit' >
+                                <div className='border  flex-col  cursor-pointer  rounded-md '>
                                      <div className="w-full p-4 shadow-lg rounded-t-lg border bg-red-500">
                                      <h2  className=' text-xl font-montserrat flex items-center font-semibold  text-white'>
                                      <MdCarRental className="mx-2"/>   Rent {el.title} for Self Drive
                                      
                                         </h2> 
                                      </div>
-                                   <div className="h-[17rem] flex  items-center  ">
+                                   <div className=" flex  items-center flex-wrap md:flex-nowrap ">
                                  
-                                   <div className="p-2 w-2/5">
+                                   <div className="p-2 w-full">
                                  
-                                    <img src={el.imgUrl} className="w-full"/>
+                                    <img src={el.imgUrl} className="sm:w-[400px]"/>
                                     
                                     </div>
-                                    <div className="p-2 relative h-full w-3/5">
-                                    <div className="border p-2 bg-white text-red-400 flex w-[fit-content] mb-2 rounded-md">
+                                    <div className=" relative">
+                                    <div className="border  bg-white text-red-400 flex flex-col md:flex-row  w-full justify-center items-center mb-2 rounded-md">
                                     <h2 className="text-xl font-montserrat"> Monthly Rent  {el.content.rentalInfo.monthly}</h2>
                                       <h2 className="text-xl font-montserrat ml-4"> Daily Rent {el.content.rentalInfo.dailyRate} </h2>
                                     </div >
@@ -80,7 +80,7 @@ const SaleRentalCar = () => {
                                       <h2 className="text-xl p-2 text-red-800  font-montserrat">
                                             Features
                                         </h2>
-                                        <div className="flex  border p-2 w-[fit-content]">
+                                        <div className="flex  border flex-col md:flex-row md:w-full w-full p-4 ">
                                             {el.content.features.map((el,i)=>{
                                                 return   <p className="text-sm flex  font-montserrat  mr-4">
                                                     {el}
@@ -94,9 +94,9 @@ const SaleRentalCar = () => {
 
                                    </div>
 
-                                   <div className="w-full  flex items-end  p-2 ">
+                                   <div className="w-full  flex items-end justify-center p-2">
                                  
-                                       <div className="flex items-center bg-white   border  shadow-md p-2 rounded-md text-gray-500 w-[fit-content]">
+                                       <div className="flex  flex-col md:flex-row items-center bg-white  border  shadow-md p-2 rounded-md text-gray-500 w-[fit-content]">
                                       
                                      
                                         <p className="text-md flex">
@@ -125,6 +125,8 @@ const SaleRentalCar = () => {
                                         {el.content.specifications.engine} Engine
                                         </p>
                                        </div>
+
+                                       
                                        
                                     </div>
                                   
@@ -137,7 +139,7 @@ const SaleRentalCar = () => {
                         )}
 
                     </Swiper>
-                    <div className=" flex  rounded-md pt-4 px-2 border">
+                    <div className=" flex rounded-md pt-4 px-2 border">
                       <div className="flex items-center mr-2 " ref={navigationPrevRef} >
                         <FaAngleDoubleLeft size={'25px'} className="text-red-400 hover:text-red-600 cursor-pointer"/>
                         </div>   
@@ -161,16 +163,22 @@ const SaleRentalCar = () => {
                 swiper.params.navigation.nextEl = navigationNextRef.current;
             }}
             
-            onSwiper={setThumbsSwiper}
+             onSwiper={setThumbsSwiper}
             freeMode={true}
             watchSlidesProgress={true}
-            className="mySwiper "
+            className="mySwiper"
             initialSlide={0}
            
             slidesPerView={6}
             breakpoints={{
+                320:{
+                    slidesPerView: 1,
+                },
+                426 :{
+                    slidesPerView: 2,
+                },
                 768: {
-                  slidesPerView: 6,
+                  slidesPerView: 3,
                 },
                 1024: {
                   slidesPerView: 6,
@@ -180,11 +188,11 @@ const SaleRentalCar = () => {
 
 
                         {rentalCarsDummy.map((el, i) =>
-                            <SwiperSlide key={i} className='h-full ' >
-                                <div   onClick={()=>{setActiveSlide(i)}} className={`border  mb-8 flex-col  overflow-hidden  cursor-pointer  rounded-md shadow-md 
+                            <SwiperSlide key={i} className='h-full w-full' >
+                                <div   onClick={()=>{setActiveSlide(i)}} className={`border  mb-8  cursor-pointer  rounded-md shadow-md 
                                  ${activeSlide===i?'bg-red-100':'bg-white'}`}>
-                                   <div className="h-24">
-                                   <div className="h-full" style={{
+                                   <div className="h-full w-full">
+                                   <div className="h-24" style={{
                                         background: `url(${ el.imgUrl })`,
                                         backgroundSize: 'cover'
                                     }}>
@@ -194,7 +202,7 @@ const SaleRentalCar = () => {
                                    </div>
 
 
-                                    <div className={ ` rounded-md mt-[-0.2rem] p-2 grid gap-1
+                                    <div className={ ` rounded-md mt-[-0.2rem] p-2 grid grid-cols-1 gap-1
                                     ${activeSlide===i?'bg-red-600 text-white':'bg-white text-gray-600'}`
                                     } style={{ background: '' }}>
                                         <p className="text-sm  text-center font-semibold font-montserrat ">
@@ -208,7 +216,7 @@ const SaleRentalCar = () => {
                                 </div>
                             </SwiperSlide >
                         )}
-
+                     
 
                     </Swiper>
                  

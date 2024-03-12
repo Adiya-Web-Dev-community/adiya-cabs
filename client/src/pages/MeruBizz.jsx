@@ -25,24 +25,28 @@ const MeruBizz = () => {
         {/* <div className='lg:w-3/4 xl:w-2/5  flex  justify-center flex-col items-center pt-12 ' >
           <img src={svgUpgrade} alt="" className='h-40' />
         </div> */}
-        <div className=' flex flex-col justify-center items-center  w-full '>
-            <h2 className='text-white/75 text-5xl  lg:text-6xl	 text-center mb-3'>
-              Upgrade your business transportation.
-            </h2>
-            <p className='flex my-2 text-white  text-4xl lg:text-start w-3/5 mb-3 ' >Guaranteed journeys | Unlock savings of up to 57% | Connecting 7000+ destinations across 100+ cities</p>
 
-          <div className='w-full h-16 mb-3'>
-            <button className='bg-white mt-4  m-auto w-32 p-2 text-lg rounded md:mx-auto block mb-5 relative  transition ease-in duration-300   hover:bottom-[-0.2rem]'>
-              Get Started
-            </button>
-          </div>
-        </div>
+        <div className='flex flex-col justify-center items-center px-3 md:px-6 w-full'>
+  <h2 className='text-white/75 text-2xl md:text-6xl text-center mb-3 px-3'>
+    Upgrade your business transportation.
+  </h2>
+  <p className='flex text-white text-lg md:text-4xl w-full px-3 md:px-8 lg:px-12 mb-3'>
+    Guaranteed journeys | Unlock savings of up to 57% | Connecting 7000+ destinations across 100+ cities
+  </p>
+
+  <div className='w-full h-16 mb-3'>
+    <button className='bg-white mt-4 mx-auto w-48 md:w-32 p-3 text-lg rounded block relative transition ease-in duration-300 hover:bottom-[-0.2rem]'>
+      Get Started
+    </button>
+  </div>
+</div>
+
         </div>
       </section>
 
       <section className='mb-12'>
         <div>
-          <h2  className='text-gray-700 text-3xl lg:text-4xl text-center '>The <span className='text-red-500'>MeruBiz</span>  advantages</h2>
+          <h2  className='text-gray-700 text-lg mb-1 lg:text-4xl text-center '>The <span className='text-red-500'>MeruBiz</span>  advantages</h2>
         </div>
         <div className=' flex justify-center'>
           <div className='w-4/5 bg-white rounded  p-3 '>
@@ -64,16 +68,20 @@ const MeruBizz = () => {
       </section>
 
       <section className=' bg-gray-100 p-4'>
+
         <div className='w-full sm:w-4/5 mx-auto'>
-          <h2  className='text-gray-700 text-3xl lg:text-4xl text-center '>
-            Our Comprehensive
-            <span className='text-red-500'> Business</span> Travel
-            Solutions
-            and
-            <span className='text-red-500'> Services</span>
-          </h2>
-          <p className='flex my-2   text-xl lg:text-start '>Access top-tier solutions designed to streamline the transportation requirements of your esteemed guests and workforce</p>
-        </div>
+  <h2 className='text-gray-700 text-1xl sm:text-3xl lg:text-4xl text-center'>
+    Our Comprehensive
+    <span className='text-red-500'> Business</span> Travel
+    Solutions
+    and
+    <span className='text-red-500'> Services</span>
+  </h2>
+  <p className='my-2 text-base sm:text-xl lg:text-xl text-center sm:text-left px-4 sm:px-12'>
+    Access top-tier solutions designed to streamline the transportation requirements of your esteemed guests and workforce
+  </p>
+</div>
+
 
         <div className=' flex justify-center mt-4 '>
           <div className='w-full sm:w-3/4  '>
@@ -98,19 +106,20 @@ const MeruBizz = () => {
               {
                 meruComprehensiveBusiness.map((el, i) => {
                   return <SwiperSlide key={i} >
-                    <div className='bg-white grid grid-cols-[1fr_12rem] p-4'>
+                    <div className='bg-white grid lg:grid-cols-2 md:py-10 gap-6 px-2'>
                       <div className='  '>
-                        <h2 className='text-gray-700 text-lg text-center	w-full lg:text-2xl	 lg:text-start  mb-3'>{el.title}</h2>
-                        <p className=' text-center lg:text-start text-md lg:text-md'>
+                        <h2 className='text-gray-700 text-lg text-center	w-full lg:text-2xl px-2	 lg:text-start  mb-3'>{el.title}</h2>
+                        <p className=' text-center lg:text-start text-md lg:text-md px-2'>
                           {el.description}
                         </p>
                       </div>
-                      <div style={{ backgroundImage: `url(${ el.imagePath })`, }} className=' xl:w-40 xl:h-40 rounded sm:w-100  ml-3 sm:h-40 h-40 bg-cover   ' ></div>
+                      <div style={{ backgroundImage: `url(${ el.imagePath })`, }} className='xl:w-90 md:h-[200px] rounded sm:w-100 mt-10 ml-3 sm:h-40 h-40 bg-cover' ></div>
                     </div>
 
                   </SwiperSlide>
                 })
-              }         
+              }   
+
             </Swiper>
           </div>
         </div>
@@ -118,12 +127,12 @@ const MeruBizz = () => {
 
       <section className='mb-12  bg-gray-100 pt-12' >
 
-        <div className='sm:w-3/5 mx-auto   '>
-          <h2  className='text-gray-700 text-3xl lg:text-4xl text-center '>
+        <div className=' mx-auto text-center px-3'>
+          <h2  className='text-gray-700 text-lg lg:text-4xl '>
             What makes <span className='text-red-500'> MeruBiz?</span>
             the preferred choice
           </h2>
-          <p className='flex my-2   text-xl lg:text-start ' >Keep your employees, admin team and stakeholders happy with MeruBiz.</p>
+          <p className=' text-lg md:text-xl text-center' >Keep your employees, admin team and stakeholders happy with MeruBiz.</p>
         </div>
 
         <div className=' flex justify-center mt-4 '>
@@ -158,7 +167,7 @@ const MeruBizz = () => {
               {
                 merBizWhy.map((el, i) => {
                   return <SwiperSlide key={i} className='h-full' >
-                    <div className=' flex flex-col bg-white items-center m-0  min-h-[20rem] pb-8 mt-3 mb-7 delay-700	 cursor-pointer  border    rounded-md  p-2 relative '>
+                    <div className=' flex flex-col bg-white items-center m-0  min-h-[20rem] pb-8 mt-3 mb-7 delay-700	w-100 cursor-pointer  border    rounded-md  p-2 relative '>
                         <div className='flex  w-full h-16 mb-4'>
                            <img src={el.pngIcon} className='h-16 w-16 object-cover'/>
                            <h2 className='text-gray-700	 text-xl	w-full mb-2 ml-4 text-center'>{el.title}</h2>
@@ -197,21 +206,21 @@ const MeruBizz = () => {
 
 
         <div className='sm:w-4/5 mx-auto  px-3 sm:p-0 overflow-x-scroll  '>
-          <h2 className='text-gray-700	 text-4xl	 text-center mb-5 '>
+          <h2 className='text-gray-700 text-lg	 md:text-4xl	 text-center mb-5 '>
             <span className='text-red-500'> MeruBiz </span>versus
             <span className='text-red-500'> alternative </span>options. 
           </h2>
-          <p className='flex my-2   text-lg lg:text-start '   >Derived from market research and a sample analysis.</p>
+          <p className='flex my-2   text-lg lg:text-start px-2'   >Derived from market research and a sample analysis.</p>
            
           <table className='p-0 m-0 w-full my-4'>
         
 
-            <thead className=' text-sm md:text-md lg:text-lg text-white' >
-              <th className='font-normal bg-gray-500 p-2' >Evaluating services and their differences
+            <thead className='text-xs md:text-xl lg:text-lg text-white' >
+              <th className='font-normal bg-gray-500 md:p-2 p-1' >Evaluating services and their differences
               </th>
-              <th className='font-normal p-2 bg-gray-500 '>MeruBizz.</th>
-              <th className='font-normal p-2 bg-gray-500 '>App-driven operators..</th>
-              <th className='font-normal p-2 bg-gray-500 '>Conventional operators.</th>
+              <th className='font-normal md:p-2 p-1 bg-gray-500 '>MeruBizz.</th>
+              <th className='font-normal  md:p-2 p-1 bg-gray-500 '>App-driven operators..</th>
+              <th className='font-normal  md:p-2 p-1  bg-gray-500 '>Conventional operators.</th>
             </thead>
             <tbody  >
               {meruBizVersus.map((el) => {

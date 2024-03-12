@@ -12,11 +12,11 @@ function CollaboratewithUs() {
 
     <main >
     <section className='  bg-cover mb-12' style={{ backgroundImage: `url(${ collaborateImg })`, }} >
-         <div className=' place-items-center min-h-[100vh] 	 px-4 pt-20 grid grid-cols-2    h-full w-full ' >
+         <div className=' place-items-center min-h-[100vh] items-center	px-4 py-5 pt-20 grid grid-cols-1 md:grid-cols-2 gap-4  h-full w-full ' >
          
 
          <div className='h-full pl-8 pt-12  '>
-            <h2 className='text-5xl	  text-black/50 lg:text-7xl   font-extralight '>
+            <h2 className='md:text-5xl text-4xl	  text-black/50 lg:text-7xl   font-extralight '>
             Embrace entrepreneurship today.!
             </h2>
             <p className='text-5xl  text-white mt-8  '>
@@ -26,16 +26,16 @@ function CollaboratewithUs() {
           </div>   
         <div  >
 
-         <form className='bg-white/50  flex-col  rounded  p-2 pl-4 w-[fit-content] lg:w-[23rem]  '>
+         <form className='bg-white flex-col  rounded-[20px]  mt-10 p-2 pl-4 w-[fit-content] lg:w-[23rem] shadow-4xl '>
             <h2 className='text-2xl mb-2'>Establish A Partnership With Us</h2>
           <label>Enter Full Name</label>  
-          <input type="text" className='bg-white/70  border-2 py-2 px-2 text-md w-80 mb-4 outline-none
+          <input type="text" className='bg-white/70  border-2 py-2 px-2 text-md md:w-80  w-full mb-4 outline-none
           rounded transition ease-in duration-300 focus:border-gray-500' />
           <label>Enter Mobile No</label>  
-          <input type="text" className='bg-white/70  border-2 py-2 px-2 text-md w-80 mb-4  outline-none
+          <input type="text" className='bg-white/70  border-2 py-2 px-2 text-md md:w-80 w-full mb-4  outline-none
           rounded transition ease-in duration-300 focus:border-gray-500' />
           <label>Select City</label>  
-          <input type="text" className='bg-white/70  border-2 py-2 px-2 text-md w-80 mb-4 outline-none 
+          <input type="text" className='bg-white/70  border-2 py-2 px-2 text-md md:w-80  w-full mb-4 outline-none 
           rounded transition ease-in duration-300 focus:border-gray-500' />
 
 
@@ -65,7 +65,7 @@ function CollaboratewithUs() {
             As a part of the Adiya cab family, you gain access to a well-established and trusted platform that connects you with a vast clientele.
             </div>
             <div className=' p-2     cursor-pointer ' >
- We offer comprehensive assistance,
+            We offer comprehensive assistance,
              including driver onboarding, safety training, and 24/7 customer support. 
              Your journey with Adiya cab is backed by our expertise and dedication to making your business thrive.
             </div>
@@ -77,7 +77,7 @@ function CollaboratewithUs() {
             <span className='text-red-500'> Ideal Choice</span>
     </h2>    
      
-     <div className='grid grid-cols-2 gap-4 sm:w-4/5 m-auto '>
+     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 sm:w-4/5 m-auto '>
                   {collaboratewithus.map((el, i) => {
 
                       return (
@@ -101,7 +101,7 @@ function CollaboratewithUs() {
                 <span className='text-red-500'> Adiya cab  partner </span>
             </h2>
 
-            <div className='  grid grid-cols-3 gap-4 '>
+            <div className='  grid grid-cols-1  md:grid-cols-3 gap-4 px-2'>
                 <div className=' rounded border p-2 bg-white'>
                 <h2 className='text-gray-700 text-xl lg:text-2xl  mb-2 text-center '>Owner documents</h2>
                 <p >
@@ -109,7 +109,7 @@ function CollaboratewithUs() {
                    <span className='mx-1'>Cancelled cheque or Passbook,</span>
                    <span className='mx-1'>Aadhaar card,</span>
                    <span className='mx-1'>Address proof,</span>
-                </p>,
+                </p>
                 </div>
                 <div className=' border rounded p-2 bg-white'>
                 <h2 className='text-gray-700 text-xl lg:text-2xl  mb-2 text-center'>Driver documents</h2>

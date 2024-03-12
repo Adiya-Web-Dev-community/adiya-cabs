@@ -18,7 +18,7 @@ const Testimonial = () => {
     <>
       <section className=" flex items-center justify-center mt-4">
 
-          <div    className="w-4/5">
+          <div className="w-4/5">
           <Swiper
             loop={true}
             speed={500}
