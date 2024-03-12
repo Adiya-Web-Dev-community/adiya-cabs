@@ -313,12 +313,12 @@ const navigationData = [
     type: "both",
     items: [
       {
-        path: "/about-us/our-journey",
+        path: "/ourservices/ourjourney",
         name: "About our Journey",
         icon: GiCastle,
       },
       {
-        path: "/about-us/our-services",
+        path: "/ourservices/service",
         name: "Our Services",
         icon: LiaCitySolid,
       },

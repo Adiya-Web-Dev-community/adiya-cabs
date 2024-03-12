@@ -7,9 +7,9 @@ const Home = () => {
 
   return (
     <>
-    
+     <div>
       <Banner />
-      
+      </div>
       <Info />
       <section className="flex flex-col md:flex-row justify-between items-center bg-gray-100">
   <div className="flex justify-center items-center flex-col bg-gray-100 w-full md:w-2/5 h-fit">

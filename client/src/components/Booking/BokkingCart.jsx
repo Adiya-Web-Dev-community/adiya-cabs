@@ -16,9 +16,9 @@ const BokkingCart = ({ booking }) => {
 
 
   return (
-    <section className={`bg-white shadow-2xl xl:mt-4 rounded-md sm:rounded text-sm items-center md:w-[24.5rem] w-full h-[34rem] mx-9  ${ booking ? 'z-10' : '' }`}>
+    <section className={`bg-white shadow-2xl xl:mt-4 rounded-md sm:rounded text-sm items-center md:w-[24.5rem] w-[20.5rem] h-[34rem] justify-center md:mr-[3rem] ${ booking ? 'z-10' : '' }`}>
       <BookingProcess booking={booking}>
-        {(booking?<PickUp/>:<PickUp button/>)}
+        {(booking?<PickUp button/>:<PickUp button/>)}
       </BookingProcess>
     </section>
   )

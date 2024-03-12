@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const CityData = require("../../model/data");
-const Booking = require("../../model/customer/booking");
 const accountMiddleware = require("../../middleware/account");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -174,8 +173,8 @@ router.post("/payment", async (req, resp) => {
     payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
-    // success_url: "http://localhost:5173",
-    success_url: "https://meru-cabs-delta.vercel.app/",
+     success_url: "http://localhost:5173",
+    // success_url: "https://meru-cabs-delta.vercel.app/",
     cancel_url: "https://localhost:5000/route/response/sucess.html",
   });
   console.log(session.url);

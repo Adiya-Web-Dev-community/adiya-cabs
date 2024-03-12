@@ -23,7 +23,7 @@ const TrendingOffers = () => {
         Trending <span className='text-black/50'>Offers</span>
     </h1>
     <div>
-        <div className='flex flex-col mt-3 md:gap-3 '>
+        <div className='flex md:flex-row flex-col  mt-3 md:gap-3 '>
             {trendingOffers.buttonName.map((el) => (
                 <Button
                     key={el}

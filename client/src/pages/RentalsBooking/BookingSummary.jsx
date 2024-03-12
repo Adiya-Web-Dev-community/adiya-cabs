@@ -78,6 +78,8 @@ const BookingSummary = () => {
     }
   };
 
+ 
+
   //handle booking confirm
   // const handleConfirmBooking = async () => {
   //   console.log(rentalsInitialData, carDetails, locationDetails, payableAmount);

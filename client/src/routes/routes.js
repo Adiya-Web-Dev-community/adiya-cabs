@@ -7,7 +7,10 @@ import Booking from "../pages/Booking";
 import AdiyaRentals from "../pages/AdiyaRental";
 import RentalsBooking from "../pages/RentalsBooking";
 import BookingSummary from "../pages/RentalsBooking/BookingSummary";
-import offers from "../components/Offers/offer";
+import offers from "../components/Offers/Offer";
+import Service from "../components/ourservices/Service";
+import Journey from "../components/ourjourney/Journey";
+import Offers from "../components/Offers/Offer";
 
 const routes = [
   {
@@ -34,8 +37,18 @@ const routes = [
   {
     path: "/offers",
     name: "offer",
-    element: offers,
+    element: Offers,
   },
+  {
+    path: "/ourservices/service",
+    name: "ourservices",
+    element: Service,
+  },
+  {
+    path: "/ourservices/ourjourney",
+    name: "ourservices",
+    element: Journey,
+  }
 ];
 
 export default routes;

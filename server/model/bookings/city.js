@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const bookingSchema = new mongoose.Schema({
+const cityBookingSchema = new mongoose.Schema({
   rideCategory: { type: String },
   //   booking details
   pickupLocation: {
@@ -24,5 +24,5 @@ const bookingSchema = new mongoose.Schema({
   carId : { type: mongoose.Schema.Types.ObjectId, ref: "car" },
 });
 
-const bookingModel = mongoose.model("booking", bookingSchema);
-module.exports = bookingModel;
+const cityBookingModel = mongoose.model("cityBooking", cityBookingSchema);
+module.exports =cityBookingModel;

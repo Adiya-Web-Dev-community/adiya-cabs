@@ -18,7 +18,7 @@ const Banner = () => {
   className="bg-slate-900 bg-cover bg-center text-slate-700 flex flex-col md:flex-row px-1 py-10"
 >
   <section className="w-full">
-    <h1 className="text-white/80 text-5xl md:text-7xl font-montserrat font-extralight mb-8 md:my-16">
+    <h1 className="text-white/80 text-5xl md:text-7xl font-montserrat font-extralight mb-8 md:my-16 lg:p-14">
       <span>Book Meru</span><br/>
       <span>Best for {`${banner[category].name}`} rides</span>
     </h1>
