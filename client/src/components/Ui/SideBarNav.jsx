@@ -58,7 +58,7 @@ const SideBarNav = ({ navArr }) => {
                  `}>
 
                 <div className='flex' >
-                    {el.icon ? <el.icon className='mr-2' size={17} /> : <div className='mr-2'></div>}
+                    {el.icon ? <el.icon className='mr-2' size={17}/> : <div className='mr-2'></div>}
                     {el.name}
                 </div>
                 {vlidation ? <BsChevronDown /> : <BsChevronUp />}

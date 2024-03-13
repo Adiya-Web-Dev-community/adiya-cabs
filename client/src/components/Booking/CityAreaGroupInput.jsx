@@ -27,6 +27,7 @@ function CityAreaGroupInput({props:{cityKey,areaKey,children}}){
         }
       try {
         const response = await axiosInstance.post(`/search-data?city=${obj.value}`);
+        console.log(response,"city");
         if(response.status===200){
           steAreaData(response.data.areas.map((el)=>(
             { value: el, label: el,icon:AiOutlineAreaChart }
