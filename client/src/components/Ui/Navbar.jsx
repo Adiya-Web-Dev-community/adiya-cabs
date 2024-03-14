@@ -3,11 +3,14 @@ import { Link, useParams } from "react-router-dom";
 import { AiOutlineMenuFold } from "react-icons/ai";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Sidebar from "./Sidebar";
+import UserProfile from "./UserProfile";
 
 const Navbar = ({ navArr }) => {
   const [openSidebar, setOpenSidebar] = useState(false);
   const [subMenu, setSubMenu] = useState([]);
   const [navBG, setNavBG] = useState(false);
+  const [profile, setProfile] = useState(false);
+  
 
   window.addEventListener("scroll", () => {
     window.scrollY >= 35 ? setNavBG(true) : setNavBG(false);
@@ -15,7 +18,7 @@ const Navbar = ({ navArr }) => {
 
   const { bookingStatus } = useParams();
 
-  console.log(bookingStatus, "in-process");
+  // console.log(bookingStatus, "in-process");
 
   const navItems = (el, type) => {
     return type === "child" ? (
@@ -99,6 +102,7 @@ const Navbar = ({ navArr }) => {
     );
   };
 
+  console.log(profile,"");
   return (
     <nav
       className={`flex justify-end items-center font-montserrat z-20  px-5 md:px-38 sticky sm:fixed top-0  h-fit w-full select-none text-black ${
@@ -125,10 +129,15 @@ const Navbar = ({ navArr }) => {
           openSidebar ? "visible " : "invisible"
         }`}
       >
-        <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
+        {/* {!profile && <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar}  openProfile= { ()=>setProfile(prev=> !prev)}  />}
+        {profile && <UserProfile openProfile= { ()=>setProfile(false)} />} */}
+
+        {!profile && <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar}  openProfile= { ()=>setProfile(prev=> !prev)}  />}
+        {profile && <UserProfile openProfile= { ()=>setProfile(false)} />}
       </section>
     </nav>
   );
 };
 
 export default Navbar;
+ 

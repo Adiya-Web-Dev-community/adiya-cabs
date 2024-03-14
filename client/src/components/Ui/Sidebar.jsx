@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import SideBarNav from "./SideBarNav";
 import { useSelector } from "react-redux";
 
-const Sidebar = ({ openSidebar, setOpenSidebar }) => {
+const Sidebar = ({ openSidebar, setOpenSidebar,openProfile}) => {
 
 const {username,userEmail}= useSelector((el)=>el.app)
 
@@ -18,7 +18,7 @@ const {username,userEmail}= useSelector((el)=>el.app)
       <section className="flex items-center justify-between px-2  shadow w-full text-center">
         <div className="flex">
           <div className="border-2 border-slate-500 p-1 rounded-full h-12 w-12 m-2">
-            <BsPersonFill className="text-slate-500 text-4xl" />
+            <BsPersonFill className="text-slate-500 text-4xl" onClick={openProfile} />
           </div>
           <div className="w-[75%]   whitespace-normal break-all text-md text-start" >
                <span>{username?username:'Guest'}</span><br/>

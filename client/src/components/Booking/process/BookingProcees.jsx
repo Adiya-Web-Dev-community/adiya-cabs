@@ -39,15 +39,15 @@ function BookingProcess({ booking, children }) {
   const bookingObj = useSelector(el => el.bookingSlice.bookingRideData)
   const  {  pickupLocationInputVal,
   destinationLocationInputVal} =  useSelector(el => el.bookingSlice)
-
+  console.log(destinationLocationInputVal)
   const token = useSelector(el => el.app.userloginToken)
   const [map, setMap] = useState(null);
   const [directionResponse, setDirectionResponse] = useState(null);
   const [isActive,setActive] = useState(false)
   const [isDisabled,setDisabeld] = useState(true)
   const [isPickupActive,setPickupActive] = useState(false)
+  const[isAirport,setIsAirport]=useState(false);
  
-
 
 
   const [placeObj,stePlaceObj] = useState({
@@ -175,6 +175,10 @@ function BookingProcess({ booking, children }) {
           `https://nominatim.openstreetmap.org/reverse?lat=${lat()}&lon=${lng()}&format=json`
         );
         console.log(response);
+        
+  const types= place.types;
+  const isAirport = types.includes("airport")
+
         if(response.status===200){
           setInputLoader(prev=>({...prev,pickupLocation:false}))
           const { display_name,address } = response.data;
@@ -197,6 +201,9 @@ function BookingProcess({ booking, children }) {
     }
   }
 
+
+
+
   function onLoad(autocomplete) {
     stePlaceObj(prev=>({...prev,pickupLocation:autocomplete}))
   }
@@ -210,6 +217,7 @@ function BookingProcess({ booking, children }) {
         const response = await axios.get(
           `https://nominatim.openstreetmap.org/reverse?lat=${lat()}&lon=${lng()}&format=json`
         );
+        console.log(response,"onchange")
 
         if(response.status===200){
           setInputLoader(prev=>({...prev,destination:false}))
@@ -225,10 +233,11 @@ function BookingProcess({ booking, children }) {
         console.error("Error getting coordinates:", error);
         throw error;
       }
+    } 
 
-
-
-    } else {
+    
+    
+    else {
       alert("Please enter text");
     }
   }
@@ -310,35 +319,43 @@ window.addEventListener('load', function() {
     </div>
   
 
-    <div className="px-9 pb-5 flex flex-col gap-2">
-
+    <div className=" pb-5 flex flex-col gap-2 px-5">
+     <div className='px-5'>
       <h3 className="text-base mb ">Book ride!</h3>
       <h4 className="text-sm mt-3 ">Select Pickup Location and Destination</h4>
-
+      </div>
 
       <div className="flex-col   flex justify-center items-center ">
 
 
         {isDisabled?<Spinner/>:<div className='w-full'>
 
-        <div className='relative'>
+        <div className='relative px-5'>
           <Autocomplete
             onPlaceChanged={onPlaceChanged} onLoad={onLoad}
+            
           >
           <input ref={originRef} type="text" disabled={booking} placeholder={'Pickup Location'} className='w-[15rem] md:w-full outline-none my-2  text-md  rounded border-gray-400 p-2 border' />
           </Autocomplete>
+
           { inputLoader.pickupLocation&&<div className='absolute px-1 top-0 left-0 h-full w-full md: bg-white/20 flex justify-end items-center'>
              <Spinner  small/>
           </div>}
         </div>
-        <div className='relative'>
+        <div className='relative px-5'>
 
-          <Autocomplete
-            onPlaceChanged={onPlaceChanged2} onLoad={onLoad2}
+        <Autocomplete
+             onPlaceChanged={onPlaceChanged2} onLoad={onLoad2}
+             types = {isAirport?["airport"]:[]}
           >
             <input ref={destinationRef} type="text" disabled={booking} placeholder={'Distination'} className='w-[15rem] md:w-full outline-none my-2  text-md  rounded border-gray-400 p-2 border' />
-          </Autocomplete>
-          {inputLoader.destination&&<div className='absolute px-1 top-0 left-0 h-full w-full bg-white/20 flex justify-end items-center'>
+          </Autocomplete> 
+
+
+
+
+
+          {inputLoader.destination&& <div className='absolute px-1 top-0 left-0 h-full w-full bg-white/20 flex justify-end items-center'>
              <Spinner small/>
           </div>}
           </div>
@@ -353,7 +370,7 @@ window.addEventListener('load', function() {
         
       </div>
 
-      <div className="w-[15rem] md:w-full grid grid-cols-1 gap-2">
+      <div className="w-[15rem] md:w-full grid grid-cols-1 gap-2 px-5">
 
         {booking ?
           <button
@@ -379,11 +396,6 @@ window.addEventListener('load', function() {
 }
 
 export default memo(BookingProcess)
-
-
-
-
-
 
 
 

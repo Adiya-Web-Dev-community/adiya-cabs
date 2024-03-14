@@ -333,7 +333,6 @@ const navigationData = [
   },
   { path: "fg", name: "Support", icon: FcSupport, type: "left" },
   { path: "fd", name: "Ultimate Guide", icon: GiPathDistance, type: "left" },
-  { path: "dfg", name: "Your Profile", icon: CgProfile, type: "left" },
   {
     path: "/rentals-booking",
     name: "Lost And Found",
