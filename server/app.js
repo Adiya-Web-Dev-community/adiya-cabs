@@ -2,7 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
-
+const carRoutes = require("./route/carRoutes");
+const bikeRoutes = require("./route/bikeRoutes");
+const cycleRoutes = require("./route/cycleRoutes");
+const taxiRoutes = require("./route/taxiRoutes");
 
 
 app.use(express.json());
@@ -31,6 +34,14 @@ app.use(require("./route/admin/bankOffers"))
 app.use(require("./route/admin/monthlyOffers"))
 app.use(require("./route/admin/car"))
 app.use(require('./route/admin/rental-bookings'))
+
+
+
+// Use the routes
+app.use("/api/cars", carRoutes);
+app.use("/api/bikes", bikeRoutes);
+app.use("/api/cycles", cycleRoutes);
+app.use("/api/taxis", taxiRoutes);
 
 
 // io.on('connection', function(socket){

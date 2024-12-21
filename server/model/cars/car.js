@@ -40,7 +40,7 @@ const carSchema = new mongoose.Schema({
   //working:{type:String},
   availability: {
     type: String, //available/ booked
-    deafult: "Available",
+    default: "Available",
   },
 });
 const carModel = mongoose.model("car", carSchema);
