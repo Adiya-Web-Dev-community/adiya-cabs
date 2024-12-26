@@ -6,6 +6,7 @@ const carRoutes = require("./route/carRoutes");
 const bikeRoutes = require("./route/bikeRoutes");
 const cycleRoutes = require("./route/cycleRoutes");
 const taxiRoutes = require("./route/taxiRoutes");
+const bookings = require("./route/bookingRoutes");
 
 
 app.use(express.json());
@@ -42,6 +43,7 @@ app.use("/api/cars", carRoutes);
 app.use("/api/bikes", bikeRoutes);
 app.use("/api/cycles", cycleRoutes);
 app.use("/api/taxis", taxiRoutes);
+app.use("/api/bookings", bookings);
 
 
 // io.on('connection', function(socket){
