@@ -89,3 +89,66 @@ exports.confirmBooking = async (req, res) => {
     res.status(500).json({ error: "Something went wrong while booking the ride." });
   }
 };
+
+exports.getBookings = async (req, res) => {
+  try {
+    const { status } = req.query; // "upcoming", "completed", "canceled"
+    const userId = req.accountId; // Authenticated user ID from token
+
+    // Validate status
+    const validStatuses = ["upcoming", "completed", "canceled"];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ error: "Invalid status provided." });
+    }
+
+    // Define status filter logic
+    let statusFilter;
+    switch (status) {
+      case "upcoming":
+        statusFilter = { bookingStatus: { $in: ["waiting for pickup", "ongoing"] } };
+        break;
+      case "completed":
+        statusFilter = { bookingStatus: "completed" };
+        break;
+      case "canceled":
+        statusFilter = { bookingStatus: "canceled" };
+        break;
+    }
+
+    // Fetch bookings based on ride categories
+    const bookings = await Promise.all([
+      AirportBooking.find({ passengerId: userId, ...statusFilter }).populate({
+        path: "carId",
+        select: "manufacturer model carNo imgUrl seatingCapacity luggageCapacity dailyRate monthlyRate availability",
+      }),
+      RiderBooking.find({ passengerId: userId, ...statusFilter }).populate({
+        path: "carId",
+        select: "manufacturer model carNo imgUrl seatingCapacity luggageCapacity dailyRate monthlyRate availability",
+      }),
+      CityBooking.find({ passengerId: userId, ...statusFilter }).populate({
+        path: "carId",
+        select: "manufacturer model carNo imgUrl seatingCapacity luggageCapacity dailyRate monthlyRate availability",
+      }),
+      OutStationBooking.find({ passengerId: userId, ...statusFilter }).populate({
+        path: "carId",
+        select: "manufacturer model carNo imgUrl seatingCapacity luggageCapacity dailyRate monthlyRate availability",
+      }),
+      RentalBooking.find({ passengerId: userId, ...statusFilter }).populate({
+        path: "carId",
+        select: "manufacturer model carNo imgUrl seatingCapacity luggageCapacity dailyRate monthlyRate availability",
+      }),
+    ]);
+    
+
+    const flattenedBookings = bookings.flat(); // Combine bookings from all categories
+
+    res.status(200).json({
+      message: `${status} bookings retrieved successfully.`,
+      bookings: flattenedBookings,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Something went wrong while fetching bookings." });
+  }
+};
+
